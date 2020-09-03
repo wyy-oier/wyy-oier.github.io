@@ -20,18 +20,23 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="update 2020&#x2F;9&#x2F;1 18:17:ABCD题打完">
+  <meta name="description" content="Update 2020&#x2F;8&#x2F;27 21:30:ABC题打完 Update 2020&#x2F;8&#x2F;28 15:19:D题打完 Update 2020&#x2F;8&#x2F;29 23:10:通过《如何用 Markdown&amp;LaTeX 写一篇排版整齐的题解？》优化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Codeforces Round #661 (Div. 3)题解">
-<meta property="og:url" content="http://example.com/2020/09/01/Codeforces-Round-661-Div-3-%E9%A2%98%E8%A7%A3/index.html">
+<meta property="og:title" content="Codeforces Round #664 (Div. 2)题解">
+<meta property="og:url" content="http://example.com/2020/08/27/Codeforces-Round-664-Div-2-%E9%A2%98%E8%A7%A3/index.html">
 <meta property="og:site_name" content="WyyOIER&#39;s Blog">
-<meta property="og:description" content="update 2020&#x2F;9&#x2F;1 18:17:ABCD题打完">
+<meta property="og:description" content="Update 2020&#x2F;8&#x2F;27 21:30:ABC题打完 Update 2020&#x2F;8&#x2F;28 15:19:D题打完 Update 2020&#x2F;8&#x2F;29 23:10:通过《如何用 Markdown&amp;LaTeX 写一篇排版整齐的题解？》优化">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-09-01T08:10:01.000Z">
-<meta property="article:modified_time" content="2020-09-03T09:59:05.623Z">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/gea6tcrz.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/8icvl53a.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/4p794lrh.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/p286gp0q.png">
+<meta property="article:published_time" content="2020-08-27T09:06:05.000Z">
+<meta property="article:modified_time" content="2020-09-03T13:08:22.781Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/gea6tcrz.png">
 
-<link rel="canonical" href="http://example.com/2020/09/01/Codeforces-Round-661-Div-3-%E9%A2%98%E8%A7%A3/">
+<link rel="canonical" href="http://example.com/2020/08/27/Codeforces-Round-664-Div-2-%E9%A2%98%E8%A7%A3/">
 
 
 <script id="page-configurations">
@@ -44,7 +49,7 @@
   };
 </script>
 
-  <title>Codeforces Round #661 (Div. 3)题解 | WyyOIER's Blog</title>
+  <title>Codeforces Round #664 (Div. 2)题解 | WyyOIER's Blog</title>
   
 
 
@@ -164,7 +169,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/01/Codeforces-Round-661-Div-3-%E9%A2%98%E8%A7%A3/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/27/Codeforces-Round-664-Div-2-%E9%A2%98%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -177,7 +182,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Codeforces Round #661 (Div. 3)题解
+          Codeforces Round #664 (Div. 2)题解
         </h1>
 
         <div class="post-meta">
@@ -187,14 +192,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-01 16:10:01" itemprop="dateCreated datePublished" datetime="2020-09-01T16:10:01+08:00">2020-09-01</time>
+              <time title="创建时间：2020-08-27 17:06:05" itemprop="dateCreated datePublished" datetime="2020-08-27T17:06:05+08:00">2020-08-27</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-03 17:59:05" itemprop="dateModified" datetime="2020-09-03T17:59:05+08:00">2020-09-03</time>
+                <time title="修改时间：2020-09-03 21:08:22" itemprop="dateModified" datetime="2020-09-03T21:08:22+08:00">2020-09-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -217,65 +222,85 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><strong>update 2020/9/1 18:17</strong>:ABCD题打完</p>
+        <p><strong>Update 2020/8/27 21:30</strong>:ABC题打完</p>
+<p><strong>Update 2020/8/28 15:19</strong>:D题打完</p>
+<p><strong>Update 2020/8/29 23:10</strong>:通过<a target="_blank" rel="noopener" href="https://studyingfather.blog.luogu.org/blog-written-guide">《如何用 Markdown&amp;LaTeX 写一篇排版整齐的题解？》</a>优化</p>
 <a id="more"></a>
-<h2 id="A-Remove-Smallest"><a href="#A-Remove-Smallest" class="headerlink" title="A. Remove Smallest"></a>A. Remove Smallest</h2><p><strong>题目大意:</strong></p>
+<hr>
+<h2 id="A-Boboniu-Likes-to-Color-Balls"><a href="#A-Boboniu-Likes-to-Color-Balls" class="headerlink" title="A. Boboniu Likes to Color Balls"></a>A. Boboniu Likes to Color Balls</h2><p><strong>题目大意:</strong></p>
 <blockquote>
-<p>给你一个长度为 $ n $ 的数组 $ a $,每次你可以选不同的 $ 2 $ 个位置 $ i $、$ j $。如果满足 $ |a_i-a_j|\le1 $,那么你就可以删除较小的数，求是否能删除 $ n-1 $ 个数。</p>
+<p>给你红色、绿色、蓝色、白色球的个数，将红球-1，绿球-1，蓝球-1，白球+3称为一次操作，请问可以经过操作后可以将小球摆成回文的形式？</p>
+</blockquote>
+<hr>
+<p><strong>解题思路</strong></p>
+<p>回文数，众所周知就是一个两边对称的数。</p>
+<p>那么我们可以将每个小球比作每一位数，只需要满足两边的小球是<strong>对称</strong>的即可。</p>
+<p>那么我们对小球的数量有什么需求呢？我们可将小球数量分为两类:</p>
+<p><strong>①总个数为奇数</strong></p>
+<p>为了满足回文特征，应该为这种情况:</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/gea6tcrz.png" alt="Boboniu Likes to Color Balls_1"></p>
+<p>中间的箭头指向了一个小球。</p>
+<p>不难看出,箭头两边的小球数量一 一对称，而中间的球可以是任意颜色。</p>
+<p>得出结论:<strong>有3个颜色的小球数量为偶数即可。</strong></p>
+<p><strong>②总个数为偶数</strong></p>
+<p>同样为了满足回文特征，则可得出下图</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/8icvl53a.png" alt="Boboniu Likes to Color Balls_2"></p>
+<p>此时中间的箭头指向中间两个小球的中间。</p>
+<p>得出结论:<strong>4个颜色的球的数量都为偶数。</strong></p>
+<hr>
+<p>我们还可以通过操作改变小球数量 <strong>(但无法改变小球总量)</strong> ,每改变一次我们可以将每种颜色的小球数量都改变一次奇偶(+1,+1,+1,-3)。但是只需一次操作即可，因为操作两次后就又会变回原来的奇偶情况。</p>
+<p>注意如果红、绿、蓝球数量为0时就不能再进行操作了！</p>
+<hr>
+<p><strong>代码实现:<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/sqjm30vb">Code</a><br>　时间复杂度$O(T)$</strong></p>
+<hr>
+<h2 id="B-Boboniu-Plays-Chess"><a href="#B-Boboniu-Plays-Chess" class="headerlink" title="B. Boboniu Plays Chess"></a>B. Boboniu Plays Chess</h2><p><strong>题目大意:</strong></p>
+<blockquote>
+<p>给你棋盘大小和棋子的初始坐标，你可以<strong>横着或竖着走任意格</strong>(当然不可以走出界)，打出一个可以不重复地走完棋盘全部格子的方案。</p>
 </blockquote>
 <hr>
 <p><strong>解题思路:</strong></p>
-<p>由于每次操作成功只会删除最小的那一个,所以最后只会剩下一个最大的数,那我们就可以从小到大排列数组,然后检查相邻两数之差是否小于等于$1$即可。</p>
+<p>因为可以横竖走任意格，所以我们可以先将第 $n$ 行走完，竖直向上到第一行，然后从第一行开始，用s形走完剩下 $n-1$ 行。用样例举一个例子:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span> <span class="number">4</span> <span class="number">2</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>则得出的路线是这样的:</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/4p794lrh.png" alt="Boboniu Plays Chess_1"></p>
+<p><del><strong>注意不要走出界</strong></del></p>
 <hr>
-<p><strong>代码实现:<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/jl840kvz">Code</a>　时间复杂度$O(Tn)$</strong></p>
+<p><strong>代码实现:<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/ajke65qg">Code</a><br>　时间复杂度 $O(nm)$</strong></p>
 <hr>
-<h2 id="B-Gifts-Fixing"><a href="#B-Gifts-Fixing" class="headerlink" title="B. Gifts Fixing"></a>B. Gifts Fixing</h2><p><strong>题目大意:</strong></p>
+<h2 id="C-Boboniu-and-Bit-Operations"><a href="#C-Boboniu-and-Bit-Operations" class="headerlink" title="C. Boboniu and Bit Operations"></a>C. Boboniu and Bit Operations</h2><p><strong>题目大意:</strong></p>
 <blockquote>
-<p>给你两个长度都为 $n$ 的序列 $a$、$b$,你可以对他们进行任意一种操作:</p>
-<ul>
-<li>$a_i←a_i-1$</li>
-<li>$b_i←b_i-1$</li>
-<li>$a_i←a_i-1$,$b_i←b_i-1$</li>
-</ul>
-<p>现在要经过若干次操作使得 $a_1=a_2=…=a_n$,$b_1=b_2=…=b_n$。求最少的操作次数。</p>
+<p>输入 $a$,$b$ 两个非负数组,可以将 $a_i$、$b_j$ 配对(可以重复选),得出$c_i=a_i$&amp;$b_i$ ,求 $c_1|c_2|c_3|…|c_n$ 的最小值。</p>
 </blockquote>
 <hr>
 <p><strong>解题思路:</strong></p>
-<p>通过题意我们可以得出,每次操作后数值肯定会减小。那么为了答案最优,<strong>我们可以将 $a$ 数列都变为 $a$ 数列的最小值,$b$ 数列都变为 $b$ 数列的最小值。</strong></p>
-<p>接下来我们考虑 $(a_i,b_i)$ 变为 $(ka,kb)$ 最少的操作数是多少。 $(ka,kb$ 为 $a,b$ 数列的最小值$)$</p>
-<p>答案很明显,操作数就是 $min(|a_i-ka|,|b_i-kb|)$。</p>
-<p>最后把这些数加起来就是最终的答案。 </p>
-<hr>
-<p><strong>代码实现:<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/ozcm1eu4">Code</a>　时间复杂度$O(Tn)$</strong></p>
-<hr>
-<h2 id="C-Boats-Competition"><a href="#C-Boats-Competition" class="headerlink" title="C. Boats Competition"></a>C. Boats Competition</h2><p><strong>题目大意:</strong></p>
+<p>因为数据较小,所以可采用暴力枚举答案的方法。$a$,$b$ 数组中所有数在$2$进制下不超过八位数，那么答案也不超过八位数，所以 $ans$ 可从$0$到$511$枚举且  $ans$ 一定在$0$到$511$之间。</p>
+<p>那么怎样才能验证此时的 $ans$ 就是最小值?</p>
+<p>我们可以将 $ans$ 运算理解为:$ans$=$a_i$&amp;$b_j$|$ans$</p>
+<p>根据<strong>或</strong>运算的计算法则:</p>
+<p>$0|0=0$ 　　$0|1=1$ 　　$1|0=1$ 　　$1|1=1$</p>
+<p>两位数字都为0,运算后的结果还是0,<strong>也就是说,每次或运算后ans不会变小，所以每一次 $a_i$&amp;$b_j$|$ans$ 都要等于 $ans$ ,如果大于 $ans$ ,那么最终的答案也一定会大于 $ans$。</strong> 如果配对后没有任何一组 $a_i$&amp;$b_j$ 超过 $ans$，那么就可以肯定此时的 $ans$ 就是正确答案。</p>
+<p><strong>代码实现:<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/wxcz2n3h">Code</a><br>　时间复杂度$O(nm)$</strong></p>
+<h2 id="D-Boboniu-Chats-with-Du"><a href="#D-Boboniu-Chats-with-Du" class="headerlink" title="D. Boboniu Chats with Du"></a>D. Boboniu Chats with Du</h2><p><strong>题目大意:</strong></p>
 <blockquote>
-<p>将n个正整数两两分组(不要求分完),假设分出 $k$ 组,则这 $k$ 组满足:$a_1+b_1=a_2+b_2=…=a_k=b_k=s$。求分得最多的组数。</p>
+<p>Du 会在 Boboniu 的群中待 $n$ 天,如果此时 Du 没有禁言,Ta会开一个玩笑,如果这个玩笑大于 Boboniu 的心情 $m$,Du 就会被禁言 $d$ 天,否则可以继续发言,求出 Du 可以在群里发出玩笑的最大值。</p>
+<hr>
 </blockquote>
-<hr>
 <p><strong>解题思路:</strong></p>
-<p>由于这题数据极小$(1\le n\le 50)$,所以我们可以先枚举$s$,再$O(n^2)$寻找和等于$s$的两个数也是不会超时的。</p>
-<p>注意用 $vis$ 数组把选过的数标记一下就可以了。</p>
+<p>我们可以模拟求出答案。</p>
+<p>考虑到 $&gt;m$ 和 $\le m$ 对于 Boboniu 的影响分为两种情况,我们可以将给出的玩笑值分为两组:</p>
+<p>$joke1$:大于心情 $m$ 的所有玩笑值 ;</p>
+<p>$joke2$:小于等于心情 $m$ 的所有玩笑值。</p>
+<p>分组后两组中的玩笑值对 Boboniu 是没有区别的,根据贪心原则我们可以<strong>优先选组中较大的数</strong>。</p>
+<p>接下来我们可以通过枚举选 $Joke1$ 的个数,因为一定会被 Boboniu禁言,所以可以在将它们放在最后,就算被禁言此时Du也已经离群。剩下还能发言的时间就去选 $Joke2$ 中较大的数。</p>
 <hr>
-<p><strong>代码实现:<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/0s90rczf">Code</a>　时间复杂度$O(Tn^3)$</strong></p>
-<h2 id="D-Binary-String-To-Subsequences"><a href="#D-Binary-String-To-Subsequences" class="headerlink" title="D.     Binary String To Subsequences"></a>D.     Binary String To Subsequences</h2><p><strong>题目大意:</strong></p>
-<blockquote>
-<p>对于长度为 n，只包含 $0$ 和 $1$ 的一个字符串 $s$，把它拆成 $k$ 个新字符串，使得：</p>
-<ul>
-<li>每个新字符串是 $s$ 的一个子序列；</li>
-<li>$s$ 的每一个字符在这 $k$ 个新字符串中出现且仅出现一次；</li>
-<li>对于每一个新字符串，相邻两个字符不同$($例如 $010101…$，$101010…$ $)$。</li>
-</ul>
-<p>求出 $k$ 的最小值。</p>
-</blockquote>
+<p>那么如何求 $joke1$ 占用了几天呢？</p>
+<p>我们假设一共选了 $x$ 个 $joke1$ 中的数,每选中一个数就会被禁言 $d$ 天，则可以得出下图:</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/p286gp0q.png" alt="Boboniu Chats with Du_1"></p>
+<p>得出结论:<strong>$Joke1$ 占用 $(x-1)(d-1)+1$ 天,$Joke2$ 占用 $n-[(x-1)(d-1)+1]天$</strong>。得出玩笑值后取最大的即可。</p>
+<p>根据图上信息我们还要保证 $(x+1)(d+1)+1\le n$ ,取 $min(t2,n-[(x-1)(d-1)+1])$ <strong>($t2$表示$joke2$的长度)</strong></p>
+<p>最后注意前缀和优化和 long long。</p>
 <hr>
-<p><strong>解题思路:</strong></p>
-<p><del>首先暴力枚举肯定是过不了的。</del>但其实这题用栈就可以搞定了。我们将每一个字符串的末尾数字编号保存下来。</p>
-<p>我们将末尾为$0$的字符串编号存入 $s0$,末尾为$1$的字符串编号存入$s1$。</p>
-<p>如果此时的数是$0$，那么我们就看栈$s1$是否非空,如果空,则我们要新开一个字符串,并将此时的编号存入栈$s0$。否则说明此时有对应的字符串,由于栈是<strong>后进先出</strong>的原则,所以它会分配到最后一个末尾为1的字符串中。接下来我们就将 $s1$ 的栈顶扔掉然后放入 $s0$ 中。如果此时的数是$1$也同理。</p>
-<p><strong>记得每一次都要把栈清空!</strong></p>
-<hr>
-<p><strong>代码实现:<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/olt94da9">Code</a>　时间复杂度$O(Tn)$</strong></p>
+<p><strong>代码实现:<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/yhleez7m">Code</a>　时间复杂度$O(n)$</strong>　</p>
 
     </div>
 
@@ -290,13 +315,10 @@
 
         
     <div class="post-nav">
+      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2020/08/30/Codeforces-Round-662-Div-2-%E9%A2%98%E8%A7%A3/" rel="prev" title="Codeforces Round #662 (Div. 2)题解">
-      <i class="fa fa-chevron-left"></i> Codeforces Round #662 (Div. 2)题解
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/09/03/A-B-Problem/" rel="next" title="A+B Problem">
-      A+B Problem <i class="fa fa-chevron-right"></i>
+    <a href="/2020/08/29/Codeforces-Round-663-Div-2-%E9%A2%98%E8%A7%A3/" rel="next" title="Codeforces Round #663 (Div. 2)题解">
+      Codeforces Round #663 (Div. 2)题解 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -356,7 +378,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Remove-Smallest"><span class="nav-number">1.</span> <span class="nav-text">A. Remove Smallest</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-Gifts-Fixing"><span class="nav-number">2.</span> <span class="nav-text">B. Gifts Fixing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-Boats-Competition"><span class="nav-number">3.</span> <span class="nav-text">C. Boats Competition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#D-Binary-String-To-Subsequences"><span class="nav-number">4.</span> <span class="nav-text">D.     Binary String To Subsequences</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Boboniu-Likes-to-Color-Balls"><span class="nav-number">1.</span> <span class="nav-text">A. Boboniu Likes to Color Balls</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-Boboniu-Plays-Chess"><span class="nav-number">2.</span> <span class="nav-text">B. Boboniu Plays Chess</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-Boboniu-and-Bit-Operations"><span class="nav-number">3.</span> <span class="nav-text">C. Boboniu and Bit Operations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#D-Boboniu-Chats-with-Du"><span class="nav-number">4.</span> <span class="nav-text">D. Boboniu Chats with Du</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
