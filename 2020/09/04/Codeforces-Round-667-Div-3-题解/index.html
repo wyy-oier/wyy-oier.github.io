@@ -20,16 +20,18 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="WyyOIER&#39;s Blog">
-<meta property="og:url" content="http://example.com/tags/index.html">
+  <meta name="description" content="update 2020&#x2F;9&#x2F;4 23:45:AB打完">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Codeforces Round #667 (Div. 3)题解">
+<meta property="og:url" content="http://example.com/2020/09/04/Codeforces-Round-667-Div-3-%E9%A2%98%E8%A7%A3/index.html">
 <meta property="og:site_name" content="WyyOIER&#39;s Blog">
+<meta property="og:description" content="update 2020&#x2F;9&#x2F;4 23:45:AB打完">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2017-07-10T08:36:26.000Z">
-<meta property="article:modified_time" content="2020-09-02T13:42:52.691Z">
+<meta property="article:published_time" content="2020-09-04T15:51:54.000Z">
+<meta property="article:modified_time" content="2020-09-05T01:43:05.959Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/tags/">
+<link rel="canonical" href="http://example.com/2020/09/04/Codeforces-Round-667-Div-3-%E9%A2%98%E8%A7%A3/">
 
 
 <script id="page-configurations">
@@ -37,13 +39,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>标签 | WyyOIER's Blog
-</title>
+  <title>Codeforces Round #667 (Div. 3)题解 | WyyOIER's Blog</title>
   
 
 
@@ -155,51 +156,117 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/04/Codeforces-Round-667-Div-3-%E9%A2%98%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WyyOIER's Blog">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Codeforces Round #667 (Div. 3)题解
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-<div class="post-meta">
+              <time title="创建时间：2020-09-04 23:51:54" itemprop="dateCreated datePublished" datetime="2020-09-04T23:51:54+08:00">2020-09-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-05 09:43:05" itemprop="dateModified" datetime="2020-09-05T09:43:05+08:00">2020-09-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CodeForces%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">CodeForces题解</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>update 2020/9/4 23:45</strong>:AB打完</p>
+<a id="more"></a>
+<h2 id="A-Yet-Another-Two-Integers-Problem"><a href="#A-Yet-Another-Two-Integers-Problem" class="headerlink" title="A. Yet Another Two Integers Problem"></a>A. Yet Another Two Integers Problem</h2><p><strong>题目大意:</strong></p>
+<blockquote>
+<p>给你整数 $a$、$b$,每次你可以给a加或减$1 \sim 10$中任意一个整数。问最少需要加减多少次才能将 $a$ 变成 $b$。</p>
+</blockquote>
+<hr>
+<p><strong>解题思路:</strong></p>
+<p>既然要求最小值,那么我们可以尽可能多加(减)$10$,如果最后还有剩余,那么再多来一次即可。得出 $ans$ 为$\lceil \dfrac{|a-b|}{10}\rceil$</p>
+<hr>
+<p><strong>代码实现:<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/fmyqwddo">Code</a>　时间复杂度$O(T)$</strong></p>
+<hr>
+<h2 id="B-Minimum-Product"><a href="#B-Minimum-Product" class="headerlink" title="B. Minimum Product"></a>B. Minimum Product</h2><p><strong>题目大意:</strong></p>
+<blockquote>
+<p>将 $a$、$b$ 一共减去 $n$,且需要保证 $a &gt; x$、$b &gt; y$ ,求 $a\times b$ 最小值。</p>
+</blockquote>
+<hr>
+<p><strong>解题思路:</strong></p>
+<p>我们可以用两种情况考虑:先减 $a$ 和先减 $b$。</p>
+<p>如果减完第一个数后 $n$ 还有剩余,那么我们可以继续减第二个数。反之就不能再减。最后取两种情况较小的值。</p>
+<p>注意此题$a,b\le 10^9$,$a\times b\le 10^{18}$,需要开long long。</p>
+<hr>
+<p><strong>代码实现:<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/ta62kyop">Code</a>　时间复杂度$O(T)$</strong></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/03/A-B-Problem/" rel="prev" title="A+B Problem">
+      <i class="fa fa-chevron-left"></i> A+B Problem
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-              暂无标签
-            </div>
-            <div class="tag-cloud-tags">
-              
-            </div>
-          </div>
-        
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>
@@ -250,6 +317,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Yet-Another-Two-Integers-Problem"><span class="nav-number">1.</span> <span class="nav-text">A. Yet Another Two Integers Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-Minimum-Product"><span class="nav-number">2.</span> <span class="nav-text">B. Minimum Product</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -356,6 +424,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
