@@ -20,13 +20,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="article">
+  <meta name="description" content="这是今天上信竞课时老师给我们留的一道作业题,当时我不会做,经过 yxx 大佬的讲解有了一定思路,这篇文章就是为了记录下来这题的做法而写。">
+<meta property="og:type" content="article">
 <meta property="og:title" content="P2583 地铁间谍">
 <meta property="og:url" content="http://example.com/2020/09/05/P2583-%E5%9C%B0%E9%93%81%E9%97%B4%E8%B0%8D/index.html">
 <meta property="og:site_name" content="WyyOIER&#39;s Blog">
+<meta property="og:description" content="这是今天上信竞课时老师给我们留的一道作业题,当时我不会做,经过 yxx 大佬的讲解有了一定思路,这篇文章就是为了记录下来这题的做法而写。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-09-05T04:57:41.000Z">
-<meta property="article:modified_time" content="2020-09-05T04:59:10.752Z">
+<meta property="article:modified_time" content="2020-09-06T06:06:57.595Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://example.com/2020/09/05/P2583-%E5%9C%B0%E9%93%81%E9%97%B4%E8%B0%8D/">
@@ -184,10 +186,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-09-05 12:57:41 / 修改时间：12:59:10" itemprop="dateCreated datePublished" datetime="2020-09-05T12:57:41+08:00">2020-09-05</time>
+              <time title="创建时间：2020-09-05 12:57:41" itemprop="dateCreated datePublished" datetime="2020-09-05T12:57:41+08:00">2020-09-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-06 14:06:57" itemprop="dateModified" datetime="2020-09-06T14:06:57+08:00">2020-09-06</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -209,7 +217,49 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <p>这是今天上信竞课时老师给我们留的一道作业题,当时我不会做,经过 <strong>yxx</strong> 大佬的讲解有了一定思路,这篇文章就是为了记录下来这题的做法而写。</p>
+<a id="more"></a>
+<hr>
+<h3 id="数组定义"><a href="#数组定义" class="headerlink" title="数组定义"></a>数组定义</h3><p>这道题运用了<strong>动态规划</strong>,我们使用三个数组:$dp$、$Edge$、$a$,而对它们的状态给出如下定义:</p>
+<p>$int$ $dp_{(i,j)}:$指当前时间为 $i$,位置为 $j$ 的最小等待时间；</p>
+<p>$bool$ $Edge_{(i,j,0)}:$在第 $j$ 站的 $i$ 时刻是否有从起点开向终点站的车；</p>
+<p>$bool$ $Edge_{(i,j,1)}:$在第 $j$ 站的 $i$ 时刻是否有从终点开向起点站的车；</p>
+<p>$int$ $a_i:$ 表示第 $i$ 站到第 $i+1$ 站的通过时间。</p>
+<hr>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>$dp$ : $dp_{(0,1)}=0$；</p>
+<p>$Edge$ : 在输入中初始化。</p>
+<hr>
+<h3 id="转移方程"><a href="#转移方程" class="headerlink" title="转移方程"></a>转移方程</h3><p>那么转移方程该怎么写呢?</p>
+<p>首先当前访问的$dp_{(i,j)}$需要有一个改过的最小值,否则无法进行下面的操作。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(dp[i][j]==Inf) <span class="keyword">continue</span>;</span><br></pre></td></tr></table></figure>
+<p>接下来我们要先更新$dp_{(i+1,j)}$。选$dp_{(i+1,j)}$和$dp_{(i,j)}+1$的较小值即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i+<span class="number">1</span>][j]=min(dp[i+<span class="number">1</span>][j],dp[i][j]+<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>然后就是分别修改两个方向的等候时间了:</p>
+<p><strong>①</strong>向终点站方向走</p>
+<blockquote>
+<p><strong>条件:</strong></p>
+<ul>
+<li>此时不在终点站</li>
+<li>当前时刻有一个开向终点站的车</li>
+<li>加上通过时间还在碰头时间之前</li>
+</ul>
+</blockquote>
+<p>那么可以修改$dp_{(i+a_j,j+1)}$。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(j!=n &amp;&amp; Edge[i][j][<span class="number">0</span>]==<span class="literal">true</span> &amp;&amp; i+a[j]&lt;=MeetingTime)</span><br><span class="line">    dp[i+a[j]][j+<span class="number">1</span>]=min(dp[i+a[j]][j+<span class="number">1</span>],dp[i][j]);</span><br></pre></td></tr></table></figure>
+<p><strong>②</strong>向起点站方向走</p>
+<blockquote>
+<p><strong>条件:</strong></p>
+<ul>
+<li>此时不在起点站</li>
+<li>当前时刻有一个开向起点站的车</li>
+<li>加上通过时间还在碰头时间之前</li>
+</ul>
+</blockquote>
+<p>那么可以修改$dp_{(i+a_{j-1},j-1)}$。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(j!=<span class="number">1</span> &amp;&amp; Edge[i][j][<span class="number">1</span>]==<span class="literal">true</span> &amp;&amp; i+a[j<span class="number">-1</span>]&lt;=MeetingTime)</span><br><span class="line">    dp[i+a[j<span class="number">-1</span>]][j<span class="number">-1</span>]=min(dp[i+a[j<span class="number">-1</span>]][j<span class="number">-1</span>],dp[i][j]);</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXT = <span class="number">2000</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">50</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> Inf = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">int</span> n,MeetingTime,casenum,M1,M2,a[MAXN],Time,dp[MAXT][MAXN];</span><br><span class="line"><span class="keyword">bool</span> Edge[MAXT][MAXN][<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">        <span class="keyword">if</span>(n==<span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;MeetingTime;</span><br><span class="line">        <span class="built_in">memset</span>(Edge,<span class="number">0</span>,<span class="keyword">sizeof</span>(Edge));</span><br><span class="line">        <span class="built_in">memset</span>(dp,<span class="number">0x3f</span>,<span class="keyword">sizeof</span>(dp));</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n<span class="number">-1</span>;i++) <span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;M1;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=M1;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;Time;</span><br><span class="line">            <span class="keyword">if</span>(Time&gt;MeetingTime) <span class="keyword">continue</span>;</span><br><span class="line">            Edge[Time][<span class="number">1</span>][<span class="number">0</span>]=<span class="literal">true</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n<span class="number">-1</span>;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                Time+=a[j];</span><br><span class="line">                <span class="keyword">if</span>(Time&gt;MeetingTime) <span class="keyword">continue</span>;</span><br><span class="line">                Edge[Time][j+<span class="number">1</span>][<span class="number">0</span>]=<span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;M2;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=M2;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;Time;</span><br><span class="line">            <span class="keyword">if</span>(Time&gt;MeetingTime) <span class="keyword">continue</span>;</span><br><span class="line">            Edge[Time][n][<span class="number">1</span>]=<span class="literal">true</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=n<span class="number">-1</span>;j&gt;=<span class="number">1</span>;j--)</span><br><span class="line">            &#123;</span><br><span class="line">                Time+=a[j];</span><br><span class="line">                <span class="keyword">if</span>(Time&gt;MeetingTime) <span class="keyword">continue</span>;</span><br><span class="line">                Edge[Time][j][<span class="number">1</span>]=<span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;MeetingTime;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(dp[i][j]==Inf) <span class="keyword">continue</span>;</span><br><span class="line">                dp[i+<span class="number">1</span>][j]=min(dp[i+<span class="number">1</span>][j],dp[i][j]+<span class="number">1</span>);</span><br><span class="line">                <span class="keyword">if</span>(j!=n &amp;&amp; Edge[i][j][<span class="number">0</span>]==<span class="literal">true</span> &amp;&amp; i+a[j]&lt;=MeetingTime)</span><br><span class="line">                    dp[i+a[j]][j+<span class="number">1</span>]=min(dp[i+a[j]][j+<span class="number">1</span>],dp[i][j]);</span><br><span class="line">                <span class="keyword">if</span>(j!=<span class="number">1</span> &amp;&amp; Edge[i][j][<span class="number">1</span>]==<span class="literal">true</span> &amp;&amp; i+a[j<span class="number">-1</span>]&lt;=MeetingTime)</span><br><span class="line">                    dp[i+a[j<span class="number">-1</span>]][j<span class="number">-1</span>]=min(dp[i+a[j<span class="number">-1</span>]][j<span class="number">-1</span>],dp[i][j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        casenum++;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;Case Number &quot;</span>&lt;&lt;casenum&lt;&lt;<span class="string">&quot;: &quot;</span>;</span><br><span class="line">        <span class="keyword">if</span>(dp[MeetingTime][n]==Inf)</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;impossible&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;dp[MeetingTime][n]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
     </div>
 
     
@@ -286,6 +336,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">数组定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E7%A7%BB%E6%96%B9%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">转移方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">完整代码</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
