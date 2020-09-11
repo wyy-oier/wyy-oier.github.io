@@ -446,7 +446,6 @@
 <p>首先我们可以先将点 $A$ 的坐标与 $k$ 进行比较,得出两种情况:</p>
 <p><strong>①$n&lt;k$</strong></p>
 <p>由于 $B$ 要在正半轴上，所以 $A$ 最少需要移动 $(k-n)$ 格</p>
-<p><img src="/2020/08/28/Codeforces-Round-665-Div-2-%E9%A2%98%E8%A7%A3/test1.jpg" alt="Distance and Axis_1"></p>
 <p><strong>②$n \ge k$</strong></p>
 <p>则直接判断 $n+k$ 的奇偶性。若为奇数则需要将 $A$ 移动$1$步,否则 $A$ 就不用移动。</p>
 <hr>
