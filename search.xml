@@ -249,7 +249,7 @@
   <entry>
     <title>Codeforces Round #662 (Div. 2)题解</title>
     <url>/2020/08/30/Codeforces-Round-662-Div-2-%E9%A2%98%E8%A7%A3/</url>
-    <content><![CDATA[<p><strong>update 2020/8/30 12:23</strong>:ABC打完</p>
+    <content><![CDATA[<p><strong>update 2020/8/30 12:23</strong>:ABCD打完</p>
 <a id="more"></a>
 <hr>
 <h2 id="A-Rainbow-Dash-Fluttershy-and-Chess-Coloring"><a href="#A-Rainbow-Dash-Fluttershy-and-Chess-Coloring" class="headerlink" title="A.Rainbow Dash, Fluttershy and Chess Coloring"></a>A.Rainbow Dash, Fluttershy and Chess Coloring</h2><p><strong>题目大意:</strong></p>
@@ -266,9 +266,9 @@
 <hr>
 <p><strong>解题思路:</strong></p>
 <p>我们先来推一下 $n=4$ 和 $n=5$ 的情况:</p>
-<p>$n=4$<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/labn1c4z.png" alt="Rainbow Dash, Fluttershy and Chess Coloring_1"><img src="https://cdn.luogu.com.cn/upload/image_hosting/vumf7zav.png" alt="Rainbow Dash, Fluttershy and Chess Coloring_2"><img src="https://cdn.luogu.com.cn/upload/image_hosting/k6o18gn6.png" alt="Rainbow Dash, Fluttershy and Chess Coloring_3"></p>
+<p>$n=4$<br><img src="/2020/08/30/Codeforces-Round-662-Div-2-%E9%A2%98%E8%A7%A3/test1.jpg" alt="Rainbow Dash, Fluttershy and Chess Coloring_1"><img src="/2020/08/30/Codeforces-Round-662-Div-2-%E9%A2%98%E8%A7%A3/test2.jpg" alt="Rainbow Dash, Fluttershy and Chess Coloring_2"><img src="/2020/08/30/Codeforces-Round-662-Div-2-%E9%A2%98%E8%A7%A3/test3.jpg" alt="Rainbow Dash, Fluttershy and Chess Coloring_3"></p>
 <p>可以发现其实就是 $2\times2$ 的棋盘染色次数多$1$。(第二次顺便染了$2\times 2$的第一次)</p>
-<p>$n=5$ <img src="https://cdn.luogu.com.cn/upload/image_hosting/ce7mmt7b.png" alt="Rainbow Dash, Fluttershy and Chess Coloring_4"><img src="https://cdn.luogu.com.cn/upload/image_hosting/ftufra2f.png" alt="Rainbow Dash, Fluttershy and Chess Coloring_5"><img src="https://cdn.luogu.com.cn/upload/image_hosting/11nsg6ri.png" alt="Rainbow Dash, Fluttershy and Chess Coloring_4"></p>
+<p>$n=5$ <img src="/2020/08/30/Codeforces-Round-662-Div-2-%E9%A2%98%E8%A7%A3/test4.jpg" alt="Rainbow Dash, Fluttershy and Chess Coloring_4"><img src="/2020/08/30/Codeforces-Round-662-Div-2-%E9%A2%98%E8%A7%A3/test5.jpg" alt="Rainbow Dash, Fluttershy and Chess Coloring_5"><img src="/2020/08/30/Codeforces-Round-662-Div-2-%E9%A2%98%E8%A7%A3/test6.jpg" alt="Rainbow Dash, Fluttershy and Chess Coloring_6"></p>
 <p>同理$5\times5$的棋盘就是$3\times3$的棋盘染色次数多$1$。(第二次顺便染了$3\times3$的第一次)</p>
 <p>以此类推,可以得出 $n*n$ 的棋盘染色次数就是 $(n-2)\times(n-2)$的染色次数多$1$,又因为$1\times1$染色次数为$1$，$2\times2$染色次数为$2$,所以可以推出答案就是$\lfloor \dfrac{n}{2} \rfloor+1$。</p>
 <hr>
@@ -305,9 +305,11 @@
 <blockquote>
 <p>这一块布料由 $n\times m$ 个颜色块组成，裁下的菱形必须由若干相同的颜色块组成,求有多少种裁法。</p>
 </blockquote>
+<hr>
 <p><strong>解题思路:</strong></p>
 <p>我们对于每个点,求每个点向上、向下、向左、向右每个点最长延伸的距离,然后得出的这$4$个方向中的最小值,就是这个点能组成菱形的数量。</p>
-<p><strong>代码构成:<a href="https://www.luogu.com.cn/paste/lm71s6pc">Code</a>　时间复杂度$O(nm)$</strong></p>
+<hr>
+<p><strong>代码实现:<a href="https://www.luogu.com.cn/paste/lm71s6pc">Code</a>　时间复杂度$O(nm)$</strong></p>
 ]]></content>
       <categories>
         <category>codeforces题解</category>
