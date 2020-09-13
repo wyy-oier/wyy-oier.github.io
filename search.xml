@@ -217,7 +217,7 @@
 </blockquote>
 <hr>
 <p><strong>解题思路:</strong></p>
-<p>如果 $n \ge 4$ ,那么输出$-1$。因为一个$4<em>4$的矩阵一定会有$4$个$2</em>2$的矩阵:<img src="https://cdn.luogu.com.cn/upload/image_hosting/wkk2khy1.png" alt="505_1"></p>
+<p>如果 $n \ge 4$ ,那么输出$-1$。因为一个$4<em>4$的矩阵一定会有$4$个$2</em>2$的矩阵:<img src="/2020/08/29/Codeforces-Round-663-Div-2-%E9%A2%98%E8%A7%A3/test1.jpg" alt="505_1"></p>
 <p>这样下来$4*4$的矩阵里边$1$的个数就为偶了,矛盾。</p>
 <hr>
 <p>接下来我们可以分为三种情况分别讨论:</p>
@@ -226,17 +226,17 @@
 <p><strong>②</strong>$n=2$</p>
 <p>每个$2*2$的矩阵1的个数都要为奇数,则列与列间必须是奇偶交替的,我们又能分成2个情况:</p>
 <blockquote>
-<p>$1)$:<img src="https://cdn.luogu.com.cn/upload/image_hosting/ft2q137k.png" alt="505_2"></p>
-<p>$2)$:<img src="https://cdn.luogu.com.cn/upload/image_hosting/cjjcl8aj.png" alt="505_3"></p>
+<p>$1)$:<img src="/2020/08/29/Codeforces-Round-663-Div-2-%E9%A2%98%E8%A7%A3/test2.jpg" alt="505_2"></p>
+<p>$2)$:<img src="/2020/08/29/Codeforces-Round-663-Div-2-%E9%A2%98%E8%A7%A3/test3.jpg" alt="505_3"></p>
 </blockquote>
 <p>如果这1列不符合要求就要改动1次,对这$2$种情况分别枚举即可。</p>
 <p><strong>③</strong>$n=3$</p>
 <p>同理,列与列间同样要奇偶交替,但是现在一列有$3$个,所以我们要将上面$2$个和下面$2$个分别讨论。</p>
 <blockquote>
-<p>$1)$ <img src="https://cdn.luogu.com.cn/upload/image_hosting/5vusa8mf.png" alt="505_5"></p>
-<p>$2)$ <img src="https://cdn.luogu.com.cn/upload/image_hosting/ycnwb509.png" alt="505_6"></p>
-<p>$3)$ <img src="https://cdn.luogu.com.cn/upload/image_hosting/t747uke8.png" alt="505_7"></p>
-<p>$4)$ <img src="https://cdn.luogu.com.cn/upload/image_hosting/hznuqpk2.png" alt="505_8"></p>
+<p>$1)$ <img src="/2020/08/29/Codeforces-Round-663-Div-2-%E9%A2%98%E8%A7%A3/test5.jpg" alt="505_5"></p>
+<p>$2)$ <img src="/2020/08/29/Codeforces-Round-663-Div-2-%E9%A2%98%E8%A7%A3/test6.jpg" alt="505_6"></p>
+<p>$3)$ <img src="/2020/08/29/Codeforces-Round-663-Div-2-%E9%A2%98%E8%A7%A3/test7.jpg" alt="505_7"></p>
+<p>$4)$ <img src="/2020/08/29/Codeforces-Round-663-Div-2-%E9%A2%98%E8%A7%A3/test8.jpg" alt="505_8"></p>
 </blockquote>
 <p>如果改第$1$行的数会影响上$2$行,第$3$行会影响下$2$行,如果改第$2$行既会影响上$2$行也会影响下$2$行,所以如果不符合要求每列最多只用改变$1$次就能满足要求。</p>
 <hr>
