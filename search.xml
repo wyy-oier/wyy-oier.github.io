@@ -485,8 +485,57 @@
   <entry>
     <title>P4626 一道水题 II</title>
     <url>/2020/09/11/P4626-%E4%B8%80%E9%81%93%E6%B0%B4%E9%A2%98/</url>
-    <content><![CDATA[<a id="more"></a>
-<p><img src="/2020/09/11/P4626-%E4%B8%80%E9%81%93%E6%B0%B4%E9%A2%98/test1.gif" alt="筛质数动图"></p>
+    <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P4626">P4626</a></p>
+<p>这道题好像是我<del>随机跳题</del>找到的,其实就是一道非常简单的<del>卡常题</del>。</p>
+<a id="more"></a>
+<p>这到题只用到了一个算法:<strong>线性筛质数</strong>。</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>线性筛质数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>线性筛质数</title>
+    <url>/2020/09/12/%E7%BA%BF%E6%80%A7%E7%AD%9B%E8%B4%A8%E6%95%B0/</url>
+    <content><![CDATA[<p>本篇文章介绍了<strong>质数的一些筛法。</strong></p>
+<a id="more"></a>
+<p><strong>问题</strong>:给定 $n$,输出 $1 \sim n$ 中所有的质数。</p>
+<p>对于不同的算法,时间复杂度也是不一样的,下面介绍$3$种方法:</p>
+<h3 id="①普通判断方法"><a href="#①普通判断方法" class="headerlink" title="①普通判断方法:"></a>①普通判断方法:</h3><blockquote>
+<p>   质数定义:只能被$1$和自己整除的数叫做质数。</p>
+</blockquote>
+<p>根据质数定义,我们可以写一个非常朴素的办法:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isprime</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;=<span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n<span class="number">-1</span>;i++)</span><br><span class="line">        <span class="keyword">if</span>(x%i==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后就可以发现:如果这个数能被一个大于 $\sqrt{x}$ 的数整除,那么就一定会有一个对应的小于 $\sqrt{x}$ 的数整除,所以枚举 $2 \sim \sqrt{x}$ 就可以了。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isprime</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;=<span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=<span class="built_in">sqrt</span>(x);i++)</span><br><span class="line">        <span class="keyword">if</span>(x%i==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>时间复杂度$O(n\sqrt{n})$</strong></p>
+<hr>
+<h3 id="②埃式筛-Eratosthenes"><a href="#②埃式筛-Eratosthenes" class="headerlink" title="②埃式筛(Eratosthenes)"></a>②埃式筛(Eratosthenes)</h3><p>我们用动画就能了解埃氏筛的思路:</p>
+<p><img src="/2020/09/12/%E7%BA%BF%E6%80%A7%E7%AD%9B%E8%B4%A8%E6%95%B0/test1.gif" alt="筛质数动画"></p>
+<p>首先我们将2标记为质数,然后将2的倍数全部标记为合数，然后我们将此时最小的没被标记过的数$3$标记为质数,然后将3的倍数标记为合数$…$</p>
+<p>以此类推,我们就能将所有质数标记出来了。</p>
+<p>但是注意:我们可以从这个新得出的质数的平方开始标记倍数。</p>
+<p>我们假设当前质数为 $x$,则 $x$ 的 $2\sim x-1 $ 倍一定都在之前被划过了,所以从平方倍开始划是没有问题的，可以在<del>常数</del>省下一些时间。$($图上也有演示$)$</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">1e7</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">bool</span> vis[MAXN];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_prime</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=MAXN;i++) vis[i]=<span class="number">1</span>;</span><br><span class="line">    vis[<span class="number">0</span>]=vis[<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i*i&lt;=MAXN;i++)</span><br><span class="line">        <span class="keyword">if</span>(vis[i]==<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i*i;j&lt;=MAXN;j+=i)</span><br><span class="line">                vis[j]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>时间复杂度$O(n log logn)$</strong></p>
+<p>埃氏筛看似已经很快了,但有些合数还是可能会标记多次,举一个例子:</p>
+<p>$210=2\times 105$ 当 $i=2$ 时会标记一次;</p>
+<p>$210=3\times 70$ 当 $i=3$ 时会标记一次;</p>
+<p>$210=5\times 42$ 当 $i=5$ 时会标记一次;</p>
+<p>$210=7\times 30$ 当 $i=7$ 时会标记一次。</p>
+<p>$210$一共被标了$4$次,像这样标记多次的数还有很多,都浪费了不少时间，那么我们再介绍一种每个数只标记一次的算法。</p>
+<hr>
+<h3 id="③欧拉筛"><a href="#③欧拉筛" class="headerlink" title="③欧拉筛"></a>③欧拉筛</h3><p>这是目前我学到的最快的算法了,但理解起来相较于前$2$个有一定难度。</p>
+<p>思路:在埃氏筛法的基础上，让每个合数只被它的最小质因子标记一次，以达到不重复的目的。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">1e8</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> t=<span class="number">0</span>,prime[<span class="number">5761460</span>]<span class="comment">//1~1e8质数的个数,可以节省空间</span></span><br><span class="line"><span class="keyword">bool</span> vis[MAXN];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=MAXN;i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(!vis[i]) prime[++t]=i;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=t &amp;&amp; i*prime[j]&lt;=MAXN;j++)</span><br><span class="line">    &#123;</span><br><span class="line">        vis[i*prime[j]]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(i%prime[j]==<span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但为什么当 $i$ 是 $prime_j$ 的倍数是就 $break$ 呢$?$</p>
+<p>如果 $i$ 是 $prime_j$ 的倍数,我们设 $i=k\times prime_j$。如果循环 $j+1$,则 $i*prime_{j+1}=k\times prime_j\times prime_{j+1}$,这样当 $i=k\times prime_{j+1}$时就会重复计算,所以要退出循环。</p>
+<p><strong>时间复杂度$O(n)$</strong></p>
+<hr>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解:"></a>题解:</h3><p><a href>P4626 一道水题 II</a></p>
 ]]></content>
       <categories>
         <category>学习笔记</category>
