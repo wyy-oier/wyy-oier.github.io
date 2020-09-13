@@ -535,7 +535,7 @@
 <p>如果 $i$ 是 $prime_j$ 的倍数,我们设 $i=k\times prime_j$。如果循环 $j+1$,则 $i*prime_{j+1}=k\times prime_j\times prime_{j+1}$,这样当 $i=k\times prime_{j+1}$时就会重复计算,所以要退出循环。</p>
 <p><strong>时间复杂度$O(n)$</strong></p>
 <hr>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解:"></a>题解:</h3><p><a href>P4626 一道水题 II</a></p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解:"></a>题解:</h3><p><a href="https://wyy-oier.github.io/2020/09/11/P4626-%E4%B8%80%E9%81%93%E6%B0%B4%E9%A2%98/">P4626 一道水题 II</a></p>
 ]]></content>
       <categories>
         <category>学习笔记</category>
