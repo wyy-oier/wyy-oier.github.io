@@ -488,8 +488,10 @@
     <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P4626">P4626</a></p>
 <p>这道题好像是我<del>随机跳题</del>找到的,其实就是一道非常简单的<del>卡常题</del>。</p>
 <a id="more"></a>
-<p>这到题只用到了一个算法:<strong>线性筛质数</strong>。</p>
-]]></content>
+<p>算法:<strong>线性筛质数</strong>,关于线性筛质数可与去看看我的<a href="https://wyy-oier.github.io/2020/09/12/%E7%BA%BF%E6%80%A7%E7%AD%9B%E8%B4%A8%E6%95%B0/">这篇文章</a>。</p>
+<hr>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>其实这道题就是求最小公倍数,那么我们需要知道一个基本的定理:</p>
+<script type="math/tex; mode=display">a=p1^{a1}\times p2^{a2} \times ...\times pn^{an}</script><script type="math/tex; mode=display">b=p1^{b1}\times p2^{b2} \times ...\times pn^{bn}</script><script type="math/tex; mode=display">\operatorname{lcm}</script>]]></content>
       <categories>
         <category>洛谷题目题解</category>
       </categories>
