@@ -491,7 +491,7 @@
 <p>算法:<strong>线性筛质数</strong>,关于线性筛质数可与去看看我的<a href="https://wyy-oier.github.io/2020/09/12/%E7%BA%BF%E6%80%A7%E7%AD%9B%E8%B4%A8%E6%95%B0/">这篇文章</a>。</p>
 <hr>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>其实这道题就是求最小公倍数,那么我们需要知道一个基本的定理:</p>
-<script type="math/tex; mode=display">a=p1^{a1}\times p2^{a2} \times ...\times pn^{an}</script><script type="math/tex; mode=display">b=p1^{b1}\times p2^{b2} \times ...\times pn^{bn}</script><script type="math/tex; mode=display">\operatorname{lcm}</script>]]></content>
+<script type="math/tex; mode=display">a=p_1^{a_1}\times p_2^{a_2} \times ...\times p_n^{a_n}</script><script type="math/tex; mode=display">b=p_1^{b_1}\times p_2^{b_2} \times ...\times p_n^{b_n}</script><script type="math/tex; mode=display">\operatorname{lcm} (a,b)=p_1^{\max(a_1,b_1)}\times p_2^{\max(a_2,b_2)} \times ...\times   p_n^{\max(a_n,b_n)}</script>]]></content>
       <categories>
         <category>洛谷题目题解</category>
       </categories>
