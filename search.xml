@@ -42,7 +42,7 @@
 <p><strong>解题思路:</strong></p>
 <p>通过题意我们可以得出,每次操作后数值肯定会减小。那么为了答案最优,<strong>我们可以将 $a$ 数列都变为 $a$ 数列的最小值,$b$ 数列都变为 $b$ 数列的最小值。</strong></p>
 <p>接下来我们考虑 $(a_i,b_i)$ 变为 $(ka,kb)$ 最少的操作数是多少。 $(ka,kb$ 为 $a,b$ 数列的最小值$)$</p>
-<p>答案很明显,操作数就是 $max(|a_i-ka|,|b_i-kb|)$。</p>
+<p>答案很明显,操作数就是 $\max(|a_i-ka|,|b_i-kb|)$。</p>
 <p>最后把这些数加起来就是最终的答案。 </p>
 <hr>
 <p><strong>代码实现:<a href="https://www.luogu.com.cn/paste/ozcm1eu4">Code</a>　时间复杂度$O(Tn)$</strong></p>
@@ -127,7 +127,7 @@
 <p><img src="/2020/08/27/Codeforces-Round-664-Div-2-%E9%A2%98%E8%A7%A3/test3.jpg" alt="Boboniu Plays Chess_1"></p>
 <p><del><strong>注意不要走出界</strong></del></p>
 <hr>
-<p><strong>代码实现:<a href="https://www.luogu.com.cn/paste/ajke65qg">Code</a>　时间复杂度$Ｏ(nm)$</strong></p>
+<p><strong>代码实现:<a href="https://www.luogu.com.cn/paste/ajke65qg">Code</a>　时间复杂度$O(nm)$</strong></p>
 <hr>
 <h2 id="C-Boboniu-and-Bit-Operations"><a href="#C-Boboniu-and-Bit-Operations" class="headerlink" title="C. Boboniu and Bit Operations"></a>C. Boboniu and Bit Operations</h2><p><strong>题目大意:</strong></p>
 <blockquote>
@@ -189,7 +189,7 @@
 <hr>
 <h2 id="B-Fix-You"><a href="#B-Fix-You" class="headerlink" title="B. Fix You"></a>B. Fix You</h2><p><strong>题目大意:</strong></p>
 <blockquote>
-<p>给你一个 $n*m$ 的矩阵,每个点上都有一个字符: $R$ 或 $D$ 。$R$ 代表到达这个点后可以向右走, $D$ 代表到达这个点后可以向下走,右下角是终点,用字符 $C$ 表示。问最少修改几个字符 $(R \rightarrow D,D \rightarrow R)$ ，使得所有位置都可以到达终点 $C$ 。</p>
+<p>给你一个 $n\times m$ 的矩阵,每个点上都有一个字符: $R$ 或 $D$ 。$R$ 代表到达这个点后可以向右走, $D$ 代表到达这个点后可以向下走,右下角是终点,用字符 $C$ 表示。问最少修改几个字符 $(R \rightarrow D,D \rightarrow R)$ ，使得所有位置都可以到达终点 $C$ 。</p>
 </blockquote>
 <hr>
 <p><strong>解题思路:</strong></p>
@@ -213,18 +213,18 @@
 <hr>
 <h2 id="D-505"><a href="#D-505" class="headerlink" title="D. 505"></a>D. 505</h2><p><strong>题目大意:</strong></p>
 <blockquote>
-<p>给出一个 $n*m$ 的 01 矩阵，如果每个长宽都为偶数的正方形子矩阵内$1$的个数都为奇数，则这是一个“好”矩阵。如果能把矩阵改成“好”矩阵，问最少改多少个数。如果不能，输出 $-1$。</p>
+<p>给出一个 $n\times m$ 的 01 矩阵，如果每个长宽都为偶数的正方形子矩阵内$1$的个数都为奇数，则这是一个“好”矩阵。如果能把矩阵改成“好”矩阵，问最少改多少个数。如果不能，输出 $-1$。</p>
 </blockquote>
 <hr>
 <p><strong>解题思路:</strong></p>
-<p>如果 $n \ge 4$ ,那么输出$-1$。因为一个$4<em>4$的矩阵一定会有$4$个$2</em>2$的矩阵:<img src="/2020/08/29/Codeforces-Round-663-Div-2-%E9%A2%98%E8%A7%A3/test1.jpg" alt="505_1"></p>
-<p>这样下来$4*4$的矩阵里边$1$的个数就为偶了,矛盾。</p>
+<p>如果 $n \ge 4$ ,那么输出$-1$。因为一个$4\times 4$的矩阵一定会有$4$个$2\times 2$的矩阵:<img src="/2020/08/29/Codeforces-Round-663-Div-2-%E9%A2%98%E8%A7%A3/test1.jpg" alt="505_1"></p>
+<p>这样下来$4\times 4$的矩阵里边$1$的个数就为偶了,矛盾。</p>
 <hr>
 <p>接下来我们可以分为三种情况分别讨论:</p>
 <p><strong>①</strong>$n=1$ </p>
 <p>由于没有偶数边长的正方形,所以一定是”好”矩阵,输出$0$。</p>
 <p><strong>②</strong>$n=2$</p>
-<p>每个$2*2$的矩阵1的个数都要为奇数,则列与列间必须是奇偶交替的,我们又能分成2个情况:</p>
+<p>每个$2\times 2$的矩阵1的个数都要为奇数,则列与列间必须是奇偶交替的,我们又能分成2个情况:</p>
 <blockquote>
 <p>$1)$:<img src="/2020/08/29/Codeforces-Round-663-Div-2-%E9%A2%98%E8%A7%A3/test2.jpg" alt="505_2"></p>
 <p>$2)$:<img src="/2020/08/29/Codeforces-Round-663-Div-2-%E9%A2%98%E8%A7%A3/test3.jpg" alt="505_3"></p>
@@ -472,7 +472,8 @@
 <p><strong>②</strong>这个数能整除 $changed_1$。</p>
 <hr>
 <p>下面我们证明一下条件<strong>②</strong>:</p>
-<p>我们设$c=changed_1$,$a=changed_1<em> k1$ , $b=changed_1 </em> k2$<br>$(k1,k2\in N^+)$</p>
+<p>设 $c=changed_1,a=changed_1\times  k1,b=changed_1 \times k2$</p>
+<p>$(k1,k2\in N^+)$</p>
 <p>假设开始三个数的位置是这样的: $cab$</p>
 <script type="math/tex; mode=display">cab\rightarrow acb\rightarrow abc\rightarrow cba</script><p>经过几次操作后,我们将 $ab$ 的位置交换了,<strong>也就是说,只要这个数能整除 $changed_1$,那么它就可以通过另一个能整除 $changed_1$ 的数交换,最终交换到正确位置,否则就无法交换。</strong></p>
 <hr>
