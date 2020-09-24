@@ -21,19 +21,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="P4626 这道题好像是我随机跳题找到的,其实就是一道非常简单的卡常题。">
+  <meta name="description" content="前言 差分是一个很有用的算法,通常能让你的算法时间更优,一般要和前缀和一起使用。  这篇文章主要介绍了$3$种差分:$1$维差分、$2$维差分、树上差分。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="P4626 一道水题 II">
-<meta property="og:url" content="http://example.com/2020/09/11/P4626-%E4%B8%80%E9%81%93%E6%B0%B4%E9%A2%98/index.html">
+<meta property="og:title" content="前缀和与差分">
+<meta property="og:url" content="http://example.com/2020/09/23/%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/index.html">
 <meta property="og:site_name" content="WyyOIER&#39;s Blog">
-<meta property="og:description" content="P4626 这道题好像是我随机跳题找到的,其实就是一道非常简单的卡常题。">
+<meta property="og:description" content="前言 差分是一个很有用的算法,通常能让你的算法时间更优,一般要和前缀和一起使用。  这篇文章主要介绍了$3$种差分:$1$维差分、$2$维差分、树上差分。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-09-11T14:33:20.000Z">
-<meta property="article:modified_time" content="2020-09-16T14:44:22.277Z">
-<meta property="article:tag" content="线性筛质数">
+<meta property="article:published_time" content="2020-09-23T07:59:54.000Z">
+<meta property="article:modified_time" content="2020-09-24T10:02:36.603Z">
+<meta property="article:tag" content="前缀和与差分">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2020/09/11/P4626-%E4%B8%80%E9%81%93%E6%B0%B4%E9%A2%98/">
+<link rel="canonical" href="http://example.com/2020/09/23/%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>P4626 一道水题 II | WyyOIER's Blog</title>
+  <title>前缀和与差分 | WyyOIER's Blog</title>
   
 
 
@@ -171,7 +171,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/11/P4626-%E4%B8%80%E9%81%93%E6%B0%B4%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/23/%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -184,7 +184,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          P4626 一道水题 II
+          前缀和与差分
         </h1>
 
         <div class="post-meta">
@@ -194,14 +194,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-11 22:33:20" itemprop="dateCreated datePublished" datetime="2020-09-11T22:33:20+08:00">2020-09-11</time>
+              <time title="创建时间：2020-09-23 15:59:54" itemprop="dateCreated datePublished" datetime="2020-09-23T15:59:54+08:00">2020-09-23</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-16 22:44:22" itemprop="dateModified" datetime="2020-09-16T22:44:22+08:00">2020-09-16</time>
+                <time title="修改时间：2020-09-24 18:02:36" itemprop="dateModified" datetime="2020-09-24T18:02:36+08:00">2020-09-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -209,7 +209,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B4%9B%E8%B0%B7%E9%A2%98%E7%9B%AE%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">洛谷题目题解</span></a>
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
                 </span>
             </span>
 
@@ -224,22 +224,94 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4626">P4626</a></p>
-<p>这道题好像是我<del>随机跳题</del>找到的,其实就是一道非常简单的<del>卡常题</del>。</p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>差分是一个很有用的算法,通常能让你的算法时间更优,一般要和前缀和一起使用。</p>
+</blockquote>
+<p>这篇文章主要介绍了$3$种差分:<strong>$1$维差分、$2$维差分、树上差分。</strong></p>
 <a id="more"></a>
-<p>算法:<strong>线性筛质数</strong>,关于线性筛质数可与去看看我的<a target="_blank" rel="noopener" href="https://wyy-oier.github.io/2020/09/12/%E7%BA%BF%E6%80%A7%E7%AD%9B%E8%B4%A8%E6%95%B0/">这篇文章</a>。</p>
-<hr>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>其实就是先欧拉筛出所有的质数,然后求最小公倍数。</p>
-<p>关于最小公倍数我们需要知道一个基本的定理:</p>
-<script type="math/tex; mode=display">a=p_1^{a_1}\times p_2^{a_2} \times ...\times p_n^{a_n}</script><script type="math/tex; mode=display">b=p_1^{b_1}\times p_2^{b_2} \times ...\times p_n^{b_n}</script><script type="math/tex; mode=display">\operatorname{lcm} (a,b)=p_1^{\max(a_1,b_1)}\times p_2^{\max(a_2,b_2)} \times ...\times   p_n^{\max(a_n,b_n)}</script><p>对于 $[1,n]$ 的最小公倍数也是同理，我们只需要寻找保证每个质数的最大次幂小于等于 $n$ 就行。</p>
-<p>比如:</p>
-<ul>
-<li>$[1,16]$ 的最小公倍数:$2^4\times3^2\times5\times 7\times 11\times 13 $</li>
-<li>$[1,32]$ 的最小公倍数:$2^5\times3^3\times5^2\times7\times11\times13\times17\times19\times23\times29\times31$</li>
-</ul>
-<p>如果你理解了,你就可以去做题了,如果没有,下面的代码也许会帮助到你。</p>
-<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h3><p>（注意:由于这题极为卡常,不能保证一定能过,没准过一段时间提交就过了qwq）</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> prime[<span class="number">5761460</span>];</span><br><span class="line"><span class="keyword">bool</span> vis[<span class="number">100000005</span>];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">1</span>,mod=<span class="number">100000007</span>;</span><br><span class="line"><span class="keyword">int</span> n,cnt;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">jisuan</span><span class="params">(<span class="keyword">int</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> total=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">long</span> <span class="keyword">long</span> i=<span class="number">1</span>;;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//找到当前计算质数的最大次幂且小于等于n </span></span><br><span class="line">        total*=p; </span><br><span class="line">        <span class="keyword">if</span>(total&gt;n) </span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="comment">//ans同步更新 </span></span><br><span class="line">        ans*=p;</span><br><span class="line">        ans%=mod;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::ios::sync_with_stdio(<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="comment">//欧拉筛 </span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(!vis[i])</span><br><span class="line">            prime[++cnt]=i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=cnt &amp;&amp; i*prime[j]&lt;=n;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            vis[i*prime[j]]=<span class="literal">true</span>; </span><br><span class="line">            <span class="keyword">if</span>(i%prime[j]==<span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//枚举质数的最大次幂,也就是计算最小公倍数</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=cnt;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(prime[i]&lt;=n)</span><br><span class="line">            jisuan(prime[i]);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1维差分"><a href="#1维差分" class="headerlink" title="1维差分"></a>1维差分</h3><p><strong>问题:给定一个长度$n$的数列,每次操作都将区间 $[l,r]$ 中的每个数 $+k$。求改动后的数列。</strong></p>
+<p>如果我们每次都 $O(n)$ 修改是非常的低效的,那么我们有没有办法让修改变快呢?</p>
+<p>我们只需要使用一个数组 $d$ 记录相邻两数的差,看看有没有什么规律:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$i$</th>
+<th style="text-align:center">$1$</th>
+<th style="text-align:center">$2$</th>
+<th style="text-align:center">…</th>
+<th style="text-align:center">$L$</th>
+<th style="text-align:center">$L+1$</th>
+<th style="text-align:center">…</th>
+<th style="text-align:center">$R-1$</th>
+<th style="text-align:center">$R$</th>
+<th style="text-align:center">$R+1$</th>
+<th style="text-align:center">…</th>
+<th style="text-align:center">$n$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$a_i$</td>
+<td style="text-align:center">$a_1$</td>
+<td style="text-align:center">$a_2$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_{L}$</td>
+<td style="text-align:center">$a_{L+1}$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_{R-1}$</td>
+<td style="text-align:center">$a_R$</td>
+<td style="text-align:center">$a_{R+1}$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_n$</td>
+</tr>
+<tr>
+<td style="text-align:center">$d_i$</td>
+<td style="text-align:center">$a_1$</td>
+<td style="text-align:center">$a_2-a_1$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_{L}-a_{L-1}$</td>
+<td style="text-align:center">$a_{L+1}-a_L$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_{R-1}-a_{R-2}$</td>
+<td style="text-align:center">$a_{R}-a_{R-1}$</td>
+<td style="text-align:center">$a_{R+1}-a_{R}$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_n-a_{n-1}$</td>
+</tr>
+<tr>
+<td style="text-align:center">$a_i$</td>
+<td style="text-align:center">$a_1$</td>
+<td style="text-align:center">$a_2$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_{L}+k$</td>
+<td style="text-align:center">$a_{L+1}+k$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_{R-1}+k$</td>
+<td style="text-align:center">$a_R+k$</td>
+<td style="text-align:center">$a_{R+1}$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_n$</td>
+</tr>
+<tr>
+<td style="text-align:center">$d_i$</td>
+<td style="text-align:center">$a_1$</td>
+<td style="text-align:center">$a_2-a_1$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_{L}-a_{L}+k$</td>
+<td style="text-align:center">$a_{L+1}-a_{L}$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_{R-1}-a_{R-2}$</td>
+<td style="text-align:center">$a_R-a_{R-1}$</td>
+<td style="text-align:center">$a_{R+1}-a_{R}-k$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_n-a_{n-1}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>没错,我们发现在差分数组 $d$ 中只有两个数改变了:</p>
+<script type="math/tex; mode=display">d_L \leftarrow d_{L}+k</script><script type="math/tex; mode=display">d_{R+1} \leftarrow d_R-k</script><p>这样我们就实现了从 $O(n)$ 修改优化为 $O(1)$修改了。但是如何再输出原数列呢?没错,计算前缀和即可。</p>
 
     </div>
 
@@ -249,7 +321,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E7%BA%BF%E6%80%A7%E7%AD%9B%E8%B4%A8%E6%95%B0/" rel="tag"><i class="fa fa-tag">线性筛质数</i>
+              <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/" rel="tag"><i class="fa fa-tag">前缀和与差分</i>
           </div>
 
         
@@ -258,13 +330,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/09/05/P2583-%E5%9C%B0%E9%93%81%E9%97%B4%E8%B0%8D/" rel="prev" title="P2583 地铁间谍">
-      <i class="fa fa-chevron-left"></i> P2583 地铁间谍
+    <a href="/2020/09/12/%E7%BA%BF%E6%80%A7%E7%AD%9B%E8%B4%A8%E6%95%B0/" rel="prev" title="线性筛质数">
+      <i class="fa fa-chevron-left"></i> 线性筛质数
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/09/12/%E7%BA%BF%E6%80%A7%E7%AD%9B%E8%B4%A8%E6%95%B0/" rel="next" title="线性筛质数">
-      线性筛质数 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -334,7 +403,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="nav-text">完整代码</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E7%BB%B4%E5%B7%AE%E5%88%86"><span class="nav-text">1维差分</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

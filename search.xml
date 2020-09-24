@@ -557,4 +557,103 @@
         <tag>线性筛质数</tag>
       </tags>
   </entry>
+  <entry>
+    <title>前缀和与差分</title>
+    <url>/2020/09/23/%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>差分是一个很有用的算法,通常能让你的算法时间更优,一般要和前缀和一起使用。</p>
+</blockquote>
+<p>这篇文章主要介绍了$3$种差分:<strong>$1$维差分、$2$维差分、树上差分。</strong></p>
+<a id="more"></a>
+<h3 id="1维差分"><a href="#1维差分" class="headerlink" title="1维差分"></a>1维差分</h3><p><strong>问题:给定一个长度$n$的数列,每次操作都将区间 $[l,r]$ 中的每个数 $+k$。求改动后的数列。</strong></p>
+<p>如果我们每次都 $O(n)$ 修改是非常的低效的,那么我们有没有办法让修改变快呢?</p>
+<p>我们只需要使用一个数组 $d$ 记录相邻两数的差,看看有没有什么规律:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$i$</th>
+<th style="text-align:center">$1$</th>
+<th style="text-align:center">$2$</th>
+<th style="text-align:center">…</th>
+<th style="text-align:center">$L$</th>
+<th style="text-align:center">$L+1$</th>
+<th style="text-align:center">…</th>
+<th style="text-align:center">$R-1$</th>
+<th style="text-align:center">$R$</th>
+<th style="text-align:center">$R+1$</th>
+<th style="text-align:center">…</th>
+<th style="text-align:center">$n$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$a_i$</td>
+<td style="text-align:center">$a_1$</td>
+<td style="text-align:center">$a_2$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_{L}$</td>
+<td style="text-align:center">$a_{L+1}$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_{R-1}$</td>
+<td style="text-align:center">$a_R$</td>
+<td style="text-align:center">$a_{R+1}$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_n$</td>
+</tr>
+<tr>
+<td style="text-align:center">$d_i$</td>
+<td style="text-align:center">$a_1$</td>
+<td style="text-align:center">$a_2-a_1$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_{L}-a_{L-1}$</td>
+<td style="text-align:center">$a_{L+1}-a_L$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_{R-1}-a_{R-2}$</td>
+<td style="text-align:center">$a_{R}-a_{R-1}$</td>
+<td style="text-align:center">$a_{R+1}-a_{R}$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_n-a_{n-1}$</td>
+</tr>
+<tr>
+<td style="text-align:center">$a_i$</td>
+<td style="text-align:center">$a_1$</td>
+<td style="text-align:center">$a_2$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_{L}+k$</td>
+<td style="text-align:center">$a_{L+1}+k$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_{R-1}+k$</td>
+<td style="text-align:center">$a_R+k$</td>
+<td style="text-align:center">$a_{R+1}$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_n$</td>
+</tr>
+<tr>
+<td style="text-align:center">$d_i$</td>
+<td style="text-align:center">$a_1$</td>
+<td style="text-align:center">$a_2-a_1$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_{L}-a_{L}+k$</td>
+<td style="text-align:center">$a_{L+1}-a_{L}$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_{R-1}-a_{R-2}$</td>
+<td style="text-align:center">$a_R-a_{R-1}$</td>
+<td style="text-align:center">$a_{R+1}-a_{R}-k$</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">$a_n-a_{n-1}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>没错,我们发现在差分数组 $d$ 中只有两个数改变了:</p>
+<script type="math/tex; mode=display">d_L \leftarrow d_{L}+k</script><script type="math/tex; mode=display">d_{R+1} \leftarrow d_R-k</script><p>这样我们就实现了从 $O(n)$ 修改优化为 $O(1)$修改了。但是如何再输出原数列呢?没错,计算前缀和即可。</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>前缀和与差分</tag>
+      </tags>
+  </entry>
 </search>
