@@ -28,10 +28,14 @@
 <meta property="og:site_name" content="WyyOIER&#39;s Blog">
 <meta property="og:description" content="前言 差分是一个很有用的算法,通常能让你的算法时间优化,一般要和前缀和一起使用。  这篇文章主要介绍了$3$种差分:$1$维差分、$2$维差分、树上差分。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2020/09/23/%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/test1.jpg">
+<meta property="og:image" content="http://example.com/2020/09/23/%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/test2.jpg">
+<meta property="og:image" content="http://example.com/2020/09/23/%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/test3.jpg">
 <meta property="article:published_time" content="2020-09-23T07:59:54.000Z">
-<meta property="article:modified_time" content="2020-09-25T12:28:54.499Z">
+<meta property="article:modified_time" content="2020-09-28T14:03:23.321Z">
 <meta property="article:tag" content="前缀和与差分">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/09/23/%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/test1.jpg">
 
 <link rel="canonical" href="http://example.com/2020/09/23/%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/">
 
@@ -229,7 +233,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-25 20:28:54" itemprop="dateModified" datetime="2020-09-25T20:28:54+08:00">2020-09-25</time>
+                <time title="修改时间：2020-09-28 22:03:23" itemprop="dateModified" datetime="2020-09-28T22:03:23+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -342,6 +346,24 @@
 <p>没错,我们发现在差分数组 $d$ 中只有两个数改变了:</p>
 <script type="math/tex; mode=display">d_L \leftarrow d_{L}+k</script><script type="math/tex; mode=display">d_{R+1} \leftarrow d_R-k</script><p>这样我们就实现了从 $O(n)$ 修改优化为 $O(1)$修改了。但是如何再输出原数列呢?我们只需要求差分数组的前缀和即可。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">100000</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> a[MAXN],d[MAXN],n,m,sum;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">        d[i]=a[i]-a[i<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> L,R,k;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;L&gt;&gt;R&gt;&gt;k;</span><br><span class="line">        d[L]+=k;d[R+<span class="number">1</span>]-=k;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        sum+=d[i];</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;sum&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2维前缀和"><a href="#2维前缀和" class="headerlink" title="2维前缀和"></a>2维前缀和</h3><p><strong>问题:给定 $n\times m$ 的矩阵,求一个区间内的和。</strong></p>
+<p>对于任意一个区间,我们可以用容斥原理:</p>
+<p>$sum_{(i,j)}=sum_{(i-1,j)}+sum_{(i,j-1)}-sum_{(i-1,j-1)}$</p>
+<h3 id="2维差分"><a href="#2维差分" class="headerlink" title="2维差分"></a>2维差分</h3><p>与<strong>1维</strong>差分同理。</p>
+<p>初始化:</p>
+<script type="math/tex; mode=display">d_{(i,j)}=a_{(i,j)}-a_{(i-1,j)}-a_{(i,j-1)}+a_{(i-1,j-1)}</script><p>修改:</p>
+<script type="math/tex; mode=display">d_{(L_1+1,R_1+1)}\leftarrow d_{(L_1+1,R_1+1)}+1</script><script type="math/tex; mode=display">d_{(L_2+1,R_2+1)}\leftarrow d_{(L_2+1,R_2+1)}+1</script><script type="math/tex; mode=display">d_{(L_1+1,R_2+1)}\leftarrow d_{(L_1+1,R_2+1)}-1</script><script type="math/tex; mode=display">d_{(L_2+1,R_1+1)}\leftarrow d_{(L_2+1,R_2+1)}-1</script><h3 id="树上差分"><a href="#树上差分" class="headerlink" title="树上差分"></a>树上差分</h3><p><del>这才是重点</del></p>
+<p><strong>问题:给定$1$棵 $n$ 个节点的树、$m$ 次操作和 $q$ 次询问,每次操作会将两点 $x,y$ 路径上的节点加$1$,求以 $u$ 为根节点,它的所有子节点的和。</strong></p>
+<p>对于一棵树上的点,我们是否可以直接$O(1)$修改呢?<br>显然是不行的,不过我们可以$O(logn)$修改。</p>
+<p>对于询问的这两个点，我们首先要找到这两个点之间的路径。所以我们可以找的它们的<strong>最近公共祖先(LCA)</strong> 从而确定这条路径。</p>
+<p>如图为点$(5,6)$的路径,其中$2$是$(5,6)$的LCA,$1$是$2$的父亲:</p>
+<p><img src="/2020/09/23/%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/test1.jpg" alt="前缀和与差分1"></p>
+<p>经过修改后变成了这样:</p>
+<p><img src="/2020/09/23/%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/test2.jpg" alt="前缀和与差分2"></p>
+<p>那如何做到使用差分优化复杂度呢?我们尝试将这一段路径分成两条链:</p>
+<p><img src="/2020/09/23/%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/test3.jpg" alt="前缀和与差分3"></p>
+<p>我们可以<del>形象地</del>称这两段路径为一个一维数组。一维数组的差分大家都很熟悉了吧,那么你就知道怎么修改了。</p>
+<script type="math/tex; mode=display">t=\operatorname{LCA}(x,y)</script><script type="math/tex; mode=display">d_x\leftarrow d_x+1</script><script type="math/tex; mode=display">d_y\leftarrow d_y+1</script><script type="math/tex; mode=display">d_t\leftarrow d_t-1</script><script type="math/tex; mode=display">d_{anc_{(t,0)}}\leftarrow d_{anc_{(t,0)}}-1</script><p>计算时只需要计算它的子节点的数值加上它自己本身的$d_i$就是答案。</p>
 
     </div>
 
@@ -433,7 +455,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E7%BB%B4%E5%89%8D%E7%BC%80%E5%92%8C"><span class="nav-text">1维前缀和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E7%BB%B4%E5%B7%AE%E5%88%86"><span class="nav-text">1维差分</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E7%BB%B4%E5%89%8D%E7%BC%80%E5%92%8C"><span class="nav-text">1维前缀和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E7%BB%B4%E5%B7%AE%E5%88%86"><span class="nav-text">1维差分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E7%BB%B4%E5%89%8D%E7%BC%80%E5%92%8C"><span class="nav-text">2维前缀和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E7%BB%B4%E5%B7%AE%E5%88%86"><span class="nav-text">2维差分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%91%E4%B8%8A%E5%B7%AE%E5%88%86"><span class="nav-text">树上差分</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -498,7 +520,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共8.1k字</span>
+  <span class="post-count">博客全站共8.6k字</span>
 </div>
 
 
