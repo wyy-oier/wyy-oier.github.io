@@ -21,21 +21,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="本篇文章介绍了质数的一些筛法。">
+  <meta name="description" content="P2680 这道题在2014年提高组第$2$天第$3$题,洛谷上评为 省选&#x2F;NOI- 。 个人感觉是一道很好的图论题,此篇文章记录下来教练给我们讲的思路。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="线性筛质数">
-<meta property="og:url" content="http://example.com/2020/09/12/%E7%BA%BF%E6%80%A7%E7%AD%9B%E8%B4%A8%E6%95%B0/index.html">
+<meta property="og:title" content="P2680 运输计划">
+<meta property="og:url" content="http://example.com/2020/09/30/P2680-%E8%BF%90%E8%BE%93%E8%AE%A1%E5%88%92/index.html">
 <meta property="og:site_name" content="WyyOIER&#39;s Blog">
-<meta property="og:description" content="本篇文章介绍了质数的一些筛法。">
+<meta property="og:description" content="P2680 这道题在2014年提高组第$2$天第$3$题,洛谷上评为 省选&#x2F;NOI- 。 个人感觉是一道很好的图论题,此篇文章记录下来教练给我们讲的思路。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2020/09/12/%E7%BA%BF%E6%80%A7%E7%AD%9B%E8%B4%A8%E6%95%B0/test1.gif">
-<meta property="article:published_time" content="2020-09-12T03:53:21.000Z">
-<meta property="article:modified_time" content="2020-09-13T13:52:29.609Z">
-<meta property="article:tag" content="线性筛质数">
+<meta property="article:published_time" content="2020-09-30T13:17:02.000Z">
+<meta property="article:modified_time" content="2020-09-30T14:42:44.227Z">
+<meta property="article:tag" content="前缀和与差分">
+<meta property="article:tag" content="二分答案">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2020/09/12/%E7%BA%BF%E6%80%A7%E7%AD%9B%E8%B4%A8%E6%95%B0/test1.gif">
 
-<link rel="canonical" href="http://example.com/2020/09/12/%E7%BA%BF%E6%80%A7%E7%AD%9B%E8%B4%A8%E6%95%B0/">
+<link rel="canonical" href="http://example.com/2020/09/30/P2680-%E8%BF%90%E8%BE%93%E8%AE%A1%E5%88%92/">
 
 
 <script id="page-configurations">
@@ -48,7 +47,7 @@
   };
 </script>
 
-  <title>线性筛质数 | WyyOIER's Blog</title>
+  <title>P2680 运输计划 | WyyOIER's Blog</title>
   
 
 
@@ -201,7 +200,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/12/%E7%BA%BF%E6%80%A7%E7%AD%9B%E8%B4%A8%E6%95%B0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/30/P2680-%E8%BF%90%E8%BE%93%E8%AE%A1%E5%88%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -214,7 +213,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          线性筛质数
+          P2680 运输计划
         </h1>
 
         <div class="post-meta">
@@ -223,23 +222,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-09-12 11:53:21" itemprop="dateCreated datePublished" datetime="2020-09-12T11:53:21+08:00">2020-09-12</time>
+              <time title="创建时间：2020-09-30 21:17:02 / 修改时间：22:42:44" itemprop="dateCreated datePublished" datetime="2020-09-30T21:17:02+08:00">2020-09-30</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-13 21:52:29" itemprop="dateModified" datetime="2020-09-13T21:52:29+08:00">2020-09-13</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+                  <a href="/categories/%E6%B4%9B%E8%B0%B7%E9%A2%98%E7%9B%AE%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">洛谷题目题解</span></a>
                 </span>
             </span>
 
@@ -254,42 +247,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>本篇文章介绍了<strong>质数的一些筛法。</strong></p>
+        <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2680">P2680</a></p>
+<p>这道题在2014年提高组第$2$天第$3$题,洛谷上评为<font color="#9900CC"> <strong>省选/NOI-</strong> </font>。</p>
+<p>个人感觉是一道很好的图论题,此篇文章记录下来教练给我们讲的思路。</p>
 <a id="more"></a>
-<p><strong>问题</strong>:给定 $n$,输出 $1 \sim n$ 中所有的质数。</p>
-<p>对于不同的算法,时间复杂度也是不一样的,下面介绍$3$种方法:</p>
-<h3 id="①普通判断方法"><a href="#①普通判断方法" class="headerlink" title="①普通判断方法:"></a>①普通判断方法:</h3><blockquote>
-<p>   质数定义:只能被$1$和自己整除的数叫做质数。</p>
-</blockquote>
-<p>根据质数定义,我们可以写一个非常朴素的办法:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isprime</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;=<span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n<span class="number">-1</span>;i++)</span><br><span class="line">        <span class="keyword">if</span>(x%i==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后就可以发现:如果这个数能被一个大于 $\sqrt{x}$ 的数整除,那么就一定会有一个对应的小于 $\sqrt{x}$ 的数整除,所以枚举 $2 \sim \sqrt{x}$ 就可以了。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isprime</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;=<span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=<span class="built_in">sqrt</span>(x);i++)</span><br><span class="line">        <span class="keyword">if</span>(x%i==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>时间复杂度$O(n\sqrt{n})$</strong></p>
-<hr>
-<h3 id="②埃式筛-Eratosthenes"><a href="#②埃式筛-Eratosthenes" class="headerlink" title="②埃式筛(Eratosthenes)"></a>②埃式筛(Eratosthenes)</h3><p>我们用动画就能了解埃氏筛的思路:</p>
-<p><img src="/2020/09/12/%E7%BA%BF%E6%80%A7%E7%AD%9B%E8%B4%A8%E6%95%B0/test1.gif" alt="筛质数动画"></p>
-<p>首先我们将2标记为质数,然后将2的倍数全部标记为合数，然后我们将此时最小的没被标记过的数$3$标记为质数,然后将3的倍数标记为合数$…$</p>
-<p>以此类推,我们就能将所有质数标记出来了。</p>
-<p>但是注意:我们可以从这个新得出的质数的平方开始标记倍数。</p>
-<p>我们假设当前质数为 $x$,则 $x$ 的 $2\sim x-1 $ 倍一定都在之前被划过了,所以从平方倍开始划是没有问题的，可以在<del>常数</del>省下一些时间。$($图上也有演示$)$</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">1e7</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">bool</span> vis[MAXN];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_prime</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=MAXN;i++) vis[i]=<span class="number">1</span>;</span><br><span class="line">    vis[<span class="number">0</span>]=vis[<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i*i&lt;=MAXN;i++)</span><br><span class="line">        <span class="keyword">if</span>(vis[i]==<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i*i;j&lt;=MAXN;j+=i)</span><br><span class="line">                vis[j]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>时间复杂度$O(n log logn)$</strong></p>
-<p>埃氏筛看似已经很快了,但有些合数还是可能会标记多次,举一个例子:</p>
-<p>$210=2\times 105$ 当 $i=2$ 时会标记一次;</p>
-<p>$210=3\times 70$ 当 $i=3$ 时会标记一次;</p>
-<p>$210=5\times 42$ 当 $i=5$ 时会标记一次;</p>
-<p>$210=7\times 30$ 当 $i=7$ 时会标记一次。</p>
-<p>$210$一共被标了$4$次,像这样标记多次的数还有很多,都浪费了不少时间，那么我们再介绍一种每个数只标记一次的算法。</p>
-<hr>
-<h3 id="③欧拉筛"><a href="#③欧拉筛" class="headerlink" title="③欧拉筛"></a>③欧拉筛</h3><p>这是目前我学到的最快的算法了,但理解起来相较于前$2$个有一定难度。</p>
-<p>思路:在埃氏筛法的基础上，让每个合数只被它的最小质因子标记一次，以达到不重复的目的。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">1e8</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> t=<span class="number">0</span>,prime[<span class="number">5761460</span>]<span class="comment">//1~1e8质数的个数,可以节省空间</span></span><br><span class="line"><span class="keyword">bool</span> vis[MAXN];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=MAXN;i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(!vis[i]) prime[++t]=i;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=t &amp;&amp; i*prime[j]&lt;=MAXN;j++)</span><br><span class="line">    &#123;</span><br><span class="line">        vis[i*prime[j]]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(i%prime[j]==<span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>但为什么当 $i$ 是 $prime_j$ 的倍数时就 $break$ 呢$?$</p>
-<p>如果 $i$ 是 $prime_j$ 的倍数,我们设 $i=k\times prime_j$。如果循环 $j+1$,则 $i*prime_{j+1}=k\times prime_j\times prime_{j+1}$,这样当 $i=k\times prime_{j+1}$时就会重复计算,所以要退出循环。</p>
-<p><strong>时间复杂度$O(n)$</strong></p>
-<hr>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解:"></a>题解:</h3><p><a target="_blank" rel="noopener" href="https://wyy-oier.github.io/2020/09/11/P4626-%E4%B8%80%E9%81%93%E6%B0%B4%E9%A2%98/">P4626 一道水题 II</a></p>
 
     </div>
 
@@ -299,7 +260,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E7%BA%BF%E6%80%A7%E7%AD%9B%E8%B4%A8%E6%95%B0/" rel="tag"><i class="fa fa-tag">线性筛质数</i>
+              <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/" rel="tag"><i class="fa fa-tag">前缀和与差分</i>
+              <a href="/tags/%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88/" rel="tag"><i class="fa fa-tag">二分答案</i>
           </div>
 
         
@@ -308,13 +270,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/09/11/P4626-%E4%B8%80%E9%81%93%E6%B0%B4%E9%A2%98/" rel="prev" title="P4626 一道水题 II">
-      <i class="fa fa-chevron-left"></i> P4626 一道水题 II
+    <a href="/2020/09/23/%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/" rel="prev" title="前缀和与差分">
+      <i class="fa fa-chevron-left"></i> 前缀和与差分
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/09/23/%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/" rel="next" title="前缀和与差分">
-      前缀和与差分 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -384,7 +343,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A0%E6%99%AE%E9%80%9A%E5%88%A4%E6%96%AD%E6%96%B9%E6%B3%95"><span class="nav-text">①普通判断方法:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A1%E5%9F%83%E5%BC%8F%E7%AD%9B-Eratosthenes"><span class="nav-text">②埃式筛(Eratosthenes)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A2%E6%AC%A7%E6%8B%89%E7%AD%9B"><span class="nav-text">③欧拉筛</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-text">题解:</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
