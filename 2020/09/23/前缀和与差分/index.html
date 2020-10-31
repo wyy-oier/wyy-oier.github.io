@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://example.com/2020/09/23/%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/test2.jpg">
 <meta property="og:image" content="http://example.com/2020/09/23/%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/test3.jpg">
 <meta property="article:published_time" content="2020-09-23T07:59:54.000Z">
-<meta property="article:modified_time" content="2020-10-01T01:00:22.392Z">
+<meta property="article:modified_time" content="2020-10-31T02:30:14.844Z">
 <meta property="article:tag" content="前缀和与差分">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2020/09/23/%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86/test1.jpg">
@@ -233,7 +233,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-01 09:00:22" itemprop="dateModified" datetime="2020-10-01T09:00:22+08:00">2020-10-01</time>
+                <time title="修改时间：2020-10-31 10:30:14" itemprop="dateModified" datetime="2020-10-31T10:30:14+08:00">2020-10-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -366,7 +366,7 @@
 <h3 id="2维差分"><a href="#2维差分" class="headerlink" title="2维差分"></a>2维差分</h3><p>与<strong>1维</strong>差分同理。</p>
 <p>初始化:</p>
 <script type="math/tex; mode=display">d_{(i,j)}=a_{(i,j)}-a_{(i-1,j)}-a_{(i,j-1)}+a_{(i-1,j-1)}</script><p>修改:</p>
-<script type="math/tex; mode=display">d_{(L_1+1,R_1+1)}\leftarrow d_{(L_1+1,R_1+1)}+1</script><script type="math/tex; mode=display">d_{(L_2+1,R_2+1)}\leftarrow d_{(L_2+1,R_2+1)}+1</script><script type="math/tex; mode=display">d_{(L_1+1,R_2+1)}\leftarrow d_{(L_1+1,R_2+1)}-1</script><script type="math/tex; mode=display">d_{(L_2+1,R_1+1)}\leftarrow d_{(L_2+1,R_2+1)}-1</script><h3 id="树上差分"><a href="#树上差分" class="headerlink" title="树上差分"></a>树上差分</h3><p><del>这才是重点</del></p>
+<script type="math/tex; mode=display">d_{(L_1,R_1)}\leftarrow d_{(L_1,R_1)}+1</script><script type="math/tex; mode=display">d_{(L_1,R_2+1)}\leftarrow d_{(L_1,R_2+1)}-1</script><script type="math/tex; mode=display">d_{(L_2+1,R_2)}\leftarrow d_{(L_2+1,R_2)}-1</script><script type="math/tex; mode=display">d_{(L_2+1,R_2+1)}\leftarrow d_{(L_2+1,R_2+1)}+1</script><h3 id="树上差分"><a href="#树上差分" class="headerlink" title="树上差分"></a>树上差分</h3><p><del>这才是重点</del></p>
 <p><strong>问题:给定$1$棵 $n$ 个节点的树、$m$ 次操作和 $q$ 次询问,每次操作会将两点 $x,y$ 路径上的节点加$1$,求以 $u$ 为根节点,它的所有子节点的和。</strong></p>
 <p>对于一棵树上的点,我们是否可以直接$O(1)$修改呢?<br>显然是不行的,不过我们可以$O(logn)$修改。</p>
 <p>对于询问的这两个点，我们首先要找到这两个点之间的路径。所以我们可以找的它们的<strong>最近公共祖先(LCA)</strong> 从而确定这条路径。</p>
@@ -530,7 +530,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020-10-26</span>
+  <span itemprop="copyrightYear">2020-10-31</span>
   <span class="with-love">
     <i class="fa fa-gavel"></i>
   </span>
