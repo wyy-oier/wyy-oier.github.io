@@ -22,13 +22,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta property="og:type" content="article">
+  <meta name="description" content="update 2021&#x2F;3&#x2F;8 21:46:AB题打完">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Codeforces Round #705 (Div. 2)题解">
 <meta property="og:url" content="http://example.com/2021/03/07/Codeforces-Round-705-Div-2-%E9%A2%98%E8%A7%A3/index.html">
 <meta property="og:site_name" content="WyyOIer&#39;s Blog">
+<meta property="og:description" content="update 2021&#x2F;3&#x2F;8 21:46:AB题打完">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-07T03:40:39.000Z">
-<meta property="article:modified_time" content="2021-03-07T03:40:39.515Z">
+<meta property="article:modified_time" content="2021-03-08T13:47:57.001Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://example.com/2021/03/07/Codeforces-Round-705-Div-2-%E9%A2%98%E8%A7%A3/">
@@ -223,6 +225,13 @@
 
               <time title="创建时间：2021-03-07 11:40:39" itemprop="dateCreated datePublished" datetime="2021-03-07T11:40:39+08:00">2021-03-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-08 21:47:57" itemprop="dateModified" datetime="2021-03-08T21:47:57+08:00">2021-03-08</time>
+              </span>
 
           
   
@@ -249,7 +258,37 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <p><strong>update 2021/3/8 21:46:AB题打完</strong></p>
+<a id="more"></a>
+<p>C题又差一点做出来。。。</p>
+<h2 id="A-Anti-knapsack"><a href="#A-Anti-knapsack" class="headerlink" title="A. Anti-knapsack"></a>A. Anti-knapsack</h2><p><strong>题目大意:</strong></p>
+<blockquote>
+<p>给定 $n$ 和 $k$,从 $1\sim n$ 中挑选更多的数,使得从你选出的数中任取几个的和都不等于 $k$。</p>
+</blockquote>
+<hr>
+<p><strong>解题思路:</strong></p>
+<p>这题本来就是很简单的傻*题,但是我给想复杂了。。。</p>
+<p>首先,$(k,n]$一定都可以选,因为它们无论加什么数都会超过 $k$。</p>
+<p>问题就在于如何处理 $[1,k-1]$的数。</p>
+<p>其实很简单,因为 $1+(k-1)=k,2+(k-2)=k…$</p>
+<p>所以前面的数最多只能选一半,那么我们直接选 $\lceil \dfrac{k}{2}\rceil\sim k-1$,这些数无论怎么选,都会大于 $k$。</p>
+<hr>
+<p><strong>代码实现:<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/k49ejaoj">Code</a>　时间复杂度$O(Tn)$</strong></p>
+<h2 id="B-Planet-Lapituletti"><a href="#B-Planet-Lapituletti" class="headerlink" title="B. Planet Lapituletti"></a>B. Planet Lapituletti</h2><p><strong>题目大意:</strong></p>
+<blockquote>
+<p>给定小时和分钟的范围,在给定现在的时间,找到从现在的时间开始,第一个镜像翻转后是正确的时间,且在范围内。</p>
+</blockquote>
+<hr>
+<p><strong>解题思路:</strong></p>
+<p>感觉这么解释的不太清楚,那看看样例吧。</p>
+<p>12:21镜像翻转后是15:51,在24小时60分钟内,故直接输出。</p>
+<p>23:59无法镜像翻转,时间变为00:00,翻转为00:00,在24小时60分钟内,故输出00:00。</p>
+<p>52:26无法镜像翻转,52:27无法镜像翻转,52:28翻转后为85:52,在90小时80分钟内,输出85:52。</p>
+<p>……</p>
+<p>由题目得之,一定有解,所以每一次询问最多判10000次,每次暴力询问即可。</p>
+<hr>
+<p><strong>代码实现:<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/yxsdfl1n">Code</a>　时间复杂度$O(Tn^2)$</strong></p>
+
     </div>
 
     
@@ -338,6 +377,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Anti-knapsack"><span class="nav-text">A. Anti-knapsack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-Planet-Lapituletti"><span class="nav-text">B. Planet Lapituletti</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -421,7 +461,7 @@ setInterval("createtime()",1000);
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共14.4k字</span>
+  <span class="post-count">博客全站共14.8k字</span>
 </div>
 
 <script>
