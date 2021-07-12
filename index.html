@@ -195,7 +195,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/08/%E6%9A%91%E5%81%87Codeforces%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%A4%A7%E6%94%BE%E9%80%81/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/08/%E6%9A%91%E5%81%87Codeforces%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -209,7 +209,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/07/08/%E6%9A%91%E5%81%87Codeforces%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%A4%A7%E6%94%BE%E9%80%81/" class="post-title-link" itemprop="url">暑假Codeforces比赛题解大放送</a>
+            <a href="/2021/07/08/%E6%9A%91%E5%81%87Codeforces%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3/" class="post-title-link" itemprop="url">暑假Codeforces比赛题解</a>
         </h2>
 
         <div class="post-meta">
@@ -226,7 +226,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-12 09:12:45" itemprop="dateModified" datetime="2021-07-12T09:12:45+08:00">2021-07-12</time>
+                <time title="修改时间：2021-07-12 13:05:36" itemprop="dateModified" datetime="2021-07-12T13:05:36+08:00">2021-07-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -247,8 +247,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/07/08/%E6%9A%91%E5%81%87Codeforces%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%A4%A7%E6%94%BE%E9%80%81/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/07/08/%E6%9A%91%E5%81%87Codeforces%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%A4%A7%E6%94%BE%E9%80%81/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/07/08/%E6%9A%91%E5%81%87Codeforces%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/07/08/%E6%9A%91%E5%81%87Codeforces%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -344,7 +344,7 @@
 <li>若 $last_j=1,pos_j=1$ 则答案此位可以取$0$，$last_j$ 仍为 $1$。</li>
 </ol>
 <p>把每次求出的答案输出即可。</p>
-<p><strong>代码实现:<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/2ukhufqg">Code</a>　时间复杂度$O(Tn$ $logn)$</strong></p>
+<p><strong>代码实现:<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/2ukhufqg">Code</a>　时间复杂度$O(Tn$ $\log n)$</strong></p>
 <h2 id="E-Air-Conditioners"><a href="#E-Air-Conditioners" class="headerlink" title="E. Air Conditioners"></a>E. Air Conditioners</h2><p><strong>题目大意:</strong></p>
 <blockquote>
 <p>一共有 $n$ 个位置和 $k$ 个空调，分别给出空调的位置 $a_i$ 和空调的温度 $t_i$。<br>对于每一个位置 $i$，它的温度为 $\min\limits^k_{j=1}(t_j+\operatorname{abs}(a_j-i))$。求每个位置的温度。</p>
@@ -360,6 +360,17 @@
 <p>则我们可以预处理如下数组：<br>$sum1_i=\min\limits^n_{j=i}(t_j+j)$<br>$sum2_i=\min\limits^i_{j=1}(t_j-j)$</p>
 <p>则第 $i$ 位的温度即为：$\min(sum1_i-i,sum2_i+i)$。</p>
 <p><strong>代码实现:<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/2o2nlngf">Code</a>　时间复杂度$O(Tn)$</strong></p>
+<h2 id="F-Array-Stabilization-GCD-version"><a href="#F-Array-Stabilization-GCD-version" class="headerlink" title="F. Array Stabilization (GCD version)"></a>F. Array Stabilization (GCD version)</h2><p><strong>题目大意:</strong></p>
+<blockquote>
+<p>给定 $n$ 个数 $a_1,a_2,…,a_n$。<br>对于每一次操作，$a_i=\gcd(a_i,a_i+1)$，特别地，$a_n=\gcd(a_n,a_1)$。<br>问最少多少次操作后 $a$ 数组中的所有数都相等。</p>
+</blockquote>
+<p><strong>解题思路:</strong></p>
+<p>由于操作次数越多，所有数越接近，故考虑二分操作次数。</p>
+<p>用倍增去预处理 $\gcd$ 即可。</p>
+<p>记 $st_{i,j}$ 表示以 $i$ 节点开始，连续 $2^j$ 个数的 $gcd$。</p>
+<p>查询一段区间 $[l,r]$ 的 $\gcd$ 在 $st$ 表单点查询即可。</p>
+<p><strong>代码实现:<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/ptasgicl">Code</a>　时间复杂度$O(Tn$ $\log n)$</strong></p>
+<h2 id="G-How-Many-Paths"><a href="#G-How-Many-Paths" class="headerlink" title="G. How Many Paths?"></a>G. How Many Paths?</h2><p>咕咕咕。。。</p>
 
       
     </div>
@@ -1001,7 +1012,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-12 08:27:38" itemprop="dateModified" datetime="2021-07-12T08:27:38+08:00">2021-07-12</time>
+                <time title="修改时间：2021-07-12 15:35:13" itemprop="dateModified" datetime="2021-07-12T15:35:13+08:00">2021-07-12</time>
               </span>
 
           
@@ -1041,7 +1052,15 @@
 </blockquote>
 <hr>
 <blockquote>
-<p>期末考试:<br>数学 $\text{expect}$ $95\rightarrow86.5$<br>语文 $\text{expert}$ $85\rightarrow85$<br>英语 $\text{expect}$ $95\rightarrow94$<br>物理 $\text{expext}$ $100\rightarrow100$<br>历史 $\text{expect}$ $90\rightarrow86$<br>政治 $\text{expext}$ $95\rightarrow98$<br>生物 $\text{expext}$ $70\rightarrow69$<br>地理 $\text{expect}$ $70\rightarrow70$<br>$\text{expect}$ $700\rightarrow688.5$</p>
+<p>期末考试:<br>数学 $\text{expect}$ $95\rightarrow86.5$</p>
+<p>语文 $\text{expcrt}$ $85\rightarrow85$</p>
+<p>英语 $\text{expect}$ $95\rightarrow94$</p>
+<p>物理 $\text{expext}$ $100\rightarrow100$</p>
+<p>历史 $\text{expect}$ $90\rightarrow86$</p>
+<p>政治 $\text{expext}$ $95\rightarrow98$</p>
+<p>生物 $\text{expext}$ $70\rightarrow69$</p>
+<p>地理 $\text{expect}$ $70\rightarrow70$</p>
+<p>$\text{expect}$ $700\rightarrow688.5$</p>
 </blockquote>
 <p>OI:</p>
 <blockquote>
@@ -1414,7 +1433,7 @@ setInterval("createtime()",1000);
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共23.9k字</span>
+  <span class="post-count">博客全站共24.2k字</span>
 </div>
 
 <script>
