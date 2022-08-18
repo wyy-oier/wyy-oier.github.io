@@ -106,7 +106,7 @@
             <div id = "post-title"> Codeforces Contest Practice </div>
             <div id = "post-author"> By WyyOIer | </div>
             <div id = "post-date" title = "发布时间"> 2022-02-02 17:03:52 / </div>
-            <div id = "post-updated" title = "更新时间"> 2022-08-18 13:24:52 </div>
+            <div id = "post-updated" title = "更新时间"> 2022-08-18 14:25:02 </div>
             <span class = "leancloud_visitors" id = "/2022/02/02/Codeforces-Contest-Practice/">
                 <text class="post-meta-item-text">阅读数 </text>
                 <i class="leancloud-visitors-count">nan</i>
@@ -165,7 +165,8 @@
 <p>我们不妨假定初始位置为 $(0,0)$，在全程走到的极值坐标 $mix,mxx,miy,mxy$，那么面积为 $(mxx-mix+1)*(mxy-miy+1)$。</p>
 <p>因为我们只能添加最多一步，所以答案只有可能变为 $(mxx-mix)*(mxy-miy+1)$ 或 $(mxx-mix+1)*(mxy-miy)$，我们只需判断能否在 $mix&#x2F;miy$ 加 $1$ 的同时 $mxx&#x2F;mxy$ 不变或 $mxx&#x2F;mxy$ 减 $1$ 的同时 $mix&#x2F;miy$ 不变，考场时忘记同时判断另一边不变。</p>
 <h2 id="D-Print-a-1337-string…"><a href="#D-Print-a-1337-string…" class="headerlink" title="D. Print a 1337-string…"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1202/problem/D">D. Print a 1337-string…</a></h2><p>$\text{Solution:}$</p>
-<p>考虑构造序列为 $133\underbrace{77\cdots7}<em>{cnt_7}\underbrace{33\cdot3}</em>{cnt_3}7$，得到的子序列数量为 $cnt_7+1+\dfrac{(cnt_3+2)(cnt_3+1)-1}{2}$，枚举 $cnt_3$，看 $cnt_7$ 能否满足长度在 $10^5$ 即可。</p>
+<p>考虑构造序列为 $133\underbrace{77\cdots7} _ {cnt_7}\underbrace{33\cdot3}_{cnt_3}7 $。</p>
+<p>得到的子序列数量为 $cnt_7+1+\dfrac{(cnt_3+2)(cnt_3+1)-1}{2}$，枚举 $cnt_3$，看 $cnt_7$ 能否满足长度在 $10^5$ 即可。</p>
 <h2 id="E-You-Are-Given-Some-Strings…"><a href="#E-You-Are-Given-Some-Strings…" class="headerlink" title="E. You Are Given Some Strings…"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1202/problem/E">E. You Are Given Some Strings…</a></h2><p>$\text{Solution:}$</p>
 <p>我们不妨从文本串找到一个划分点 $i$，分成 $[1,i]$ 和 $[i+1,n]$ 两段，我们可以找所有模式串匹配前半部分的后缀的数量，所有模式串匹配后半部分前缀的数量，将两部分相乘就能得到第 $i$ 位的贡献。由于后半部分等价于前半部分翻转，所以考虑前半部分。</p>
 <p>将文本串存入 trie 树，求出 fail 指针，因为失配的定义就是跳到下一个与当前串有最大公共后缀的串的编号，如果 $p$ 能匹配，那么 $fail_p$ 也可以匹配，所以 $p\rightarrow fail_p$ 作为更新，最后遍历文本串，若此时遍历到了第 $i$ 位，匹配到了 $p$ 节点，则有 $f_i&#x3D;ed_p$。</p>
