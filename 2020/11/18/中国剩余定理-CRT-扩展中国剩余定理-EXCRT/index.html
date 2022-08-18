@@ -1,0 +1,280 @@
+<head>
+    <title> 中国剩余定理(CRT)/扩展中国剩余定理(EXCRT) - WyyOIer </title>
+  	<link rel="stylesheet" href="/css/main.css">
+  	<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <script type = "text/javascript" async src="/javascript/main.js"></script>
+    <script id="MathJax-script" async src="/javascript/math/tex-mml-chtml.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+
+
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeBlockFuction.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeCopy.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/clipboard.min.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeShrink.js"></script> -->
+   <!-- <style type="text/css">code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }</style> -->
+
+    <!-- <link rel="stylesheet" href="/highlight/styles/atom-one-dark.min.css"> -->
+    
+    <!-- <link rel="stylesheet" href="/css/bootstrap.min.css"> -->
+    <script id="Valine" src='https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js'></script>
+<meta name="generator" content="Hexo 6.2.0"><link rel="stylesheet" href="/css/prism-sh.css" type="text/css"></head>
+
+<body>
+
+
+<div id = "background">
+    <div id = "index">
+        <div id="menu">
+
+    <div style="text-align: center;font-size: 32px;font-family: consolas;">
+        <p>WyyOIer</p>
+    </div>
+
+    <div style="height: 150px;float: up;display: flex;flex-direction: column;align-items: center;">
+        <div id="headstyle">
+            
+        </div>
+    </div>
+	
+    <div style="height: 50px;width: 30%;float: left;text-align: center;">
+        <text id = "pcount" title = "文章数" style = "font-family: consolas;font-size: 20px;">15</text>
+    </div>
+
+    <div style="height: 50px;width: 30%;float: left;text-align: center;">
+        <text id = "commentcount" title = "评论数" style = "font-family: consolas;font-size: 20px;">0</text>
+    </div>
+
+    <div style="height: 50px;width: 40%;float: left;text-align: center;">
+        <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/159610">
+        <img src="https://www.luogu.com.cn/favicon.ico" alt="洛谷" width="24" height="24"></a>
+        &nbsp; 
+        <a target="_blank" rel="noopener" href="https://codeforces.com/profile/WyyOIer">
+        <img src="https://codeforces.com/favicon.ico" alt="CF" width="24" height="24"></a>
+    </div>
+
+
+    <div class="list-group">
+        <a class="list-group-item" href="/"><i class="fa fa-home fa-fw"></i>&nbsp; 首页</a>
+        <a class="list-group-item" href="/about"><i class="fa fa-user fa-fw"></i>&nbsp; 关于</a>
+        <a class="list-group-item" href="/links"><i class="fa fa-link fa-fw"></i>&nbsp; 友链</a>
+        <a class="list-group-item" onclick = "Search()"><i class="fa fa-search fa-fw"></i>&nbsp; 搜索</a>
+        <a class="list-group-item" href="/template"><i class="fa fa-file-code-o fa-fw"></i>&nbsp; 模板</a>
+    </div>
+
+    <script>
+        function changemusicid(){
+            var v = document.getElementById("num").value, text, f = 0;
+            if(v == null || v == "") {
+            text = "输入不能为空。";
+            f = 1;
+            }
+            if(f == 0) document.getElementById("music").innerHTML= '<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=250 height=95 src="//music.163.com/outchain/player?type=2&id=' + v + '&auto=0&height=66"></iframe> ';
+            else document.getElementById("musictext").innerHTML = text;
+        }
+    </script>
+
+    <div style="height: 13%;width: 30%;float: left" id="music">
+    <input id = "num" placeholder = "输入网易音乐 id，如 480517594" style = "width: 230px;">
+    <button type="button" onclick="changemusicid()">提交</button>
+    <p id = "musictext"></p>
+    </div>
+
+</div>
+
+
+    </div>
+
+    
+
+    
+
+
+    
+
+        <div id = "article">
+            <div id = "post-title"> 中国剩余定理(CRT)/扩展中国剩余定理(EXCRT) </div>
+            <div id = "post-author"> By WyyOIer | </div>
+            <div id = "post-date" title = "发布时间"> 2020-11-18 18:54:00 / </div>
+            <div id = "post-updated" title = "更新时间"> 2022-07-18 08:02:33 </div>
+            <span class = "leancloud_visitors" id = "/2020/11/18/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86-CRT-%E6%89%A9%E5%B1%95%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86-EXCRT/">
+                <text class="post-meta-item-text">阅读数 </text>
+                <i class="leancloud-visitors-count">nan</i>
+            </span>
+            <br>
+            <p>一元线性同余方程组问题最早可见于中国南北朝时期（公元5世纪）的数学著作《孙子算经》卷下第二十六题，叫做“物不知数”问题，原文如下：</p>
+<blockquote>
+<p>$有物不知其数，三三数之剩二，五五数之剩三，七七数之剩二。问物几何？$</p>
+</blockquote>
+<p>即，一个整数除以三余二，除以五余三，除以七余二，求这个整数。《孙子算经》中首次提到了同余方程组问题，以及以上具体问题的解法，因此在中文数学文献中也会将中国剩余定理称为孙子定理。<br>                                        　　　　　　 　　　　　　　　　　　　　　　　　　　　  　　　　　———摘自教练的PPT</p>
+<!--less-->
+
+<h1 id="text-crt"><a href="#text-crt" class="headerlink" title="$\text{crt}$"></a>$\text{crt}$</h1><p>中国剩余定理(crt),即让你求解一个关于 $x$ 的同余方程：​</p>
+<p>$x\equiv a_1 \pmod{m_1}$</p>
+<p>$x\equiv a_2 \pmod{m_2}$</p>
+<p>$…$</p>
+<p>$x\equiv a_n \pmod{m_n}$</p>
+<p>且保证 ${ m_1,m_2…m_n }$ <strong>两两互质</strong>。</p>
+<hr>
+<p>我们先考虑一个例子：</p>
+<p>$x\equiv 2\pmod{3}$</p>
+<p>$x\equiv 3\pmod{5}$</p>
+<p>$x\equiv 4\pmod{7}$</p>
+<p>如果用小奥方法，就是将 $x&#x3D;2$ 不断地加 $3$,发现当 $x&#x3D;8$ 时同时满足第二个式子,然后不停地加 $\operatorname{lcm}(3,5)$，当 $x&#x3D;53$ 时发现全部满足。</p>
+<p>我们知道 $a,b,c…| \operatorname{lcm}(a,b,c…)$</p>
+<p>所以我们定义 $M_1&#x3D;\operatorname{lcm}(5,7),M_2&#x3D;\operatorname{lcm}(3,7),M_3&#x3D;\operatorname{lcm}(3,5)$</p>
+<p>对于第①个式子,我们只需要满足 $t_1M_1\equiv 2 \pmod{m_1}$ ；</p>
+<p>对于第②个式子,我们只需要满足 $t_2M_2\equiv 3 \pmod{m_2}$ ；</p>
+<p>对于第③个式子,我们只需要满足 $t_3M_3\equiv 4 \pmod{m_3}$ 。</p>
+<p>发现可以用 $\operatorname{exgcd}$ 求关于 $t_i$ 的同余方程 $t_iM_i\equiv 1 \pmod{m_i}$ 的最小正整数解</p>
+<hr>
+<p>那么最终的答案公式应为:</p>
+<p>$$(t_1M_1a_1+t_2M_2a_2+…+t_nM_na_n)%\operatorname{lcm(m_1,m_2,…,m_n)}$$</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;cstdio></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">long</span> LL<span class="token punctuation">;</span>
+LL n<span class="token punctuation">,</span>a<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">,</span>m<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">,</span>M<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">,</span>ans<span class="token punctuation">,</span>lcm<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+LL <span class="token function">exgcd</span><span class="token punctuation">(</span>LL a<span class="token punctuation">,</span>LL b<span class="token punctuation">,</span>LL <span class="token operator">&amp;</span>x<span class="token punctuation">,</span>LL <span class="token operator">&amp;</span>y<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>b<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        x<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>y<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> a<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    LL x1<span class="token punctuation">,</span>y1<span class="token punctuation">;</span>
+    LL ans<span class="token operator">=</span><span class="token function">exgcd</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span>a<span class="token operator">%</span>b<span class="token punctuation">,</span>x1<span class="token punctuation">,</span>y1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    x<span class="token operator">=</span>y1<span class="token punctuation">;</span>
+    y<span class="token operator">=</span>x1<span class="token operator">-</span>a<span class="token operator">/</span>b<span class="token operator">*</span>y1<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> ans<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%lld"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%lld%lld"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>m<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>lcm<span class="token operator">*</span><span class="token operator">=</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        LL x<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>y<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>total<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>j<span class="token operator">==</span>i<span class="token punctuation">)</span> <span class="token keyword">continue</span><span class="token punctuation">;</span>
+            total<span class="token operator">*</span><span class="token operator">=</span>a<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        M<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>total<span class="token punctuation">;</span>
+        <span class="token function">exgcd</span><span class="token punctuation">(</span>M<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        x<span class="token operator">=</span><span class="token punctuation">(</span>x<span class="token operator">%</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">+</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">%</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        ans<span class="token operator">=</span><span class="token punctuation">(</span>ans<span class="token operator">+</span>x<span class="token operator">*</span>M<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">*</span>m<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">%</span>lcm<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%lld\n"</span><span class="token punctuation">,</span>ans<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h1 id="text-excrt"><a href="#text-excrt" class="headerlink" title="$\text{excrt}$"></a>$\text{excrt}$</h1><p>$\text{excrt}$ 与 $\text{crt}$ 唯一的区别是 $m_i$ 是否两两互质。</p>
+<p>考虑去解决其中的两个方程：</p>
+<p>$$\begin{cases} x \equiv a_1 \pmod{m_1} \ x \equiv a_2 \pmod{m_2} \end{cases}$$</p>
+<p>其中 $\gcd(m_1,m_2)$ 不一定为 $1$。</p>
+<p>考虑转化，将式子改写为：</p>
+<p>$$\begin{cases} x&#x3D;k_1m_1+a_1 \ x&#x3D;k_2m_2+a_2\end{cases}$$</p>
+<p>$$\Rightarrow k_1m_1-k_2m_2&#x3D;a_2-a_1$$</p>
+<p>这是二元一次方程基本形式，使用 $\text{exgcd}$ 解决，注意若 $a_2-a_1$ 不为 $\gcd(m_1,m_2)$ 的倍数时无解。</p>
+<p>然后我们找到一个满足上述方程的解集中 $k_1$ 的最小非负整数解，然后代入至 $x&#x3D;k_1m_1+a_1$ 求出 $x$，此时 $x$ 对两个方程同时满足，记得出的值为 $x’$。</p>
+<p>那么我们可以将这两个方程合并为一个方程：$x\equiv x’ \pmod{\operatorname{lcm}(m_1,m_2)}$。</p>
+<p>以此类推合并完所有方程就可以求出最终的答案。</p>
+<h2 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4777">P4777 【模板】扩展中国剩余定理</a></p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">long</span> ll<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">unsigned</span> <span class="token keyword">long</span> <span class="token keyword">long</span> ull<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">double</span> lf<span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token keyword">int</span> Inf <span class="token operator">=</span> <span class="token number">0x3f3f3f3f</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ll Lnf <span class="token operator">=</span> <span class="token number">0x3f3f3f3f3f3f3fll</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> Mod <span class="token operator">=</span> <span class="token number">1000000007</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> maxn <span class="token operator">=</span> <span class="token number">100005</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> n<span class="token punctuation">;</span>
+<span class="token keyword">bool</span> f <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+ll <span class="token function">exgcd</span><span class="token punctuation">(</span>ll a<span class="token punctuation">,</span> ll b<span class="token punctuation">,</span> ll <span class="token operator">&amp;</span>x<span class="token punctuation">,</span> ll <span class="token operator">&amp;</span>y<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>b <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        x <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> a<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    ll d <span class="token operator">=</span> <span class="token function">exgcd</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span> a <span class="token operator">%</span> b<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ll z <span class="token operator">=</span> x<span class="token punctuation">;</span>
+    x <span class="token operator">=</span> y<span class="token punctuation">,</span> y <span class="token operator">=</span> z <span class="token operator">-</span> y <span class="token operator">*</span> <span class="token punctuation">(</span>a <span class="token operator">/</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> d<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+ll <span class="token function">mul</span><span class="token punctuation">(</span>ll a<span class="token punctuation">,</span> ll b<span class="token punctuation">,</span> ll p<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    a <span class="token operator">%</span><span class="token operator">=</span> p<span class="token punctuation">,</span> b <span class="token operator">%</span><span class="token operator">=</span> p<span class="token punctuation">;</span>
+    ll c <span class="token operator">=</span> <span class="token punctuation">(</span>lf<span class="token punctuation">)</span>a <span class="token operator">*</span> b <span class="token operator">/</span> p<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>a <span class="token operator">*</span> b <span class="token operator">-</span> c <span class="token operator">*</span> p <span class="token operator">+</span> p<span class="token punctuation">)</span> <span class="token operator">%</span> p<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">solve</span><span class="token punctuation">(</span>ll <span class="token operator">&amp;</span>m<span class="token punctuation">,</span> ll <span class="token operator">&amp;</span>a<span class="token punctuation">,</span> ll tm<span class="token punctuation">,</span> ll ta<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ll k<span class="token punctuation">,</span> tk<span class="token punctuation">,</span> g <span class="token operator">=</span> <span class="token function">exgcd</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> tm<span class="token punctuation">,</span> k<span class="token punctuation">,</span> tk<span class="token punctuation">)</span><span class="token punctuation">,</span> lcm <span class="token operator">=</span> m <span class="token operator">/</span> g <span class="token operator">*</span> tm<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>a <span class="token operator">-</span> ta<span class="token punctuation">)</span> <span class="token operator">%</span> g <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        f <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    k <span class="token operator">=</span> <span class="token function">mul</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> <span class="token punctuation">(</span>ta <span class="token operator">-</span> a<span class="token punctuation">)</span> <span class="token operator">/</span> g<span class="token punctuation">,</span> tm <span class="token operator">/</span> g<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    a <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">mul</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> m<span class="token punctuation">,</span> lcm<span class="token punctuation">)</span> <span class="token operator">+</span> a<span class="token punctuation">)</span> <span class="token operator">%</span> lcm<span class="token punctuation">;</span>
+    m <span class="token operator">=</span> lcm<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>a <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        a <span class="token operator">+</span><span class="token operator">=</span> m<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">excrt</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ll a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> m <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> ta<span class="token punctuation">,</span> tm<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%lld%lld"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>tm<span class="token punctuation">,</span> <span class="token operator">&amp;</span>ta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">solve</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> a<span class="token punctuation">,</span> tm<span class="token punctuation">,</span> ta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>f <span class="token operator">==</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"-1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%lld\n"</span><span class="token punctuation">,</span> a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">excrt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+
+            <div id="vcomments"></div>
+        </div>
+
+        <div id = "toc">
+        </div>
+
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: 'CEGJD6I3uLgJeTF6fPsqgGmw-gzGzoHsz',
+                appKey: 'R3wowhGv7IL3peB3tT06CjzS',
+                visitor: true,
+                master: '28a6ec927125219298a15dcb5c104f67'
+            })
+        </script>
+
+    
+
+</div>
+
+</body>

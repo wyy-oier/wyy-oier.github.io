@@ -1,0 +1,174 @@
+<head>
+    <title> T261510 和谐社会(harmony) - WyyOIer </title>
+  	<link rel="stylesheet" href="/css/main.css">
+  	<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <script type = "text/javascript" async src="/javascript/main.js"></script>
+    <script id="MathJax-script" async src="/javascript/math/tex-mml-chtml.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+
+
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeBlockFuction.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeCopy.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/clipboard.min.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeShrink.js"></script> -->
+   <!-- <style type="text/css">code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }</style> -->
+
+    <!-- <link rel="stylesheet" href="/highlight/styles/atom-one-dark.min.css"> -->
+    
+    <!-- <link rel="stylesheet" href="/css/bootstrap.min.css"> -->
+    <script id="Valine" src='https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js'></script>
+<meta name="generator" content="Hexo 6.2.0"><link rel="stylesheet" href="/css/prism-sh.css" type="text/css"></head>
+
+<body>
+
+
+<div id = "background">
+    <div id = "index">
+        <div id="menu">
+
+    <div style="text-align: center;font-size: 32px;font-family: consolas;">
+        <p>WyyOIer</p>
+    </div>
+
+    <div style="height: 150px;float: up;display: flex;flex-direction: column;align-items: center;">
+        <div id="headstyle">
+            
+        </div>
+    </div>
+	
+    <div style="height: 50px;width: 30%;float: left;text-align: center;">
+        <text id = "pcount" title = "文章数" style = "font-family: consolas;font-size: 20px;">15</text>
+    </div>
+
+    <div style="height: 50px;width: 30%;float: left;text-align: center;">
+        <text id = "commentcount" title = "评论数" style = "font-family: consolas;font-size: 20px;">0</text>
+    </div>
+
+    <div style="height: 50px;width: 40%;float: left;text-align: center;">
+        <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/159610">
+        <img src="https://www.luogu.com.cn/favicon.ico" alt="洛谷" width="24" height="24"></a>
+        &nbsp; 
+        <a target="_blank" rel="noopener" href="https://codeforces.com/profile/WyyOIer">
+        <img src="https://codeforces.com/favicon.ico" alt="CF" width="24" height="24"></a>
+    </div>
+
+
+    <div class="list-group">
+        <a class="list-group-item" href="/"><i class="fa fa-home fa-fw"></i>&nbsp; 首页</a>
+        <a class="list-group-item" href="/about"><i class="fa fa-user fa-fw"></i>&nbsp; 关于</a>
+        <a class="list-group-item" href="/links"><i class="fa fa-link fa-fw"></i>&nbsp; 友链</a>
+        <a class="list-group-item" onclick = "Search()"><i class="fa fa-search fa-fw"></i>&nbsp; 搜索</a>
+        <a class="list-group-item" href="/template"><i class="fa fa-file-code-o fa-fw"></i>&nbsp; 模板</a>
+    </div>
+
+    <script>
+        function changemusicid(){
+            var v = document.getElementById("num").value, text, f = 0;
+            if(v == null || v == "") {
+            text = "输入不能为空。";
+            f = 1;
+            }
+            if(f == 0) document.getElementById("music").innerHTML= '<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=250 height=95 src="//music.163.com/outchain/player?type=2&id=' + v + '&auto=0&height=66"></iframe> ';
+            else document.getElementById("musictext").innerHTML = text;
+        }
+    </script>
+
+    <div style="height: 13%;width: 30%;float: left" id="music">
+    <input id = "num" placeholder = "输入网易音乐 id，如 480517594" style = "width: 230px;">
+    <button type="button" onclick="changemusicid()">提交</button>
+    <p id = "musictext"></p>
+    </div>
+
+</div>
+
+
+    </div>
+
+    
+
+    
+
+
+    
+
+        <div id = "article">
+            <div id = "post-title"> T261510 和谐社会(harmony) </div>
+            <div id = "post-author"> By WyyOIer | </div>
+            <div id = "post-date" title = "发布时间"> 2022-08-06 17:31:37 / </div>
+            <div id = "post-updated" title = "更新时间"> 2022-08-06 18:34:39 </div>
+            <span class = "leancloud_visitors" id = "/2022/08/06/T261510-%E5%92%8C%E8%B0%90%E7%A4%BE%E4%BC%9A-harmony/">
+                <text class="post-meta-item-text">阅读数 </text>
+                <i class="leancloud-visitors-count">nan</i>
+            </span>
+            <br>
+            <h1 id="n-le-50"><a href="#n-le-50" class="headerlink" title="$n\le 50$"></a>$n\le 50$</h1><p>设 $dp_{u,sz,sum}$ 表示以 $u$ 为大小为 $sz$ 的连通块的顶点，且连通块权值和为 $sum$ 的概率。</p>
+<p>暴力转移即可，复杂度 $\mathcal{O}(n^5)$。</p>
+<p><del>这一档没写所以没有式子</del></p>
+<h1 id="sum-a-i-le-5000"><a href="#sum-a-i-le-5000" class="headerlink" title="$\sum a_i\le 5000$"></a>$\sum a_i\le 5000$</h1><p>将 $\dfrac 1{|S|} \sum_{u\in S} w_u &#x3D; 1$  进行一步转化，将每个点所选的范围平移 $1$ 位变为 $[-1,a_u-1]$，这样要求的式子 $\dfrac 1{|S|} \sum_{u\in S} w_u &#x3D; 0$，这样 $sum$ 等于 $0$ 就行，不用记 $sz$ 的状态。</p>
+<p>记 $p_u$ 为 $\dfrac{1}{a_i+1}\mod 998244353$。</p>
+<p>设状态 $dp_u,sum$ 表示以 $u$ 为连通块的顶点，且连通块权值和为 $sum$ 的概率。</p>
+<p>首先 $dp_{u,j}&#x3D;p_u$，其中 $-1\le j\le a_i-1$。</p>
+<p>对于 $u$ 的每一个儿子 $v$，设合并后 $v$ 子树的 $u$ 为 $u’$。</p>
+<p>$dp_{u’,i+j}&#x3D;dp_{u,i}\cdot dp_{v,j}$。</p>
+<p>通过卡 $sum$ 的优化方式将时间复杂度 $\mathcal{O}(n\sum a_i)$。</p>
+<p>这是一步常见的转化，希望自己能够熟练掌握。</p>
+<h1 id="保证树是一条链"><a href="#保证树是一条链" class="headerlink" title="保证树是一条链"></a>保证树是一条链</h1><p>从这里开始有关正解。</p>
+<p>对于退化成链的情况，特点是每一个点只有一个儿子，我们没有了子树合并的转移。</p>
+<p>我们不妨从下往上合并。</p>
+<p>观察式子：</p>
+<p>$dp_{u-1,i+j}&#x3D;dp_{u-1,i}\cdot dp_{u,j}$</p>
+<p>而 $dp_{u-1}$ 的初始就是一堆 $p_{u-1}$，那么我们设 $k&#x3D;i+j$，枚举 $k$ 之后，式子变为：</p>
+<p>$dp_{u-1,k}&#x3D;p_{u-1}\sum dp_{u,k-i}$，我们先来推一推 $i,j,k$ 的范围：</p>
+<p>$-1\le i\le a_{u-1}-1$</p>
+<p>$-(n-u+1)\le j\le \min(suma_n - suma_{u-1}, n)$</p>
+<p>$-(n - i + 2)\le k\le \min((a_{u-1} - 1) + \min(suma_n - suma_{u - 1}, n), n)$</p>
+<p>当我枚举 $k$ 后，$k-i\in[k-(a_{u-1}-1),k-(-1)]$，与 $j$ 范围取交就有了查询区间和的端点，那么我们维护一个前缀和就能 $\mathcal{O}(1)$ 解决。</p>
+<p>总时间复杂度 $\mathcal{O}(n^2)$。</p>
+<h1 id="无特殊限制"><a href="#无特殊限制" class="headerlink" title="无特殊限制"></a>无特殊限制</h1><p><del>不要问为什么没有上一档，因为没写</del></p>
+<p>尝试将链上求法拓展到树上。</p>
+<p>考虑现在想要求以 $rt$ 为顶点的连通块的概率。</p>
+<p>考虑当从 $u$ 向 $v$ 更新时，从 $rt$ 到 $u$ 就是一条链上问题，加入 $v$ 的时候也可以把 $v$ 当作链上问题来做。但是这样最后答案貌似都在叶子结点，我们可以下传引用把答案拉上来。具体实现就是先把 $dp$ 拷到 $tmp$ 里，将 $u\rightarrow v$ 更新后的 $dp$，下传，在回溯到 $u$ 的时候再加回 $tmp$ 即可。</p>
+<p>现在我们还需考虑一个问题，由于 $u$ 有很多子树，当我们处理完子树 $v_1$ 时跳到 $v_2$ 时如何保证不漏（因为每次都是按 $dfn$ 顺序搜索，那么不重是显然的）。</p>
+<p>当 $u$ 走到 $v_1$，遍历子树再回到 $u$ 后的 $dp$ 加上 $tmp$ 后已经是包括了所有应该包括的情况。</p>
+<p>这里可以想一想，$tmp$ 其实就是当前下到 $u$ 的情况，而显然 $u$ 的子树的各个顶点也是都考虑到了这种情况，所以到了 $v_2$ 子树内时，每加入一个点其实就是和 $rt\rightarrow u\rightarrow v_1\rightarrow\dots$ 所有连通块情况都去尝试了一遍组合，所以总体起来没有漏掉的情况。</p>
+<p>那么这样就非常好了！这样我们求一个点的复杂度就变为了 $O(n^2)$，而都求一遍的复杂度为 $O(n^3)$。</p>
+<p>看起来还是不能通过，但考虑到实际上的复杂度为 $\sum\limits_{u&#x3D;1}^n sz_u$，而进行合理的分配后，也就是使用点分治，最劣的复杂度就变为了 $n^2+2\times (\dfrac{n}{2})^2+4\times(\dfrac{n}{4})^2+\dots$，也就是 $O(n^2)$ 的。</p>
+<p>一些注意事项：</p>
+<ul>
+<li>$dp$ 时的 $sz$ 一定要卡的特别精准，否则很有可能收获 TLE。</li>
+<li>很多 $dp$ 的细节没有说，比如因为有 <code>-1</code>  的转移，需要将 $dp$ 向右平移 $n$，还有 $dp$ 在 $sum$ 一维的维护只用到达 $2n$，因为超过 $2n$ 后至少需要 $n$ 个 <code>-1</code> 才能拉回来，明显不可能，当然在点分治中，这个 $2n$ 可能也要卡成 $2sz_{rt}$。</li>
+<li>下传引用数组应该是比较慢的，空间开成了 $2<em>5005$ 被卡了一下，开成 $2</em>3005$ 好像就快了一些。<del>说到底还是因为时间卡</del></li>
+</ul>
+
+            <div id="vcomments"></div>
+        </div>
+
+        <div id = "toc">
+        </div>
+
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: 'CEGJD6I3uLgJeTF6fPsqgGmw-gzGzoHsz',
+                appKey: 'R3wowhGv7IL3peB3tT06CjzS',
+                visitor: true,
+                master: '28a6ec927125219298a15dcb5c104f67'
+            })
+        </script>
+
+    
+
+</div>
+
+</body>

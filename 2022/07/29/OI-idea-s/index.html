@@ -1,0 +1,199 @@
+<head>
+    <title> OI idea(s) - WyyOIer </title>
+  	<link rel="stylesheet" href="/css/main.css">
+  	<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <script type = "text/javascript" async src="/javascript/main.js"></script>
+    <script id="MathJax-script" async src="/javascript/math/tex-mml-chtml.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+
+
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeBlockFuction.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeCopy.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/clipboard.min.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeShrink.js"></script> -->
+   <!-- <style type="text/css">code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }</style> -->
+
+    <!-- <link rel="stylesheet" href="/highlight/styles/atom-one-dark.min.css"> -->
+    
+    <!-- <link rel="stylesheet" href="/css/bootstrap.min.css"> -->
+    <script id="Valine" src='https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js'></script>
+<meta name="generator" content="Hexo 6.2.0"><link rel="stylesheet" href="/css/prism-sh.css" type="text/css"></head>
+
+<body>
+
+
+<div id = "background">
+    <div id = "index">
+        <div id="menu">
+
+    <div style="text-align: center;font-size: 32px;font-family: consolas;">
+        <p>WyyOIer</p>
+    </div>
+
+    <div style="height: 150px;float: up;display: flex;flex-direction: column;align-items: center;">
+        <div id="headstyle">
+            
+        </div>
+    </div>
+	
+    <div style="height: 50px;width: 30%;float: left;text-align: center;">
+        <text id = "pcount" title = "文章数" style = "font-family: consolas;font-size: 20px;">15</text>
+    </div>
+
+    <div style="height: 50px;width: 30%;float: left;text-align: center;">
+        <text id = "commentcount" title = "评论数" style = "font-family: consolas;font-size: 20px;">0</text>
+    </div>
+
+    <div style="height: 50px;width: 40%;float: left;text-align: center;">
+        <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/159610">
+        <img src="https://www.luogu.com.cn/favicon.ico" alt="洛谷" width="24" height="24"></a>
+        &nbsp; 
+        <a target="_blank" rel="noopener" href="https://codeforces.com/profile/WyyOIer">
+        <img src="https://codeforces.com/favicon.ico" alt="CF" width="24" height="24"></a>
+    </div>
+
+
+    <div class="list-group">
+        <a class="list-group-item" href="/"><i class="fa fa-home fa-fw"></i>&nbsp; 首页</a>
+        <a class="list-group-item" href="/about"><i class="fa fa-user fa-fw"></i>&nbsp; 关于</a>
+        <a class="list-group-item" href="/links"><i class="fa fa-link fa-fw"></i>&nbsp; 友链</a>
+        <a class="list-group-item" onclick = "Search()"><i class="fa fa-search fa-fw"></i>&nbsp; 搜索</a>
+        <a class="list-group-item" href="/template"><i class="fa fa-file-code-o fa-fw"></i>&nbsp; 模板</a>
+    </div>
+
+    <script>
+        function changemusicid(){
+            var v = document.getElementById("num").value, text, f = 0;
+            if(v == null || v == "") {
+            text = "输入不能为空。";
+            f = 1;
+            }
+            if(f == 0) document.getElementById("music").innerHTML= '<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=250 height=95 src="//music.163.com/outchain/player?type=2&id=' + v + '&auto=0&height=66"></iframe> ';
+            else document.getElementById("musictext").innerHTML = text;
+        }
+    </script>
+
+    <div style="height: 13%;width: 30%;float: left" id="music">
+    <input id = "num" placeholder = "输入网易音乐 id，如 480517594" style = "width: 230px;">
+    <button type="button" onclick="changemusicid()">提交</button>
+    <p id = "musictext"></p>
+    </div>
+
+</div>
+
+
+    </div>
+
+    
+
+    
+
+
+    
+
+        <div id = "article">
+            <div id = "post-title"> OI idea(s) </div>
+            <div id = "post-author"> By WyyOIer | </div>
+            <div id = "post-date" title = "发布时间"> 2022-07-29 13:24:02 / </div>
+            <div id = "post-updated" title = "更新时间"> 2022-08-18 13:28:01 </div>
+            <span class = "leancloud_visitors" id = "/2022/07/29/OI-idea-s/">
+                <text class="post-meta-item-text">阅读数 </text>
+                <i class="leancloud-visitors-count">nan</i>
+            </span>
+            <br>
+            <p>想把 OI 中的方法论总结一下，包括一些常见套路和有意思的 idea，并包括深度理解。</p>
+<h1 id="矩阵乘法"><a href="#矩阵乘法" class="headerlink" title="矩阵乘法"></a>矩阵乘法</h1><img src="https://s2.loli.net/2022/08/06/GPzijIWxcQq3AuN.png" alt="image.png" style="zoom:50%;" />
+
+<p>矩阵乘法主要用于优化数列或状态的递推。设矩阵大小为 $n\times n$，那么求 $T$ 时刻的局面就是 $\mathcal{O}(n^3\log T)$。如果有 $q$ 次询问，可以预处理所有 $2$ 的整数次幂的矩阵，然后采用一维向量乘矩阵得到答案，复杂度从 $\mathcal{O}(qn^3\log T)$ 优化至 $\mathcal{O}(n^3\log T+qn^2\log T)$。</p>
+<p>注意矩阵乘法优化 $dp$ 要保证<strong>每个阶段的转移形式完全相同</strong>。</p>
+<h2 id="运算形式"><a href="#运算形式" class="headerlink" title="运算形式"></a>运算形式</h2><p>矩阵乘法一般是两种运算形式叠加使用，记运算符号 $mat(\times,+)$ 的转移形式为：</p>
+<p>$res.num_{i,j}+&#x3D;num_{i,k}\times A.num_{j,k}$ </p>
+<p>对于运算符号有如下要求：</p>
+<ol>
+<li>第一种运算满足交换律；</li>
+<li>第一种运算满足结合律；</li>
+<li>第一种对第二种运算满足分配率。</li>
+</ol>
+<p>下面列举几种常见符号组合。</p>
+<p>$mat(\times,+)$：路径计数</p>
+<p>$mat(+,\max)$：最长路</p>
+<p>$mat(+,\min)$：最短路</p>
+<p>$mat(\text{&amp;},|)$：判图连通</p>
+<h2 id="题面形式"><a href="#题面形式" class="headerlink" title="题面形式"></a>题面形式</h2><p>状态很少 $(n-300)$，最终所求数列的项数很大 $(T-10^{18})$，每个位置的转移方式相同，比如有递推公式或<strong>对于每个阶段固定的转移方程</strong>。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1613">P1613 跑路</a> $n\le 50,T\le 10^{18}$ ，且每个点的转移方式相同，用 $mat(\text{&amp;},|)$ 判是否连通，然后跑 floyd。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6569">P6569 [NOI Online #3 提高组] 魔法值</a> $n\le100,T\le 2^{32}$，对于每个点的转移，在每一个时刻都只跟它周围点的状态有关，记 $mat_{u,v}$ 表示 $u,v$ 之间是否有边，有边为 $1$，没边为 $0$，写一个 $mat(\text{&amp;},\oplus)$ 矩阵运算再用 $2$ 的整数次幂预处理矩阵优化询问即可。</p>
+<h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><p>排序的本质：交换逆序对的过程。</p>
+<p>一个位置可以被“排序”的充分必要条件：存在关于这个位置的逆序对。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1136D">CF1136D Nastya Is Buying Lunch</a> 可以看作每一对 $(u,v)$ 都是一对可进行相邻交换的逆序对，找到最后一个人 $x$ 能够交换的逆序对 $(y,x)$，当且仅当 $y\sim x$ 之间的一段前缀（可以为空）是 $y$ 的逆序对，后缀（可以为空）是 $x$ 的逆序对，否则就会成为一个对 $y$ 之前的元素的一个阻碍。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1187D">CF1187D Subarray Sorting</a> 考虑 $A$ 换到 $B$ 的充分必要条件。<strong>（往往这一步最难）</strong>我们去考虑排序的本质，能<strong>删</strong>逆序对，那么如果 $B$ 存在的逆序对 $A$ 中没有，那么 $A$ 就<strong>不能加</strong>逆序对到 $B$，那么这就是 <code>YES</code> 的一个必要条件。充分性的证明即我们是否能对于上述情况，能否找到一个操作保证换掉 $B$ 中没出现的逆序对。考虑一种操作方案：从后往前做，对于当前的数，做一遍冒泡排序消除所有不在 $B$ 的逆序对。</p>
+<p>所以我们考虑是否会出现这样一种情况：是否在当前的数后有一个位置构成的逆序对出现在 $B$，但之后又出现了一个不出现在 $B$ 的逆序对？（也就是我必须先消除前面在 $B$ 的逆序对，才能消除后面不在 $B$ 的逆序对从而不合法，如果不存在这种情况，那么冒泡就是对的）</p>
+<p>首先，不妨设当前的数为 $x$，后面那个出现在 $B$ 中的逆序对为 $y$，不出现在 $B$ 中的逆序对为 $z$，也就是如下的一种局面：</p>
+<img src="https://s2.loli.net/2022/08/10/42ResEVF7XCQ8OB.jpg" alt="CF1187D Subarray Sorting-01.jpg" style="zoom:80%;" />
+
+<p>不难发现，当且仅当 $y&lt;z&lt;x$ 时不能采用上述做法，但是最后我们要排成 $z-x-y$ 的形式，这样我们就多了一个 $(z,y)$ 逆序对，所以这种在必要的时候就被判掉了。那么我们也成功的说明了上述的必要条件有恰当的构造方法使得称为 $B$ 序列，变为了充分必要条件，至于最后的判断，属于技术问题，留作口胡。（提示：对于一个数 $x$ 维护其后面的逆序对集是否包含于这个数在 $B$ 中对应的逆序对集）</p>
+<h2 id="插旗法"><a href="#插旗法" class="headerlink" title="插旗法"></a>插旗法</h2><p>可以对于一个环上顺序置换最优解问题，从 $n$ 个人到 $n$ 个位置的问题转化成了 $n$ 个旗子到 $1$ 个位置的问题。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1053">P1053 [NOIP2005 提高组] 篝火晚会</a> </p>
+<p>由于不同的环只有 $2n$ 个，枚举每种环，考虑有多少人不在最终局面的位置上，所有取最小即可，复杂度 $\mathcal{O}(n^2)$。</p>
+<p>我们不妨考虑，其实就是对于所有情况最小化初始局面和最终局面不在同一位置的人数。如果顺时针和逆时针分开考虑的话，其实就是 $n$ 个循环移位，<strong>循环移位不改变任意两点的相对位置</strong>，所以有了插旗法：首先我们找到 $1$ 的位置是对的最终局面，记为 $P$，然后看每个人从初始局面顺时针走多少步能走到最终局面的对应位置，然后我们就对这个步数的下标查一个旗，表示 $P$ 这个排列顺时针移动一定次数就会让这个插旗的人产生贡献，最后插旗最多的地方即为最优的最终局面，复杂度 $\mathcal{O}(n)$。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/U76006">U76006 环上游戏</a></p>
+<p>这题还是从初始局面转移到 $2n$ 个最终局面的最优，先考虑顺时针，我们固定 $1$ 的初始位置就是最终局面的位置，记这个局面为 $P$，然后我们在 $i$ 后面 $(i-1)$ 个位置插一个旗，然后想象 $i$ 和旗子一块移动，这样达到最终局面后，所有旗子都到达了 $1$ 位置，现在我们就转化成了所有旗子到某个位置的最小总距离。（因为旗子的位置是与 $1$ 的相对位置，而 $1$ 的位置 $n$ 种任选）</p>
+<p>这个有个贪心做法：枚举一个位置把圆切成两边，发现一定是把旗子都切在一边，所以就是把最长段给扔了。</p>
+<p>时间复杂度 $\mathcal{O}(n)$。</p>
+<h2 id="置换排序模型"><a href="#置换排序模型" class="headerlink" title="置换排序模型"></a>置换排序模型</h2><p>对于一个置换 $p$，以 $i\rightarrow p_i$ 连边，那么就是 $n$ 点 $n$ 边，且每点入度出度均为 $1$，也就是由若干个环组成的图。</p>
+<p>考虑对于一个置换，最终的有序状态是 $n$ 个自环，而一次交换可以从一个环拿出一个数使其变为自环，那么操作数即为  $\sum\limits_{i&#x3D;1}^m sz_i-1&#x3D;n-m$，$m$ 为环的个数。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2127">P2127 序列排序</a> 加权的给置换排序的模型，对一个环拆成自环的时候，考虑两种决策：</p>
+<ul>
+<li>把全局最小先加入这个环中，然后把其它数给拿出去；</li>
+<li>直接用环中的最小数把其它数拿出去。</li>
+</ul>
+<p>考虑环与环之间的决策互不影响，所以两种决策取最优即可。</p>
+<p><a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/contest/5671">2020牛客暑期多校训练营（第六场）A</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/BeWild/post-2020-niu-ke-shu-ji-duo-xiao-xun-lian-ying-di-liu-chang-post">https://www.luogu.com.cn/blog/BeWild/post-2020-niu-ke-shu-ji-duo-xiao-xun-lian-ying-di-liu-chang-post</a></p>
+<h2 id="中位数"><a href="#中位数" class="headerlink" title="中位数"></a>中位数</h2><h3 id="山区建小学模型"><a href="#山区建小学模型" class="headerlink" title="山区建小学模型"></a>山区建小学模型</h3><p> $\sum\limits_{i&#x3D;1}^n|x-p_i|$ 或 $\sum\limits_{i&#x3D;1}^n|p_x-p_i|$ 的一般最值问题。取其中位数，可能会用不同的算法维护。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3644">P3644 [APIO2015] 八邻旁之桥</a> </p>
+<p>一座桥就是朴素的山区建小学问题，把 $s$ 和 $t$ 都扔到数轴上取中位数算即可。</p>
+<p>考虑如果有两座桥。每一个人有两个决策，选 $A$ 桥还是选 $B$ 桥。以桥为分界划分为三部分：</p>
+<p><img src="https://s2.loli.net/2022/08/10/yF7AYwzLPfXvd5T.jpg" alt="P3644 _APIO2015_ 八邻旁之桥-01.jpg" style="zoom:67%;" />考虑如果某个人的起点在 $I$ 区或 $III$ 区，那么对于这个人，一定可以选靠近这个人起点 的桥，因为远离的桥不优。那么只需考虑如果一个人的起点和终点都在 $II$ 区的情况。</p>
+<p>设两座桥的位置为 $x,y$ 且 $x&lt;y$，起点的位置为 $s$，终点的位置为 $t$。</p>
+<img src="https://s2.loli.net/2022/08/10/oF2AZsRnB5tHIav.jpg" alt="P3644 _APIO2015_ 八邻旁之桥-02.jpg" style="zoom:67%;" />
+
+<p>那么走 $A$ 桥优于 $B$ 桥，当且仅当：</p>
+<p>$(s-x)+(t-x)&lt;(y-s)+(y-t)$</p>
+<p>$\Rightarrow s+t&lt;x+y$</p>
+<p>也就是对于所有 $s+t&lt;x+y$ 的人，都走 $A$ 桥，反之都走 $B$ 桥。也就是我们去枚举所有的断点 $s+t$，这样两边就是 $k&#x3D;1$ 的朴素山区建小学，我们动态维护两边的中位数，时间复杂度为 $\mathcal{O}(n\log n)$。</p>
+<p><strong>（思考）</strong>在推出 $s+t&lt;x+y$，一直陷入一个误区：当我们枚举 $s+t$ 也就确定了 $x+y$，但可能两边所划分的中位数，也就是两座桥的具体位置不能为 $x+y$ 该如何解决？</p>
+<p><strong>（解答）</strong>经过教练的指导，发现这个式子的意义是，我们找到了一种排序方式（按 $s+t$ 排序）使得对于小于 $x+y$ 的 $A$ 桥，大于 $x+y$ 的一定走 $B$ 桥，<strong>那么我们不再关心桥的具体位置，而是最优解的形式一定为以 $s+t$ 排序的前缀走 $A$ 桥，$s+t$ 的后缀走 $B$ 桥</strong>，这样两边山区建小学一定<strong>不会丢失最优解</strong>。</p>
+<p><strong>（思想）</strong>对于一个要求较强的结论，考虑退而求其次是否更容易地使用。</p>
+
+            <div id="vcomments"></div>
+        </div>
+
+        <div id = "toc">
+        </div>
+
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: 'CEGJD6I3uLgJeTF6fPsqgGmw-gzGzoHsz',
+                appKey: 'R3wowhGv7IL3peB3tT06CjzS',
+                visitor: true,
+                master: '28a6ec927125219298a15dcb5c104f67'
+            })
+        </script>
+
+    
+
+</div>
+
+</body>

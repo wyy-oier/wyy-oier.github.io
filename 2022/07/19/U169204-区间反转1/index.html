@@ -1,0 +1,140 @@
+<head>
+    <title> U169204 区间反转1 - WyyOIer </title>
+  	<link rel="stylesheet" href="/css/main.css">
+  	<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <script type = "text/javascript" async src="/javascript/main.js"></script>
+    <script id="MathJax-script" async src="/javascript/math/tex-mml-chtml.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+
+
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeBlockFuction.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeCopy.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/clipboard.min.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeShrink.js"></script> -->
+   <!-- <style type="text/css">code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }</style> -->
+
+    <!-- <link rel="stylesheet" href="/highlight/styles/atom-one-dark.min.css"> -->
+    
+    <!-- <link rel="stylesheet" href="/css/bootstrap.min.css"> -->
+    <script id="Valine" src='https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js'></script>
+<meta name="generator" content="Hexo 6.2.0"><link rel="stylesheet" href="/css/prism-sh.css" type="text/css"></head>
+
+<body>
+
+
+<div id = "background">
+    <div id = "index">
+        <div id="menu">
+
+    <div style="text-align: center;font-size: 32px;font-family: consolas;">
+        <p>WyyOIer</p>
+    </div>
+
+    <div style="height: 150px;float: up;display: flex;flex-direction: column;align-items: center;">
+        <div id="headstyle">
+            
+        </div>
+    </div>
+	
+    <div style="height: 50px;width: 30%;float: left;text-align: center;">
+        <text id = "pcount" title = "文章数" style = "font-family: consolas;font-size: 20px;">15</text>
+    </div>
+
+    <div style="height: 50px;width: 30%;float: left;text-align: center;">
+        <text id = "commentcount" title = "评论数" style = "font-family: consolas;font-size: 20px;">0</text>
+    </div>
+
+    <div style="height: 50px;width: 40%;float: left;text-align: center;">
+        <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/159610">
+        <img src="https://www.luogu.com.cn/favicon.ico" alt="洛谷" width="24" height="24"></a>
+        &nbsp; 
+        <a target="_blank" rel="noopener" href="https://codeforces.com/profile/WyyOIer">
+        <img src="https://codeforces.com/favicon.ico" alt="CF" width="24" height="24"></a>
+    </div>
+
+
+    <div class="list-group">
+        <a class="list-group-item" href="/"><i class="fa fa-home fa-fw"></i>&nbsp; 首页</a>
+        <a class="list-group-item" href="/about"><i class="fa fa-user fa-fw"></i>&nbsp; 关于</a>
+        <a class="list-group-item" href="/links"><i class="fa fa-link fa-fw"></i>&nbsp; 友链</a>
+        <a class="list-group-item" onclick = "Search()"><i class="fa fa-search fa-fw"></i>&nbsp; 搜索</a>
+        <a class="list-group-item" href="/template"><i class="fa fa-file-code-o fa-fw"></i>&nbsp; 模板</a>
+    </div>
+
+    <script>
+        function changemusicid(){
+            var v = document.getElementById("num").value, text, f = 0;
+            if(v == null || v == "") {
+            text = "输入不能为空。";
+            f = 1;
+            }
+            if(f == 0) document.getElementById("music").innerHTML= '<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=250 height=95 src="//music.163.com/outchain/player?type=2&id=' + v + '&auto=0&height=66"></iframe> ';
+            else document.getElementById("musictext").innerHTML = text;
+        }
+    </script>
+
+    <div style="height: 13%;width: 30%;float: left" id="music">
+    <input id = "num" placeholder = "输入网易音乐 id，如 480517594" style = "width: 230px;">
+    <button type="button" onclick="changemusicid()">提交</button>
+    <p id = "musictext"></p>
+    </div>
+
+</div>
+
+
+    </div>
+
+    
+
+    
+
+
+    
+
+        <div id = "article">
+            <div id = "post-title"> U169204 区间反转1 </div>
+            <div id = "post-author"> By WyyOIer | </div>
+            <div id = "post-date" title = "发布时间"> 2022-07-19 15:18:22 / </div>
+            <div id = "post-updated" title = "更新时间"> 2022-07-19 15:30:57 </div>
+            <span class = "leancloud_visitors" id = "/2022/07/19/U169204-%E5%8C%BA%E9%97%B4%E5%8F%8D%E8%BD%AC1/">
+                <text class="post-meta-item-text">阅读数 </text>
+                <i class="leancloud-visitors-count">nan</i>
+            </span>
+            <br>
+            <p>本题考察了归并排序的理解。</p>
+<p>我们记参数 $q$ 所分成的块为第 $q$ 层，我们可以用归并排序预处理出每一层的逆序对数和正序对数。</p>
+<p>我们在翻转第 $q$ 层时，只会改变第 $1\sim q$ 层每一小块的答案，交换所求的正序对和逆序对的数量，最后再把所有层的逆序对加起来即可。</p>
+<p>时间复杂度 $O(n\times 2^n +nm)$。</p>
+
+            <div id="vcomments"></div>
+        </div>
+
+        <div id = "toc">
+        </div>
+
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: 'CEGJD6I3uLgJeTF6fPsqgGmw-gzGzoHsz',
+                appKey: 'R3wowhGv7IL3peB3tT06CjzS',
+                visitor: true,
+                master: '28a6ec927125219298a15dcb5c104f67'
+            })
+        </script>
+
+    
+
+</div>
+
+</body>

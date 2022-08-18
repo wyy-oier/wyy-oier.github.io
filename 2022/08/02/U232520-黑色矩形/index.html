@@ -1,0 +1,152 @@
+<head>
+    <title> U232520 黑色矩形 - WyyOIer </title>
+  	<link rel="stylesheet" href="/css/main.css">
+  	<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <script type = "text/javascript" async src="/javascript/main.js"></script>
+    <script id="MathJax-script" async src="/javascript/math/tex-mml-chtml.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+
+
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeBlockFuction.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeCopy.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/clipboard.min.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeShrink.js"></script> -->
+   <!-- <style type="text/css">code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }</style> -->
+
+    <!-- <link rel="stylesheet" href="/highlight/styles/atom-one-dark.min.css"> -->
+    
+    <!-- <link rel="stylesheet" href="/css/bootstrap.min.css"> -->
+    <script id="Valine" src='https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js'></script>
+<meta name="generator" content="Hexo 6.2.0"><link rel="stylesheet" href="/css/prism-sh.css" type="text/css"></head>
+
+<body>
+
+
+<div id = "background">
+    <div id = "index">
+        <div id="menu">
+
+    <div style="text-align: center;font-size: 32px;font-family: consolas;">
+        <p>WyyOIer</p>
+    </div>
+
+    <div style="height: 150px;float: up;display: flex;flex-direction: column;align-items: center;">
+        <div id="headstyle">
+            
+        </div>
+    </div>
+	
+    <div style="height: 50px;width: 30%;float: left;text-align: center;">
+        <text id = "pcount" title = "文章数" style = "font-family: consolas;font-size: 20px;">15</text>
+    </div>
+
+    <div style="height: 50px;width: 30%;float: left;text-align: center;">
+        <text id = "commentcount" title = "评论数" style = "font-family: consolas;font-size: 20px;">0</text>
+    </div>
+
+    <div style="height: 50px;width: 40%;float: left;text-align: center;">
+        <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/159610">
+        <img src="https://www.luogu.com.cn/favicon.ico" alt="洛谷" width="24" height="24"></a>
+        &nbsp; 
+        <a target="_blank" rel="noopener" href="https://codeforces.com/profile/WyyOIer">
+        <img src="https://codeforces.com/favicon.ico" alt="CF" width="24" height="24"></a>
+    </div>
+
+
+    <div class="list-group">
+        <a class="list-group-item" href="/"><i class="fa fa-home fa-fw"></i>&nbsp; 首页</a>
+        <a class="list-group-item" href="/about"><i class="fa fa-user fa-fw"></i>&nbsp; 关于</a>
+        <a class="list-group-item" href="/links"><i class="fa fa-link fa-fw"></i>&nbsp; 友链</a>
+        <a class="list-group-item" onclick = "Search()"><i class="fa fa-search fa-fw"></i>&nbsp; 搜索</a>
+        <a class="list-group-item" href="/template"><i class="fa fa-file-code-o fa-fw"></i>&nbsp; 模板</a>
+    </div>
+
+    <script>
+        function changemusicid(){
+            var v = document.getElementById("num").value, text, f = 0;
+            if(v == null || v == "") {
+            text = "输入不能为空。";
+            f = 1;
+            }
+            if(f == 0) document.getElementById("music").innerHTML= '<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=250 height=95 src="//music.163.com/outchain/player?type=2&id=' + v + '&auto=0&height=66"></iframe> ';
+            else document.getElementById("musictext").innerHTML = text;
+        }
+    </script>
+
+    <div style="height: 13%;width: 30%;float: left" id="music">
+    <input id = "num" placeholder = "输入网易音乐 id，如 480517594" style = "width: 230px;">
+    <button type="button" onclick="changemusicid()">提交</button>
+    <p id = "musictext"></p>
+    </div>
+
+</div>
+
+
+    </div>
+
+    
+
+    
+
+
+    
+
+        <div id = "article">
+            <div id = "post-title"> U232520 黑色矩形 </div>
+            <div id = "post-author"> By WyyOIer | </div>
+            <div id = "post-date" title = "发布时间"> 2022-08-02 18:50:44 / </div>
+            <div id = "post-updated" title = "更新时间"> 2022-08-02 19:28:59 </div>
+            <span class = "leancloud_visitors" id = "/2022/08/02/U232520-%E9%BB%91%E8%89%B2%E7%9F%A9%E5%BD%A2/">
+                <text class="post-meta-item-text">阅读数 </text>
+                <i class="leancloud-visitors-count">nan</i>
+            </span>
+            <br>
+            <p>原题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6551">COCI2010-2011#2] CRNI</a></p>
+<p>按一行切开后，分成上下两部分，线上求矩形的下边贴在切开的边上的黑色矩阵数量，线下求出所有黑色矩阵的数量相乘。</p>
+<p>按一列切开后，分成左右两部分，线左求矩形的右边贴在切开的边上的黑色矩阵数量，线右求出所有黑色矩阵的数量相乘。</p>
+<p>考虑算重的矩形有哪些。</p>
+<p>当我们同时枚举划分的行和列时，将划分线看作平面直角坐标系的 $x$ 轴和 $y$ 轴，如果其中一个矩形贴在 $x$ 的负半轴和 $y$ 的正半轴，一个矩形在第四象限，那么行和列分别被计算一次；其中一个矩形贴在 $x$ 的负半轴和 $y$ 的负半轴，一个矩形在第一象限，那么行和列分别被计算一次。将重复的减去即能得到答案。</p>
+<p>下面我们需要求出以一个点为矩形的角的黑色矩阵的数量。</p>
+<p>即 $r_{0&#x2F;1&#x2F;2&#x2F;3,i,j}$ 为以 $(i,j)$ 为左上&#x2F;右上&#x2F;左下&#x2F;右下角时的黑色矩阵数量，由于其它同理，我们说右下角的求法。</p>
+<p>首先记 $h_{i,j}$ 为以 ${i,j}$ 开始上方有多少个连续的黑色格子。那么对于 $(i,j)$，在第 $i$ 行的第 $j$ 列之前找到第一个 $h_{i,k}\le h_{i,j}$，那么 $[k+1,j-1]$ 的 $h$ 均大于 $h_{i,j}$，那么 $r_{3,i,j}$ 的值可以分为两部分：</p>
+<ul>
+<li><p>第 $[k+1,j]$ 列，贡献为 $(j-k)*h_{i,j}-1$。（减掉 $1$ 个格的情况）</p>
+</li>
+<li><p>第 $j$ 列之前，因为 $[k+1,j-1]$ 的高度大于 $h_{i,j}$，所以可以将之前的矩形加上 $[k+1,j-1]$ 段延伸过来，这部分的贡献为 $r_{3,i,k}+1$。（之前 $1$ 个格的情况现在合法，加回来）</p>
+</li>
+</ul>
+<p>最终 $r_{3,i,j}&#x3D;r_{3,i,k}+1+(j-k)*h_{i,j}-1$。$k$ 可以用单调栈求出，复杂度控制在了 $\mathcal{O}(n^2)$。</p>
+<p>最后求一下前缀和，就能得到答案。</p>
+
+            <div id="vcomments"></div>
+        </div>
+
+        <div id = "toc">
+        </div>
+
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: 'CEGJD6I3uLgJeTF6fPsqgGmw-gzGzoHsz',
+                appKey: 'R3wowhGv7IL3peB3tT06CjzS',
+                visitor: true,
+                master: '28a6ec927125219298a15dcb5c104f67'
+            })
+        </script>
+
+    
+
+</div>
+
+</body>

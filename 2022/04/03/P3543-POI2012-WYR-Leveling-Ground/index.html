@@ -1,0 +1,158 @@
+<head>
+    <title> P3543 [POI2012]WYR-Leveling Ground - WyyOIer </title>
+  	<link rel="stylesheet" href="/css/main.css">
+  	<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <script type = "text/javascript" async src="/javascript/main.js"></script>
+    <script id="MathJax-script" async src="/javascript/math/tex-mml-chtml.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+
+
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeBlockFuction.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeCopy.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/clipboard.min.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeShrink.js"></script> -->
+   <!-- <style type="text/css">code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }</style> -->
+
+    <!-- <link rel="stylesheet" href="/highlight/styles/atom-one-dark.min.css"> -->
+    
+    <!-- <link rel="stylesheet" href="/css/bootstrap.min.css"> -->
+    <script id="Valine" src='https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js'></script>
+<meta name="generator" content="Hexo 6.2.0"><link rel="stylesheet" href="/css/prism-sh.css" type="text/css"></head>
+
+<body>
+
+
+<div id = "background">
+    <div id = "index">
+        <div id="menu">
+
+    <div style="text-align: center;font-size: 32px;font-family: consolas;">
+        <p>WyyOIer</p>
+    </div>
+
+    <div style="height: 150px;float: up;display: flex;flex-direction: column;align-items: center;">
+        <div id="headstyle">
+            
+        </div>
+    </div>
+	
+    <div style="height: 50px;width: 30%;float: left;text-align: center;">
+        <text id = "pcount" title = "文章数" style = "font-family: consolas;font-size: 20px;">15</text>
+    </div>
+
+    <div style="height: 50px;width: 30%;float: left;text-align: center;">
+        <text id = "commentcount" title = "评论数" style = "font-family: consolas;font-size: 20px;">0</text>
+    </div>
+
+    <div style="height: 50px;width: 40%;float: left;text-align: center;">
+        <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/159610">
+        <img src="https://www.luogu.com.cn/favicon.ico" alt="洛谷" width="24" height="24"></a>
+        &nbsp; 
+        <a target="_blank" rel="noopener" href="https://codeforces.com/profile/WyyOIer">
+        <img src="https://codeforces.com/favicon.ico" alt="CF" width="24" height="24"></a>
+    </div>
+
+
+    <div class="list-group">
+        <a class="list-group-item" href="/"><i class="fa fa-home fa-fw"></i>&nbsp; 首页</a>
+        <a class="list-group-item" href="/about"><i class="fa fa-user fa-fw"></i>&nbsp; 关于</a>
+        <a class="list-group-item" href="/links"><i class="fa fa-link fa-fw"></i>&nbsp; 友链</a>
+        <a class="list-group-item" onclick = "Search()"><i class="fa fa-search fa-fw"></i>&nbsp; 搜索</a>
+        <a class="list-group-item" href="/template"><i class="fa fa-file-code-o fa-fw"></i>&nbsp; 模板</a>
+    </div>
+
+    <script>
+        function changemusicid(){
+            var v = document.getElementById("num").value, text, f = 0;
+            if(v == null || v == "") {
+            text = "输入不能为空。";
+            f = 1;
+            }
+            if(f == 0) document.getElementById("music").innerHTML= '<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=250 height=95 src="//music.163.com/outchain/player?type=2&id=' + v + '&auto=0&height=66"></iframe> ';
+            else document.getElementById("musictext").innerHTML = text;
+        }
+    </script>
+
+    <div style="height: 13%;width: 30%;float: left" id="music">
+    <input id = "num" placeholder = "输入网易音乐 id，如 480517594" style = "width: 230px;">
+    <button type="button" onclick="changemusicid()">提交</button>
+    <p id = "musictext"></p>
+    </div>
+
+</div>
+
+
+    </div>
+
+    
+
+    
+
+
+    
+
+        <div id = "article">
+            <div id = "post-title"> P3543 [POI2012]WYR-Leveling Ground </div>
+            <div id = "post-author"> By WyyOIer | </div>
+            <div id = "post-date" title = "发布时间"> 2022-04-03 11:10:46 / </div>
+            <div id = "post-updated" title = "更新时间"> 2022-07-15 15:23:00 </div>
+            <span class = "leancloud_visitors" id = "/2022/04/03/P3543-POI2012-WYR-Leveling-Ground/">
+                <text class="post-meta-item-text">阅读数 </text>
+                <i class="leancloud-visitors-count">nan</i>
+            </span>
+            <br>
+            <p>赛时想了 3h 的题，最后差一步调整的证明。</p>
+<p>首先不难想到将原题转化为差分数组的修改，因为所有数都需要置为 $0$，所有在差分数组最前加一个 $0$，又因为 $d_{n+1}$ 可能涉及修改，所以在最后也添一个 $0$，那么原题转化为：</p>
+<p>给定一个数组 $d$，<strong>长度为</strong> $n+2$，选择区间 $[L,R]$ 可以修改 $d_L$ 和 $d_R$，求修改最小次数使 $d_1\sim d_{n+2}$ 都为 $0$。</p>
+<p>由于有四种操作：$+a,-a,+b,-b$，所以实际上任何一个位置都可以进行 $+a,-a,+b,-b$ 这四种操作，我们可以得到每一个位置对于 $a$ 和 $b$ 的具体需求：</p>
+<p>$$d_i&#x3D;{x_1}_ia+{x_2}_ib$$</p>
+<p>这一步用 $exgcd$ 实现，那么最终的答案即为，$\sum x_1&#x3D;0,\sum x_2&#x3D;0$ 时 $\dfrac{\sum|x_1|+\sum|x_2|}2{}$ 的最小值，而 $x_1$ 和 $x_2$ 是可以随意按比例调动的。</p>
+<p>这里先定义 $c&#x3D;\gcd(a,b)$。</p>
+<p>$x1$ 是关于 $x_2$ 的一次函数变化，由于 $a,b&gt;0$ 画出图像如图所示：</p>
+<img src="https://s2.loli.net/2022/04/03/khBtfNFR9HTEcMV.png" style="zoom: 67%;" alt="P3543-POI2012-WYR-Leveling-Ground-01.png" />
+
+<p>但是注意，并不是所有点都能取到，因为 $x_1$ 每次的最小变化为 $\dfrac{b}{c}$，$x_2$ 每次的最小变化为 $\dfrac{a}{c}$，则实际上存在的点如图所示：</p>
+<img src="https://s2.loli.net/2022/04/03/6xKX1AlTcu5femw.png" style="zoom:80%;" alt="P3543-POI2012-WYR-Leveling-Ground-02.png" />
+
+<p>考虑在哪些点可能为 $|x_1|+|x_2|$ 的最小值，这里不作证明，只有可能为四个点：（图中黄点）</p>
+<img src="https://s2.loli.net/2022/04/03/fTRKDHM13g4VEXP.png" style="zoom:80%;" alt="P3543-POI2012-WYR-Leveling-Ground-03.png" />
+
+<p>在四个点中取 $|x_1|+|x_2|$ 的最小值即可。</p>
+<p> 但这样 $\sum x_1$ 和 $\sum x_2$ 可能不为 $0	$，所以接下来就要用调整法了。方便起见，因为 $\sum x_1$ 和 $\sum x_2$ 一正一负，我们调整正的。即把多的减掉，可以保证最后 $\sum x_1$ 与 $\sum x_2$ 同时为 $0$。</p>
+<p>我们来关注两个问题：调整方法和调整次数。</p>
+<p>调整方法其实很简单，先将所有 $d_i$ 的最小值的 $x_1$ 和 $x_2$，按每次修改的答案的增加量为关键字插入到小根堆中，调整要求的次数即可。这个还是比较容易理解的，因为最开始的 $|x_1|+|x_2|$ 是最小值，所以修改后的 $|x_1’|+|x_2’|$ 会变大，又因为所有的调整在函数的方向是一样的，且变化都是 $\dfrac{a}{c}$ 和 $\dfrac{b}{c}$，所以后面的增长量都是相同的，故贪心取即可。</p>
+<p>还有就是调整次数的上限，这个貌似不会证，但是是 $O(n)$ 量级的。</p>
+<p>最终的复杂度为 $O(n\log n)$。</p>
+
+            <div id="vcomments"></div>
+        </div>
+
+        <div id = "toc">
+        </div>
+
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: 'CEGJD6I3uLgJeTF6fPsqgGmw-gzGzoHsz',
+                appKey: 'R3wowhGv7IL3peB3tT06CjzS',
+                visitor: true,
+                master: '28a6ec927125219298a15dcb5c104f67'
+            })
+        </script>
+
+    
+
+</div>
+
+</body>
