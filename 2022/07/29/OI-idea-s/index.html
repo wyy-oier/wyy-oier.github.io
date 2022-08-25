@@ -107,7 +107,7 @@
             <div id = "post-title"> OI idea(s) </div>
             <div id = "post-author"> By WyyOIer | </div>
             <div id = "post-date" title = "发布时间"> 2022-07-29 13:24:02 / </div>
-            <div id = "post-updated" title = "更新时间"> 2022-08-25 20:35:25 </div>
+            <div id = "post-updated" title = "更新时间"> 2022-08-25 22:01:55 </div>
             <span class = "leancloud_visitors" id = "/2022/07/29/OI-idea-s/">
                 <text class="post-meta-item-text">阅读数 </text>
                 <i class="leancloud-visitors-count">nan</i>
@@ -182,6 +182,7 @@
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1315">P1315 [NOIP2011 提高组] 观光公交</a> </p>
 <p>考虑对第 $i$ 站使用加速器，影响了一段从第 $i$ 站开始，到之后的一站之间<strong>下车</strong>的人，记为 $p_i$。</p>
 <p>如果使用加速器，一定会导致 $p_i$ 减小（到达 $p_i$ 站的时间更短），所以下次再选 $i$ 时答案变劣，所以冰红茶即可。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5283">P5283 [十二省联考 2019] 异或粽子</a> $n$ 个班排队模型的例题，省选也是有考这些基础算法的题的。</p>
 <h2 id="相邻交换法"><a href="#相邻交换法" class="headerlink" title="相邻交换法"></a>相邻交换法</h2><p>相邻交换 yyds</p>
 <p>使用相邻交换法的前提是推一个<strong>具有传递性</strong> $(a&lt;b,b&lt;c\Rightarrow a&lt;c)$ 的比较关系，排好序后即能轻易的得出一系列最优决策。</p>
 <h3 id="拆-max-min-法"><a href="#拆-max-min-法" class="headerlink" title="拆 $\max,\min$ 法"></a>拆 $\max,\min$ 法</h3><p>$a&gt;\max(b,c)\Leftrightarrow a&gt;b\text{ and }a&gt;c$</p>
@@ -244,6 +245,15 @@
 <p>经典反悔贪心，因为每个加油站都可加无限多的油，想象油箱中每种价格的油是分层的，那么在到达每一个加油站的时候，用此加油站的油替换掉所有在油箱中价钱高于当前加油站价格的油，并把油箱加满，此过程即为反悔。在行走的过程中，优先消耗便宜的油，这样我们就维护了整个过程，到达终点后要把多的油退掉。</p>
 <p>时间复杂度为 $\mathcal{O}(n\log n)$。</p>
 <p>本题还有一个加强版，请见<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1238G">CF1238G</a>，本题中每一站的供应存在限制。</p>
+<h2 id="超级钢琴模型"><a href="#超级钢琴模型" class="headerlink" title="超级钢琴模型"></a>超级钢琴模型</h2><p>超级钢琴其实类似冰红茶，最基础的情况，两两点之间有一个代价，求代价的最大值。一个点 $i$ 我们对应若干个决策区间，先预处理出区间中的与 $i$ 所得代价的最大值并记录位置 $p$，那么在选择这个之后，将当前的决策区间 $[l,r]$ 拆成 $[l,p-1]$ 与 $[p+1,r]$，因为 $p$ 是 $[l,r]$ 中的最大值，所以分成 $[l,p-1]$ 和 $[p+1,r]$ 后的答案一定要劣于 $p$，这就是一个冰红茶的过程。</p>
+<p>此类题所有的特定条件：</p>
+<ul>
+<li>求一定点所构成的代价的最值</li>
+<li>容易维护决策区间的最大值</li>
+</ul>
+<p>超级钢琴模型的运用灵活，作者见过的题不多，希望以后遇到后还能认真总结。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2048">P2048 [NOI2010] 超级钢琴</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/U125195">U125195 大战杀马特(smart)</a></p>
 
             <div id="vcomments"></div>
         </div>
