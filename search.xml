@@ -271,6 +271,73 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <p><strong>（思考）</strong>在推出 $s+t&lt;x+y$，一直陷入一个误区：当我们枚举 $s+t$ 也就确定了 $x+y$，但可能两边所划分的中位数，也就是两座桥的具体位置不能为 $x+y$ 该如何解决？</p>
 <p><strong>（解答）</strong>经过教练的指导，发现这个式子的意义是，我们找到了一种排序方式（按 $s+t$ 排序）使得对于小于 $x+y$ 的 $A$ 桥，大于 $x+y$ 的一定走 $B$ 桥，<strong>那么我们不再关心桥的具体位置，而是最优解的形式一定为以 $s+t$ 排序的前缀走 $A$ 桥，$s+t$ 的后缀走 $B$ 桥</strong>，这样两边山区建小学一定<strong>不会丢失最优解</strong>。</p>
 <p><strong>（思想）</strong>对于一个要求较强的结论，考虑退而求其次是否更容易地使用。</p>
+<h1 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h1><h2 id="冰红茶模型-x2F-排队模型"><a href="#冰红茶模型-x2F-排队模型" class="headerlink" title="冰红茶模型&#x2F;排队模型"></a>冰红茶模型&#x2F;排队模型</h2><p>在一个集合中进行若干次决策，对于每一次决策所选中的点，又会补充一个劣于当前解的后继（重点），这样每次必然是选择最优解，然后更新新后继，用优先队列维护。</p>
+<p><a href="https://www.luogu.com.cn/problem/U130967">U130967 冰红茶(tea)</a> 冰红茶模型模板题。</p>
+<p><a href="https://www.luogu.com.cn/problem/P1315">P1315 [NOIP2011 提高组] 观光公交</a> </p>
+<p>考虑对第 $i$ 站使用加速器，影响了一段从第 $i$ 站开始，到之后的一站之间<strong>下车</strong>的人，记为 $p_i$。</p>
+<p>如果使用加速器，一定会导致 $p_i$ 减小（到达 $p_i$ 站的时间更短），所以下次再选 $i$ 时答案变劣，所以冰红茶即可。</p>
+<h2 id="相邻交换法"><a href="#相邻交换法" class="headerlink" title="相邻交换法"></a>相邻交换法</h2><p>相邻交换 yyds</p>
+<p>使用相邻交换法的前提是推一个<strong>具有传递性</strong> $(a&lt;b,b&lt;c\Rightarrow a&lt;c)$ 的比较关系，排好序后即能轻易的得出一系列最优决策。</p>
+<h3 id="拆-max-min-法"><a href="#拆-max-min-法" class="headerlink" title="拆 $\max,\min$ 法"></a>拆 $\max,\min$ 法</h3><p>$a&gt;\max(b,c)\Leftrightarrow a&gt;b\text{ and }a&gt;c$</p>
+<p>$\max(b,c)&gt;a\Leftrightarrow b&gt;a\text{ or } c&gt;a$</p>
+<p>$a&gt;\min(b,c)\Leftrightarrow a&gt;b\text{ or }a&gt;c$</p>
+<p>$min(b,c)&gt;a\Leftrightarrow b&gt;a\text{ and }c&gt;a$</p>
+<p><a href="https://www.luogu.com.cn/problem/P1080">P1080 [NOIP2012 提高组] 国王游戏</a></p>
+<p>设前缀积 $mu_i&#x3D;\prod\limits_{j&#x3D;1}^i a_i$，那么每个人的金币数为 $\lfloor\dfrac{mu_{i-1}}{b_i}\rfloor$。</p>
+<p>我们取出一个二元组 $(i,j)$，其中 $i&lt;j$，本题中并不能得出越靠后的大臣获得的金币越多的结论。</p>
+<p>我们设 $1\sim i-1$  大臣左手的数的积为 $mu_1$，$i+1\sim j-1$ 大臣左手的数的积为 $mu_2$。</p>
+<p>在 $i,j$ 交换前，$i$ 获得的金币数 $\lfloor\dfrac{mu_1}{b_i}\rfloor$，$j$ 获得的金币数 $\lfloor\dfrac{mu_1\cdot a_i\cdot mu_2}{b_j}\rfloor$。</p>
+<p>在 $i,j$ 交换后，$i$ 获得的金币数 $\lfloor\dfrac{mu_1\cdot a_j\cdot mu_2}{b_i}\rfloor$，$j$ 获得的金币数 $\lfloor\dfrac{mu_1}{b_j}\rfloor$。</p>
+<p>相邻交换法的常见套路，不妨设交换前的答案优于交换后的答案。</p>
+<p>则有 $\max(\lfloor\dfrac{mu_1}{b_i}\rfloor, \lfloor\dfrac{mu_1\cdot a_i\cdot mu_2}{b_j}\rfloor)&lt;\max(\lfloor\dfrac{mu_1\cdot a_j\cdot mu_2}{b_i}\rfloor, \lfloor\dfrac{mu_1}{b_j}\rfloor)$。</p>
+<p>其中下取整不影响答案，去掉后变为 $\max(\dfrac{mu_1}{b_i}, \dfrac{mu_1\cdot a_i\cdot mu_2}{b_j})&lt;\max(\dfrac{mu_1\cdot a_j\cdot mu_2}{b_i}, \dfrac{mu_1}{b_j})$。</p>
+<p>用拆 $\max$ 法，$\Leftrightarrow \max(\dfrac{mu_1}{b_i}, \dfrac{mu_1\cdot a_i\cdot mu_2}{b_j})&lt;\dfrac{mu_1\cdot a_j\cdot mu_2}{b_i}\text{ or }\max(\dfrac{mu_1}{b_i}, \dfrac{mu_1\cdot a_i\cdot mu_2}{b_j})&lt;\dfrac{mu_1}{b_j}$</p>
+<p>$\Leftrightarrow (①\dfrac{mu_1}{b_i}&lt;\dfrac{mu_1\cdot a_j\cdot mu_2}{b_i}\text{ and }②\dfrac{mu_1\cdot a_i\cdot mu_2}{b_j}&lt;\dfrac{mu_1\cdot a_j\cdot mu_2}{b_i})\text{ or }(③\dfrac{mu_1}{b_i}&lt;\dfrac{mu_1}{b_j}\text{ and }④\dfrac{mu_1\cdot a_i\cdot mu_2}{b_j}&lt;\dfrac{mu_1}{b_j})$</p>
+<p>现在我们就把 $\max$ 拆成了两两的元素比较和逻辑运算，接下来我们来看看有没有显然成立或不成立的逻辑式。</p>
+<p>不难发现，①式显然成立，④式显然不成立，这样我们神奇的发现：</p>
+<p>$\Leftrightarrow ②\dfrac{mu_1\cdot a_i\cdot mu_2}{b_j}&lt;\dfrac{mu_1\cdot a_j\cdot mu_2}{b_i}$</p>
+<p>$\Leftrightarrow a_i\cdot b_i&lt;a_j\cdot b_j$</p>
+<p>没错，我们的得到了一个简单的式子，并且此式满足传递性，于是排序后得到的即为我们所求的最优解。</p>
+<p><a href="https://www.luogu.com.cn/problem/P2123">P2123 皇后游戏</a></p>
+<p>国王游戏的加强版，一个更难推的相邻交换。</p>
+<p>本题可以得出越靠后的大臣奖金越多的结论。</p>
+<p>这次我们用相邻两个人 $(i,j)$ 比较，其中 $j&#x3D;i+1$，设 $\sum\limits_{i&#x3D;1}^{i-1} a_i$ 为 $s$，那么在交换前 $c_j&gt;c_i$，$c_i&#x3D;\max(c_{i-1},s+a_i)+b_i$，$c_j&#x3D;\max(\max(c_{i-1},s+a_i)+b_i,s+a_i+a_j)+b_j$ ，交换后 $c_j&lt;c_i$，$c_j&#x3D;\max(c_{i-1},s+a_j)+b_j$，$c_i&#x3D;\max(\max(c_{i-1},s+a_j)+b_j,s+a_j+a_i)+b_i$。</p>
+<p>不妨设交换前的答案不劣于交换后的答案，则有：</p>
+<p>$\max(\max(c_{i-1},s+a_i)+b_i,s+a_i+a_j)+b_j\le\max(\max(c_{i-1},s+a_j)+b_j,s+a_j+a_i)+b_i$</p>
+<p>$\Leftrightarrow \max(\max(c_{i-1},s+a_i)+b_i+b_j,s+a_i+a_j+b_j)\le\max(\max(c_{i-1},s+a_j)+b_j+b_i,s+a_j+a_i+b_i)$</p>
+<p>$\Leftrightarrow \max(c_{i-1}+b_i+b_j,s+a_i+b_i+b_j,s+a_i+a_j+b_j)\le\max(c_{i-1}+b_i+b_j,s+a_j+b_i+b_j,s+a_i+a_j+b_i)$</p>
+<p>两边的 $\max$ 中各有三个元素，拆起来麻烦怎么办？</p>
+<p>考虑两边有相同的元素 $c_{i-1}+b_i+b_j$，那么证明一个结论：$\max(a,b)\le\max(a,c)\Rightarrow b\le c$。</p>
+<ul>
+<li>如果 $b\le c$，则已经满足条件；</li>
+<li>如果 $b&gt;c$，那么 $b\le a$，交换后同样满足。</li>
+</ul>
+<p>综上可知结论成立。那么进行一步简化：</p>
+<p>$\Rightarrow \max(s+a_i+b_i+b_j,s+a_i+a_j+b_j)\le\max(s+a_j+b_i+b_j,s+a_i+a_j+b_i)$</p>
+<p>然后就可以进行愉快的拆 $\max$ 环节了！</p>
+<p>$\Leftrightarrow \max(s+a_i+b_i+b_j,s+a_i+a_j+b_j)\le s+a_j+b_i+b_j\text{ or }\max(s+a_i+b_i+b_j,s+a_i+a_j+b_j)\le s+a_i+a_j+b_i$</p>
+<p>$\Leftrightarrow (s+a_i+b_i+b_j\le s+a_j+b_i+b_j\text{ and }s+a_i+a_j+b_j\le s+a_j+b_i+b_j)\text{ or }(s+a_i+b_i+b_j\le s+a_i+a_j+b_i\text{ and }s+a_i+a_j+b_j\le s+a_i+a_j+b_i)$</p>
+<p>$\Leftrightarrow (a_i\le a_j\text{ and }a_i\le b_i)\text{ or }(b_j\le a_j\text{ and }b_j\le b_i)$</p>
+<p>上述条件并不满足传递性，所以我们尝试转化排序方式，使得 $\forall i,j\in [1,n],i&lt;j$，都能满足上述条件。</p>
+<p>观察到 $\text{or}$ 的两边都有一个 $a$ 和 $b$ 一起的比较，那么我们尝试先按此分组。</p>
+<p>如果 $a_i&lt;b_i$，分到 $1$ 组；</p>
+<p>如果 $a_i&#x3D;b_i$，分到 $2$ 组；</p>
+<p>如果 $a_i&gt;b_i$，分到 $3$ 组。</p>
+<p>在 $1$ 组中的数，可以同时再去满足 $a_i&lt;a_j$，按 $a$ 升序排序，在 $2$ 组中的数，不满足上述条件，可以随意排序，在 $3$ 组中的数，可以同时再去满足 $b_j&lt;b_i$，按 $b$ 降序排序。</p>
+<p>那么关键的问题是组与组之间的排序。这里给出排序方式：按 $1,2,3$ 组排序即可。</p>
+<p>证明一下：如果想要证明上述排序方法成立，只需保证按此方法排序后 $\forall i,j\in [1,n],i&lt;j$，都能满足上述条件，由于组内已经满足，只需考虑组间。</p>
+<p>考虑 $1$ 组和 $2$ 组，则有，$a_i\le b_i,a_j&#x3D;b_j$。假设可以交换，即不满足上述条件。若不满足条件，则 $a_i\le a_j$ 不能成立，即 $a_i&gt;a_j$，$b_j\le b_i$ 也不能成立，即 $b_j&gt; b_i$，整理条件可得矛盾。</p>
+<p>其它情况同理，最终可以保证排序的正确性。</p>
+<h2 id="贪心反悔"><a href="#贪心反悔" class="headerlink" title="贪心反悔"></a>贪心反悔</h2><p>一大常用的贪心套路。大体流程是优先满足时间较早的决策，在不能满足当前决策的情况下，在已选的决策集合中找到最不优的，然后替换。在正确性下，我们保证：每一次反悔操作不会使答案变劣。</p>
+<p>解决的题目一般满足如下性质：</p>
+<ul>
+<li>题目有最优子结构性质（即无后效性）</li>
+<li>容易维护决策的集合的性质（即可以方便的反悔）</li>
+</ul>
+<p><a href="https://www.luogu.com.cn/problem/P2209">P2209 [USACO13OPEN]Fuel Economy S</a></p>
+<p>经典反悔贪心，因为每个加油站都可加无限多的油，想象油箱中每种价格的油是分层的，那么在到达每一个加油站的时候，用此加油站的油替换掉所有在油箱中价钱高于当前加油站价格的油，并把油箱加满，此过程即为反悔。在行走的过程中，优先消耗便宜的油，这样我们就维护了整个过程，到达终点后要把多的油退掉。</p>
+<p>时间复杂度为 $\mathcal{O}(n\log n)$。</p>
+<p>本题还有一个加强版，请见<a href="https://www.luogu.com.cn/problem/CF1238G">CF1238G</a>，本题中每一站的供应存在限制。</p>
 ]]></content>
   </entry>
   <entry>
@@ -410,11 +477,11 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <p>我们来思考点分治的过程：对于一个子树，找到其中心，其它点都对此点尝试去做贡献。</p>
 <p>基于此点，我们引入一个概念。</p>
 <h2 id="点分树"><a href="#点分树" class="headerlink" title="点分树"></a>点分树</h2><p>每次点分治的过程中，将当前子树的重心与上一次子树的重心连边所形成的图称为点分树。</p>
-<p>点分树的一个重要性质：是一个高度不超过 $O(\log n)$ 的树，所有点的总深度不超过 $n\times O(\log n)&#x3D;O(n\log n)$。</p>
+<p>点分树的一个重要性质：是一个高度不超过 $\log n$ 的树，所有点的总深度不超过 $n\times \log n&#x3D;n\log n$。</p>
 <p>但由于这样会改变树的形态，所以只能维护一些<strong>不需要树的具体形态的问题</strong>。</p>
 <p>所以动态点分治的过程大概就是：</p>
 <ol>
-<li>跑一边点分治，记录点分树，一些信息要在原有的树上进行计算</li>
+<li>跑一遍点分治，记录点分树，一些信息要在原有的树上进行计算</li>
 <li>修改时在点分树上暴力跳祖先，并修改答案</li>
 <li>询问直接输答案</li>
 </ol>
@@ -533,7 +600,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 </code></pre>
 <h2 id="P2634-国家集训队-聪聪可可"><a href="#P2634-国家集训队-聪聪可可" class="headerlink" title="P2634 [国家集训队]聪聪可可"></a><a href="https://www.luogu.com.cn/problem/P2634">P2634 [国家集训队]聪聪可可</a></h2><p>继续练手，完全没难度。</p>
 <h2 id="P2056-ZJOI2007-捉迷藏"><a href="#P2056-ZJOI2007-捉迷藏" class="headerlink" title="P2056 [ZJOI2007] 捉迷藏"></a><a href="https://www.luogu.com.cn/problem/P2056">P2056 [ZJOI2007] 捉迷藏</a></h2><p>这题还是有点意思，一道动态点分治，只需考虑修改时去如何维护。</p>
-<p>考虑点分治时是如何去计算答案，对于一个以 $u$ 为根的子树，实际上就是找到 $u$ 的子树中最深的关节点和之前 $u$ 的其它子树的关节点合并。</p>
+<p>考虑点分治时是如何去计算答案，对于一个以 $u$ 为根的子树，实际上就是找到 $u$ 的子树中最深的根节点和之前 $u$ 的其它子树的关节点合并。</p>
 <p>所与对于一个以 $u$，我们要干两件事情：</p>
 <ol>
 <li>找到两个最深的关节点，更新全局答案</li>
@@ -758,7 +825,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <p>首先看到平均值最大，不难先想到二分一手，将每条边都减去 $mid$，然后只需选出 $1$ 条符合长度要求的路径，边权和不小于 $0$ 即可。</p>
 <p>对于当前正在解决的树，考虑记 $bucket_i$ 表示之前子树中相对深度节点为 $i$ 的最大边权和，$tmp_i$ 表示当前子树中相对深度节点为 $i$ 的最大边权和。</p>
 <p>特别地，记 $bucket_0&#x3D;0$。</p>
-<p>在讲 $tmp$ 合并入 $bucket$ 前，我们要先判断当前的两部分是否能拼成大于 $0$ 的路径。</p>
+<p>在将 $tmp$ 合并入 $bucket$ 前，我们要先判断当前的两部分是否能拼成大于 $0$ 的路径。</p>
 <p>我们这里记 $u$ 子树的最深深度为 $z_u$，如果不用 $z_u$ 复杂度不对，当 $bucket$ 的深度取 $i$ 时，$tmp$ 的选取范围为 $[L-i,R-i]$，注意到当 $i$ 减小时，$tmp$ 的选取向右滑动，这样我们倒序枚举 $i$，用单调队列维护最大值。</p>
 <p>如果从 $R-1$ 开始，复杂度就炸了，所以具体实现时，我们可以分为两部分。</p>
 <ol>

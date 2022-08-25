@@ -70,6 +70,7 @@
         <a class="list-group-item" href="/links"><i class="fa fa-link fa-fw"></i>&nbsp; 友链</a>
         <a class="list-group-item" onclick = "Search()"><i class="fa fa-search fa-fw"></i>&nbsp; 搜索</a>
         <a class="list-group-item" href="/template"><i class="fa fa-file-code-o fa-fw"></i>&nbsp; 模板</a>
+        <a class="list-group-item" href="/config"><i class="fa fa-cog fa-fw"></i>&nbsp; 设置</a>
     </div>
 
     <script>
@@ -85,9 +86,9 @@
     </script>
 
     <div style="height: 13%;width: 30%;float: left" id="music">
-    <input id = "num" placeholder = "输入网易音乐 id，如 480517594" style = "width: 230px;">
-    <button type="button" onclick="changemusicid()">提交</button>
-    <p id = "musictext"></p>
+    <!-- <input id = "num" placeholder = "输入网易音乐 id，如 480517594" style = "width: 230px;"> -->
+    <!-- <button type="button" onclick="changemusicid()">提交</button> -->
+    <!-- <p id = "musictext"></p> -->
     </div>
 
 </div>
@@ -106,7 +107,7 @@
             <div id = "post-title"> 点分治/动态点分治/树分治 </div>
             <div id = "post-author"> By WyyOIer | </div>
             <div id = "post-date" title = "发布时间"> 2022-05-25 20:56:34 / </div>
-            <div id = "post-updated" title = "更新时间"> 2022-07-23 09:03:59 </div>
+            <div id = "post-updated" title = "更新时间"> 2022-08-21 17:28:22 </div>
             <span class = "leancloud_visitors" id = "/2022/05/25/%E7%82%B9%E5%88%86%E6%B2%BB-%E5%8A%A8%E6%80%81%E7%82%B9%E5%88%86%E6%B2%BB-%E6%A0%91%E5%88%86%E6%B2%BB/">
                 <text class="post-meta-item-text">阅读数 </text>
                 <i class="leancloud-visitors-count">nan</i>
@@ -246,11 +247,11 @@
 <p>我们来思考点分治的过程：对于一个子树，找到其中心，其它点都对此点尝试去做贡献。</p>
 <p>基于此点，我们引入一个概念。</p>
 <h2 id="点分树"><a href="#点分树" class="headerlink" title="点分树"></a>点分树</h2><p>每次点分治的过程中，将当前子树的重心与上一次子树的重心连边所形成的图称为点分树。</p>
-<p>点分树的一个重要性质：是一个高度不超过 $O(\log n)$ 的树，所有点的总深度不超过 $n\times O(\log n)&#x3D;O(n\log n)$。</p>
+<p>点分树的一个重要性质：是一个高度不超过 $\log n$ 的树，所有点的总深度不超过 $n\times \log n&#x3D;n\log n$。</p>
 <p>但由于这样会改变树的形态，所以只能维护一些<strong>不需要树的具体形态的问题</strong>。</p>
 <p>所以动态点分治的过程大概就是：</p>
 <ol>
-<li>跑一边点分治，记录点分树，一些信息要在原有的树上进行计算</li>
+<li>跑一遍点分治，记录点分树，一些信息要在原有的树上进行计算</li>
 <li>修改时在点分树上暴力跳祖先，并修改答案</li>
 <li>询问直接输答案</li>
 </ol>
@@ -369,7 +370,7 @@
 </code></pre>
 <h2 id="P2634-国家集训队-聪聪可可"><a href="#P2634-国家集训队-聪聪可可" class="headerlink" title="P2634 [国家集训队]聪聪可可"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2634">P2634 [国家集训队]聪聪可可</a></h2><p>继续练手，完全没难度。</p>
 <h2 id="P2056-ZJOI2007-捉迷藏"><a href="#P2056-ZJOI2007-捉迷藏" class="headerlink" title="P2056 [ZJOI2007] 捉迷藏"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2056">P2056 [ZJOI2007] 捉迷藏</a></h2><p>这题还是有点意思，一道动态点分治，只需考虑修改时去如何维护。</p>
-<p>考虑点分治时是如何去计算答案，对于一个以 $u$ 为根的子树，实际上就是找到 $u$ 的子树中最深的关节点和之前 $u$ 的其它子树的关节点合并。</p>
+<p>考虑点分治时是如何去计算答案，对于一个以 $u$ 为根的子树，实际上就是找到 $u$ 的子树中最深的根节点和之前 $u$ 的其它子树的关节点合并。</p>
 <p>所与对于一个以 $u$，我们要干两件事情：</p>
 <ol>
 <li>找到两个最深的关节点，更新全局答案</li>
@@ -594,7 +595,7 @@
 <p>首先看到平均值最大，不难先想到二分一手，将每条边都减去 $mid$，然后只需选出 $1$ 条符合长度要求的路径，边权和不小于 $0$ 即可。</p>
 <p>对于当前正在解决的树，考虑记 $bucket_i$ 表示之前子树中相对深度节点为 $i$ 的最大边权和，$tmp_i$ 表示当前子树中相对深度节点为 $i$ 的最大边权和。</p>
 <p>特别地，记 $bucket_0&#x3D;0$。</p>
-<p>在讲 $tmp$ 合并入 $bucket$ 前，我们要先判断当前的两部分是否能拼成大于 $0$ 的路径。</p>
+<p>在将 $tmp$ 合并入 $bucket$ 前，我们要先判断当前的两部分是否能拼成大于 $0$ 的路径。</p>
 <p>我们这里记 $u$ 子树的最深深度为 $z_u$，如果不用 $z_u$ 复杂度不对，当 $bucket$ 的深度取 $i$ 时，$tmp$ 的选取范围为 $[L-i,R-i]$，注意到当 $i$ 减小时，$tmp$ 的选取向右滑动，这样我们倒序枚举 $i$，用单调队列维护最大值。</p>
 <p>如果从 $R-1$ 开始，复杂度就炸了，所以具体实现时，我们可以分为两部分。</p>
 <ol>
