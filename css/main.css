@@ -12,7 +12,7 @@ html, body {
 }
 
 #index {
-    left: 8%;
+    left: 7%;
     position: fixed;
     pointer-events: auto;
     background-color: #FFFFFF!important;
@@ -237,7 +237,7 @@ a.post-title-link:visited {
 }
 
 .post-meta-top {
-    width: 65px;
+    width: 80px;
     height: 15px;
     font-size: 15px;
     font-family: consolas;
@@ -275,8 +275,8 @@ a.post-title-link:visited {
     top: 0;
     bottom: 0;
     position: fixed;
-    left: 26%;
-    width: 60%;
+    left: 25%;
+    width: 61%;
     float: left;
     overflow-x: hidden;
     overflow-y: scroll;
