@@ -107,7 +107,7 @@
             <div id = "post-title"> OI idea(s) </div>
             <div id = "post-author"> By WyyOIer | </div>
             <div id = "post-date" title = "发布时间"> 2022-07-29 13:24:02 / </div>
-            <div id = "post-updated" title = "更新时间"> 2022-08-27 11:39:51 </div>
+            <div id = "post-updated" title = "更新时间"> 2022-08-31 21:20:45 </div>
             <span class = "leancloud_visitors" id = "/2022/07/29/OI-idea-s/">
                 <text class="post-meta-item-text">阅读数 </text>
                 <i class="leancloud-visitors-count">nan</i>
@@ -261,6 +261,16 @@
 <p>超级钢琴模型的运用灵活，作者见过的题不多，希望以后遇到后还能认真总结。</p>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2048">P2048 [NOI2010] 超级钢琴</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/U125195">U125195 大战杀马特(smart)</a></p>
+<h2 id="时光倒流"><a href="#时光倒流" class="headerlink" title="时光倒流"></a>时光倒流</h2><p>时光倒流其实是一类经典的思想，具体是如果按正向时间不好维护决策的时候，看看倒序解决能不能有事半功倍的效果。</p>
+<p>例如正序的删点维护连通性，我们可以改为倒序加点，这样就可以轻易的维护。</p>
+<p>在贪心上，时光倒流有时也可以起到奇效。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1954">P1954 [NOI2010] 航空管制</a></p>
+<p>考虑按时间正序做需要维护删除操作，但显然删除并不好维护，那么考虑时光倒流变成加点，再将第二类限制反过来，用拓扑随便贪心做一下即可，复杂度 $\mathcal{O}(nm)$。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3826">P3826 [NOI2017] 蔬菜</a></p>
+<p>正序我们同样需要维护讨厌的删除操作，如果改为倒序，“每天少 $x_i$ 单位蔬菜”就变成了“蔬菜从 $app_i$ 天开始每天多 $x_i$ 单位蔬菜”，然后我们就可以在每天贪心的取最大的 $m$ 个。</p>
+<p>考虑现在求的答案是所有天数的答案，即 $ans_{100000}$，那么如何求其它天数 $1\sim 99999$。</p>
+<p>不难发现，选择了售卖的菜之后，我可以随意的安排这些菜的售卖顺序，因为越往后菜越多，所以在前面的天数这些菜并不会消失，所以从第 $j$ 天推到第 $j-1$ 天时我们只要去掉最便宜的 $m$ 个菜就行。</p>
+<p>注意可能在倒序做的时候有的天数可能卖不到 $m$ 个菜，但正序的时候由于这些售卖操作都可以理解为在前 $j$ 天的紧凑操作（即每天卖菜数不存在浪费），所以当且仅当 $m\times j$ 小于现在卖过的菜的总量，我们才需要去删除多余的菜。</p>
 
             <div id="vcomments"></div>
         </div>
