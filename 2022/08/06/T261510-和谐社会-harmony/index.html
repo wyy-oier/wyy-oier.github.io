@@ -1,5 +1,5 @@
 <head>
-    <title> T261510 和谐社会(harmony) - WyyOIer </title>
+    <title> T261510 和谐社会(harmony) - WyyOIer </title><meta name="robots" content="noindex">
   	<link rel="stylesheet" href="/css/main.css">
   	<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -107,7 +107,7 @@
             <div id = "post-title"> T261510 和谐社会(harmony) </div>
             <div id = "post-author"> By WyyOIer | </div>
             <div id = "post-date" title = "发布时间"> 2022-08-06 17:31:37 / </div>
-            <div id = "post-updated" title = "更新时间"> 2022-08-06 18:34:39 </div>
+            <div id = "post-updated" title = "更新时间"> 2022-09-01 15:36:47 </div>
             <span class = "leancloud_visitors" id = "/2022/08/06/T261510-%E5%92%8C%E8%B0%90%E7%A4%BE%E4%BC%9A-harmony/">
                 <text class="post-meta-item-text">阅读数 </text>
                 <i class="leancloud-visitors-count">nan</i>
@@ -116,9 +116,9 @@
             <h1 id="n-le-50"><a href="#n-le-50" class="headerlink" title="$n\le 50$"></a>$n\le 50$</h1><p>设 $dp_{u,sz,sum}$ 表示以 $u$ 为大小为 $sz$ 的连通块的顶点，且连通块权值和为 $sum$ 的概率。</p>
 <p>暴力转移即可，复杂度 $\mathcal{O}(n^5)$。</p>
 <p><del>这一档没写所以没有式子</del></p>
-<h1 id="sum-a-i-le-5000"><a href="#sum-a-i-le-5000" class="headerlink" title="$\sum a_i\le 5000$"></a>$\sum a_i\le 5000$</h1><p>将 $\dfrac 1{|S|} \sum_{u\in S} w_u &#x3D; 1$  进行一步转化，将每个点所选的范围平移 $1$ 位变为 $[-1,a_u-1]$，这样要求的式子 $\dfrac 1{|S|} \sum_{u\in S} w_u &#x3D; 0$，这样 $sum$ 等于 $0$ 就行，不用记 $sz$ 的状态。</p>
+<h1 id="sum-a-i-le-5000"><a href="#sum-a-i-le-5000" class="headerlink" title="$\sum a_i\le 5000$"></a>$\sum a_i\le 5000$</h1><p>将 $\dfrac 1{|S|} \sum\limits_{u\in S} w_u &#x3D; 1$  进行一步转化，将每个点所选的范围平移 $1$ 位变为 $[-1,a_u-1]$，这样要求的式子 $\dfrac 1{|S|} \sum\limits_{u\in S} w_u &#x3D; 0$，这样 $sum$ 等于 $0$ 就行，不用记 $sz$ 的状态。</p>
 <p>记 $p_u$ 为 $\dfrac{1}{a_i+1}\mod 998244353$。</p>
-<p>设状态 $dp_u,sum$ 表示以 $u$ 为连通块的顶点，且连通块权值和为 $sum$ 的概率。</p>
+<p>设状态 $dp_{u,sum}$ 表示以 $u$ 为连通块的顶点，且连通块权值和为 $sum$ 的概率。</p>
 <p>首先 $dp_{u,j}&#x3D;p_u$，其中 $-1\le j\le a_i-1$。</p>
 <p>对于 $u$ 的每一个儿子 $v$，设合并后 $v$ 子树的 $u$ 为 $u’$。</p>
 <p>$dp_{u’,i+j}&#x3D;dp_{u,i}\cdot dp_{v,j}$。</p>
@@ -144,14 +144,14 @@
 <p>当 $u$ 走到 $v_1$，遍历子树再回到 $u$ 后的 $dp$ 加上 $tmp$ 后已经是包括了所有应该包括的情况。</p>
 <p>这里可以想一想，$tmp$ 其实就是当前下到 $u$ 的情况，而显然 $u$ 的子树的各个顶点也是都考虑到了这种情况，所以到了 $v_2$ 子树内时，每加入一个点其实就是和 $rt\rightarrow u\rightarrow v_1\rightarrow\dots$ 所有连通块情况都去尝试了一遍组合，所以总体起来没有漏掉的情况。</p>
 <p>那么这样就非常好了！这样我们求一个点的复杂度就变为了 $O(n^2)$，而都求一遍的复杂度为 $O(n^3)$。</p>
-<p>看起来还是不能通过，但考虑到实际上的复杂度为 $\sum\limits_{u&#x3D;1}^n sz_u$，而进行合理的分配后，也就是使用点分治，最劣的复杂度就变为了 $n^2+2\times (\dfrac{n}{2})^2+4\times(\dfrac{n}{4})^2+\dots$，也就是 $O(n^2)$ 的。</p>
+<p>看起来还是不能通过，但考虑到实际上查询一次的复杂度为 $\mathcal{O}(\sum\limits_{u&#x3D;1}^n sz_u)$，而进行合理的分配后，也就是使用点分治，最劣的复杂度就变为了 $n^2+2\times (\dfrac{n}{2})^2+4\times(\dfrac{n}{4})^2+\dots$，也就是 $O(n^2)$ 的。</p>
 <p>一些注意事项：</p>
 <ul>
 <li>$dp$ 时的 $sz$ 一定要卡的特别精准，否则很有可能收获 TLE。</li>
 <li>很多 $dp$ 的细节没有说，比如因为有 <code>-1</code>  的转移，需要将 $dp$ 向右平移 $n$，还有 $dp$ 在 $sum$ 一维的维护只用到达 $2n$，因为超过 $2n$ 后至少需要 $n$ 个 <code>-1</code> 才能拉回来，明显不可能，当然在点分治中，这个 $2n$ 可能也要卡成 $2sz_{rt}$。</li>
-<li>下传引用数组应该是比较慢的，空间开成了 $2<em>5005$ 被卡了一下，开成 $2</em>3005$ 好像就快了一些。<del>说到底还是因为时间卡</del></li>
+<li>下传引用数组应该是比较慢的，空间开成了 $2<em>5005$ 被卡了一下，开成 $2</em>3005$ 好像就快了一些。<del>说到底还是因为时间卡就500ms</del></li>
 </ul>
-
+<!-- flag of hidden posts -->
             <div id="vcomments"></div>
         </div>
 
