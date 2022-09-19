@@ -1,5 +1,5 @@
 <head>
-    <title> T262521 马克思么克斯(maxmex) - WyyOIer </title>
+    <title> T262521 马克思么克斯(maxmex) - WyyOIer </title><meta name="robots" content="noindex">
   	<link rel="stylesheet" href="/css/main.css">
   	<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -48,7 +48,7 @@
     </div>
 	
     <div style="height: 50px;width: 30%;float: left;text-align: center;">
-        <text id = "pcount" title = "文章数" style = "font-family: consolas;font-size: 20px;">15</text>
+        <text id = "pcount" title = "文章数" style = "font-family: consolas;font-size: 20px;">16</text>
     </div>
 
     <div style="height: 50px;width: 30%;float: left;text-align: center;">
@@ -107,7 +107,7 @@
             <div id = "post-title"> T262521 马克思么克斯(maxmex) </div>
             <div id = "post-author"> By WyyOIer | </div>
             <div id = "post-date" title = "发布时间"> 2022-08-10 20:48:48 / </div>
-            <div id = "post-updated" title = "更新时间"> 2022-08-10 21:10:48 </div>
+            <div id = "post-updated" title = "更新时间"> 2022-09-18 22:13:56 </div>
             <span class = "leancloud_visitors" id = "/2022/08/10/T262521-%E9%A9%AC%E5%85%8B%E6%80%9D%E4%B9%88%E5%85%8B%E6%96%AF-maxmex/">
                 <text class="post-meta-item-text">阅读数 </text>
                 <i class="leancloud-visitors-count">nan</i>
@@ -118,7 +118,7 @@
 <p>那么我们已经维护出了 $[0,i-1]$ 的 $minr$，那么如何维护加入 $i$ 后的 $minr$？</p>
 <p>将 $minr$ 的 $l$ 打在线段树上，我们考虑当前从 vector 取出的位置为 $p$，那么考虑 $p$ 影响不到 $l\in [p+1,n]$ 的 $minr_l$，记这一次我们修改的区间开始点为 $lst$，我们可以在线段树上二分出 $minr&lt;p$ 的最大位置，然后把这一段的 $minr$ 改成 $p$，最后把 $lst$ 改成 $p+1$ 再进行下一个位置的更新，更新完所有的位置后得到全局最小的答案即可。</p>
 <p>时间复杂度 $\mathcal{O}(n\log n)$。</p>
-
+<!-- flag of hidden posts -->
             <div id="vcomments"></div>
         </div>
 

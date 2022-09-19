@@ -1,5 +1,5 @@
 <head>
-    <title> U169459 GCD reachability - WyyOIer </title>
+    <title> P4246 [SHOI2008]堵塞的交通 - WyyOIer </title><meta name="robots" content="noindex">
   	<link rel="stylesheet" href="/css/main.css">
   	<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -104,24 +104,43 @@
     
 
         <div id = "article">
-            <div id = "post-title"> U169459 GCD reachability </div>
+            <div id = "post-title"> P4246 [SHOI2008]堵塞的交通 </div>
             <div id = "post-author"> By WyyOIer | </div>
-            <div id = "post-date" title = "发布时间"> 2022-07-16 09:35:50 / </div>
-            <div id = "post-updated" title = "更新时间"> 2022-07-17 10:40:54 </div>
-            <span class = "leancloud_visitors" id = "/2022/07/16/U169459-GCD-reachability/">
+            <div id = "post-date" title = "发布时间"> 2022-09-12 09:12:20 / </div>
+            <div id = "post-updated" title = "更新时间"> 2022-09-19 19:32:39 </div>
+            <span class = "leancloud_visitors" id = "/2022/09/12/P4246-SHOI2008-%E5%A0%B5%E5%A1%9E%E7%9A%84%E4%BA%A4%E9%80%9A/">
                 <text class="post-meta-item-text">阅读数 </text>
                 <i class="leancloud-visitors-count">nan</i>
             </span>
             <br>
-            <p>记 $go_{i,p}$ 表示第 $i$ 个数能走到的第一个含质因子 $p$ 的位置。</p>
-<p>预处理出 $go$ 后，对于一组询问 $(x,y)$，只需看 $a_y$ 的所有质因子 $p$，是否有 $go_{x, p}\le y$。</p>
-<p>还有一些特殊情况：</p>
-<ul>
-<li>$a_x&#x3D;1$ 或 $a_y&#x3D;1$，不行；</li>
-<li>$a_x&#x3D;0$ 或 $a_y&#x3D;0$，当且仅当 $(x,y)$ 之间有大于 $0$ 的数才行。</li>
-</ul>
-<p>由于值域是 $1000$，质因数只有 $168$ 个，且每个数的质因子最多只有 $4$ 种，时间复杂度 $O(n\times 168\times4+q\times4)$。</p>
+            <p>考虑用线段树来维护连通信息。</p>
+<p>记线段树区间 $[L,R]$ 表示第 $L$ 列到第 $R$ 列中，四个端点通过区间路径是否能够互相可达。特别地，若 $L&#x3D;R$，则只有上下两个点的可达。（可看作左右两个点合并成了一个点）</p>
+<p>那么我们考虑横的路径和竖的边的修改分别产生什么影响。</p>
+<p>首先考虑横的路径，如果我们修改的是 $[x,x+1]$ 路径，我们要找到 $[L,R]$ 区间使得 $(L+R)&#x2F;2&#x3D;x$，那么 $[L,R]$ 就是受 $[x,x+1]$ 影响的最小的区间。</p>
+<p>现在考虑如何 $\text{pushup}$，现在我们有 $tree_p$ 两个子树 $tree_{ls(p)}$ 与 $tree_{rs(p)}$ 和子树之间连接的边的状态，那么如何更新到 $tree_p$？</p>
+<p>我们需要将 $4$ 个点两两之间的路径走法判断是否可行，我们举其中 $2$ 个例子。</p>
+<p>① $[l,mid]$ 的左上角走到 $[mid+1,r]$ 的右上角</p>
+<img src="https://s2.loli.net/2022/09/19/PFGYabvVKBSOg6u.jpg" alt="P4246-SHOI2008-堵塞的交通-01.jpg" style="zoom:67%;" />
 
+<img src="https://s2.loli.net/2022/09/19/pYgPFIHWLizGceR.jpg" alt="P4246-SHOI2008-堵塞的交通-02.jpg" style="zoom:67%;" />
+
+<p>显然中间的两条路径不可能同时经过，我们分别看两种情况的两边能否连通。</p>
+<p>② $[l,mid]$ 的左上角走到 $[mid+1,r]$ 的左下角</p>
+<img src="https://s2.loli.net/2022/09/19/Z5BYlLehQrykx7X.jpg" alt="P4246-SHOI2008-堵塞的交通-03.jpg" style="zoom:67%;" />
+
+<img src="https://s2.loli.net/2022/09/19/rUCmsl5OWQKog4u.jpg" alt="P4246-SHOI2008-堵塞的交通-04.jpg" style="zoom:67%;" />
+
+<p>仍然类似。</p>
+<p>最后不要忘记跑一遍 $4$ 个点的 $\text{floyd}$，可能有合法连通情况还未更新。</p>
+<p>竖的路径就直接更新叶子的状态并 $\text{pushup}$ 即可。</p>
+<p>接下来我们要解决查询，查询的一种特殊情况是我们可能需要绕出询问区间 $[L,R]$，通过外面的边到达终点。</p>
+<img src="https://s2.loli.net/2022/09/19/iw1EFMNXxp92TDv.jpg" alt="P4246-SHOI2008-堵塞的交通-05.jpg" style="zoom:67%;" />
+
+
+
+<p>如果绕到区间外面可行的话就说明 $(1,L)-(2,L)$ 在作为区间 $[1,L]$ 的端点时是连通的，$R$ 有这种情况的话也同理，那么我们可以将 $[1,L]$ 与 $[R,n]$ 也求一下，更新一下 $(1,L)-(2,L)$ 和 $(1,R)-(2,R)$ 的状态再去中间做就行了。</p>
+<p>最终时间复杂度为常数较大的 $\mathcal{O}(n\log n)$。</p>
+<!-- flag of hidden posts -->
             <div id="vcomments"></div>
         </div>
 
