@@ -107,7 +107,7 @@
             <div id = "post-title"> OI idea(s) </div>
             <div id = "post-author"> By WyyOIer | </div>
             <div id = "post-date" title = "发布时间"> 2022-07-29 13:24:02 / </div>
-            <div id = "post-updated" title = "更新时间"> 2022-09-12 09:10:35 </div>
+            <div id = "post-updated" title = "更新时间"> 2022-10-16 19:39:28 </div>
             <span class = "leancloud_visitors" id = "/2022/07/29/OI-idea-s/">
                 <text class="post-meta-item-text">阅读数 </text>
                 <i class="leancloud-visitors-count">nan</i>
@@ -284,7 +284,123 @@
 <p>如果这个子树帮助别人，那么一定还需要另一个子树上的军队来帮助它，那么我们不如让这个子树的军队不动，这样我们用了更小代价去防控了一个更难防控的子树，这样会更优一些。</p>
 <p>最后我们就找到了所有能动的军队和需要被帮助的子树，把距离处理出来，然后双序列贪心匹配，看能不能将帮助所有子树。</p>
 <p>时间复杂度 $\mathcal{O}(n\log n\log w)$。</p>
-
+<h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><p>同样是<strong>极其重要</strong>的一类问题，整理基本模型，拓展模型和有意思的想法。</p>
+<h2 id="背包"><a href="#背包" class="headerlink" title="背包"></a>背包</h2><p>背包的形式也很多样，记几个不常见的类型。</p>
+<h3 id="删除背包"><a href="#删除背包" class="headerlink" title="删除背包"></a>删除背包</h3><p>删除背包当且仅当仅当背包的运算方式可逆时能用，例如加减可逆，但取 $\max$ 和 $\text{or}$ 都不行。</p>
+<p>例如我们要01背包求方案数，每来一个物品，转移如下：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> M<span class="token punctuation">;</span>i <span class="token operator">>=</span> w<span class="token punctuation">;</span>i<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> dp<span class="token punctuation">[</span>i <span class="token operator">-</span> w<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>那么如果要删除一个物品，其实也很简单：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> w<span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> M<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">=</span> dp<span class="token punctuation">[</span>i <span class="token operator">-</span> w<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>可行性背包可以通过<strong>转化成求方案数</strong>使用删除背包。<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/U76029">U76029 货币系统</a></p>
+<h3 id="text-bitset-优化可行性背包"><a href="#text-bitset-优化可行性背包" class="headerlink" title="$\text{bitset}$ 优化可行性背包"></a>$\text{bitset}$ 优化可行性背包</h3><p>只是一个小优化，但只能用来优化可行性背包。在这里记录一下用法：</p>
+<ul>
+<li>定义一个大小为 $N$ 的 $\text{bitset}$</li>
+</ul>
+<pre class=" language-cpp"><code class="language-cpp">bitset<span class="token operator">&lt;</span>N<span class="token operator">></span> f<span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li>访问 $\text{bitset}$ 的第 $i$ 位</li>
+</ul>
+<pre class=" language-cpp"><code class="language-cpp">f<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+</code></pre>
+<ul>
+<li>查询 $\text{bitset}$ 中 $1$ 的数量</li>
+</ul>
+<pre class=" language-cpp"><code class="language-cpp">f<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<ul>
+<li>将所有位设为 $0$</li>
+</ul>
+<pre class=" language-cpp"><code class="language-cpp">f<span class="token punctuation">.</span><span class="token function">reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<ul>
+<li>可行性背包中新来一个物品后</li>
+</ul>
+<pre class=" language-cpp"><code class="language-cpp">f <span class="token operator">=</span> f <span class="token operator">|</span> <span class="token punctuation">(</span>f <span class="token operator">&lt;&lt;</span> w<span class="token punctuation">)</span>
+</code></pre>
+<p>其它操作见 <a target="_blank" rel="noopener" href="https://oi-wiki.org/lang/csl/bitset/">bitset - OI Wiki</a>，使用 $bitset$ 后会使原复杂度乘上一个 $\dfrac{1}{w}$ 的常数，$w$ 为计算机的位数32&#x2F;64。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6567">P6567 [NOI Online #3 入门组] 买表</a> 注意此题的正解是单调队列优化多重背包，但由于是可行性背包，二进制分组加 $\text{bitset}$ 优化可以吊打单调队列。</p>
+<h3 id="P5289-十二省联考-2019-皮配"><a href="#P5289-十二省联考-2019-皮配" class="headerlink" title="P5289 [十二省联考 2019] 皮配"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5289">P5289 [十二省联考 2019] 皮配</a></h3><p>一道复杂背包的问题。</p>
+<blockquote>
+<p>我认为背包唯一要讲的就是皮配，讲了这题你其它背包就都会了。——教练</p>
+</blockquote>
+<p>作为一道省选题，我们以考场视角来思考这道题目。在读了一会儿题面后，我们总结出了如下的形式化题面：</p>
+<p>一共有 $n$ 个物品， $c$ 种类别，每个物品还有一个重量。</p>
+<p>现在你将 $n$ 个物品放置在一个 $2\times 2$ 的网格中，要求：</p>
+<ul>
+<li>第 $1$ 行重量和 $\le C_0$，第 $2$ 行重量和 $\le C_1$，第 $1$ 列重量和 $\le D_0$，第 $2$ 列重量和 $\le D_1$；</li>
+<li>同类的物品只能在同一行中放置；</li>
+<li>每个物品还有一个限制，代表 $4$ 个格子中有一个不能放，或者无限制。</li>
+</ul>
+<p>现在求 $n$ 个物品全部放入 $2\times 2$ 的不同方案数，对 $998244353$ 取模。</p>
+<p>你的第一天已经有了很稳的分数，所以第二天继续求稳，我们当然是从暴力分想起。</p>
+<p>先来看朴素暴力：对于每一类物品，将其视作一个阶段，我们解决当前阶段的问题。</p>
+<p>设 $dp_{i,j}$ 表示在当前这一类做之前，第 $1$ 行的总重量为 $i$，第 $2$ 行的总重量为 $j$ 的方案数。第 $2$ 行和第 $2$ 列当前重量可以减一下得到。</p>
+<p>对于当前城市的贡献，记一个 $f0_j,f1_j$ 表示都放入第 $1$ 行，第 $1$ 列重量为 $j$ 的方案数和都放入第 $2$ 行，第 $1$ 列重量为 $j$ 的方案数。</p>
+<p>那么我们直接看每个物品取哪个位置，然后更新 $f_0,f_1$。最后更新即为：</p>
+<p>$dp_{i,j}+f0_k\rightarrow dp’<em>{i+k,j+k},dp</em>{i,j}+f1_k\rightarrow dp’_{i,j+k}$。</p>
+<p>计算 $f$ 的总复杂度为 $\mathcal{O}(nM)$，$f$ 合并到 $dp$ 的总复杂度为 $\mathcal{O}(nM^3)$，得分 $40$。</p>
+<p>这是一个好想加好写的做法，你不难推测大部分人都会这个做法，让我们向着更高的目标前进！</p>
+<p>接下来我们考虑一个优化：<strong>平衡转移和合并的复杂度</strong>。</p>
+<p>我们能否将合并的复杂度分一个 $M$ 给转移，使其平衡至 $\mathcal{O}(nM^2)$。</p>
+<p>不难发现可行，给 $f0$ 和 $f1$ 加上一维，表示<strong>此类物品加上之前类的第</strong> $1$ <strong>行已有的重量</strong>，原先的一维也变为了<strong>此类物品加上之前类的第</strong> $1$ <strong>列已有的重量</strong>。</p>
+<p>在转移每一类物品前，复制 $dp$ 至 $f0,f1$，决策这一类的所有物品后，将 $f0_{i,j}+f1_{i,j}$ 更新至 $dp_{i,j}$，由于当前类的物品在第 $1$ 行还是第 $2$ 行是两种选择，可使用加法原理。</p>
+<p>现在你获得了 $50$ 分，于是你开始决定拼特殊情况。</p>
+<p>当 $k&#x3D;0$，即没有带限制的物品该怎么做？</p>
+<p>你发现此时决策物品的行与列不会再受到限制，<strong>行列可看作互相独立的问题</strong>，那么我们记 $g_i$ 表示第 $1$ 行重量为 $i$ 的方案数，$h_j$ 表示第 $1$ 列重量为 $j$ 的方案数，把每一类的重量绑在一起做行，每个单独的物品做列，最后行列使用乘法原理乘起来即可。</p>
+<p>$\sum\limits_{i,j}[i\le C_0][W-i\le C_1][j\le D_0][W-j\le D_1]g_i\cdot h_j$</p>
+<p>$W$ 表示所有物品的总重量。</p>
+<p>这个做法是 $\mathcal{O}(nM)$ 的，加上之前的做法有了 $70$ 分。如果你受到了这个<strong>行列独立</strong>的启发后，不妨再思考一下。</p>
+<p>注意下列的状态全部重新命名，可能和上面有重合。</p>
+<p>将 $n$ 个物品分为 $3$ 种类型：</p>
+<ul>
+<li>$\text{A}$ 类：所在类的所有物品全部无限制。</li>
+<li>$\text{B}$ 类：自己无限制，但所在类有物品有限制。</li>
+<li>$\text{C}$ 类：自己有限制。</li>
+</ul>
+<p>分成这 $3$ 类后，我们先考虑 $\text{A}$ 类。$\text{A}$ 直接用 $k&#x3D;0$ 的转移就行了，我们存入 $f_i$ 与 $g_j$ 中。时间复杂度 $\mathcal{O}(nM)$</p>
+<p>接下来我们考虑 $\text{B}$ 类，$\text{B}$ 可以理解为行的选择存在一定限制，但列还是完全没有限制，因为它在它自己的类中决策了行之后，它自身是可以随便选第 $1$ 列和第 $2$ 列的，于是我们把列的信息一块记到 $g$ 中代表了<strong>列的决策独立</strong>，而对于行的信息，其实就是在转移 $\text{C}$ 类点后增加了这一类中 $\text{B}$ 类点的总重量，那我们设 $h_{i,j}$  表示 $\text{B}$ 的行与 $\text{C}$ 的行和列的第 $1$ 行重量为 $i$，只算 $C$ 的重量时第 $1$ 列重量为 $j$ 的方案数，做 $\text{C}$ 的时候按上面的 $\mathcal{O}(nM^2)$ 转移，最后加上一个当前类的 $\text{B}$ 的总重量决策是第 $1$ 行还是第 $2$ 行即可。</p>
+<p>$\text{C}$ 存在限制，但 $k\le30$，即我们使用暴力的转移复杂度实际上是 $\mathcal{O}(kM^2)$ 的，但你发现 $s_i\le 10$，即任意物品的重量不超过 $10$，那么 $h$ 的第二维大小只有 $30\times10&#x3D;300$，复杂度可再次降至 $\mathcal{O}(300M)$，可以接受。</p>
+<p>这样我们对于每类点的行列信息都存在了如下的数组中：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>行</th>
+<th>列</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$\text{A}$</td>
+<td>$f$</td>
+<td>$g$</td>
+</tr>
+<tr>
+<td>$\text{B}$</td>
+<td>$h$</td>
+<td>$g$</td>
+</tr>
+<tr>
+<td>$\text{C}$</td>
+<td>$h$</td>
+<td>$h$</td>
+</tr>
+</tbody></table>
+<p>最后，如何计算出总方案数？</p>
+<p>我们考虑 $f,g,h$ 是不是互相独立的，我们首先用 $h$ 确定了 $\text{C}$ 的行列和 $\text{B}$ 的行信息，此时我们对 $\text{B}$ 的列和 $\text{A}$ 的行列的选择并没有产生影响，然后用 $f$ 确定了 $\text{A}$ 的行信息，由于 $\text{A,B}$ 点一定不是在同一类中（$\text{A}$ 的定义：所在类的所有物品全部无限制），那么我们对 $\text{A,B}$ 的列也没有产生影响，也就是 $g$ 的方案数。由此可见 $f,g,h$ 各自的选择<strong>都不会影响到其它的选择</strong>，所以我们枚举 $f,g,h$ 所有可能状态，运用<strong>乘法原理</strong>求出每一种组合的答案，在实现上，对 $f,g$ 做前缀和，然后枚举 $h$ 的状态，$f,g$ 的选取是一个区间，这样复杂度是 $\mathcal{O}(300M)$  的。这样我们就愉快地通过了这道题。</p>
+<p>最后，我们可以总结一下这道题所用到的一些 dp 思想：</p>
+<ul>
+<li>对于状态的设计：对于每一类物品，将其视作一个阶段，解决完当前阶段合并至之前的答案形成新的答案继续转移，无论是暴力还是正解都没有脱离这个前提。</li>
+<li>转移与合并的平衡：在转移和合并复杂度差距较大时，观察到其中的特点，例如此题在转移的时加了一维状态来辅助合并，优化了整体复杂度。</li>
+<li>若干独立情况的整合：我认为这是本道题的精华所在。在做 $k&#x3D;0$ 的时候就已经有<strong>行列独立</strong>的美妙性质，正解对若干个情况独立的分别解决的思路也是登峰造极。这题的数据范围对于这种想法也有提示，如 $k\le30,s_i\le10$，观察到这些是否可以想到有限制的物品和无限制的物品分开做呢？</li>
+</ul>
+<h2 id="双调巡游"><a href="#双调巡游" class="headerlink" title="双调巡游"></a>双调巡游</h2>
             <div id="vcomments"></div>
         </div>
 
