@@ -107,13 +107,17 @@
             <div id = "post-title"> U133852 [1007T1]二次剩余 </div>
             <div id = "post-author"> By WyyOIer | </div>
             <div id = "post-date" title = "发布时间"> 2022-09-25 08:31:48 / </div>
-            <div id = "post-updated" title = "更新时间"> 2022-10-16 19:40:09 </div>
+            <div id = "post-updated" title = "更新时间"> 2022-10-23 09:38:00 </div>
             <span class = "leancloud_visitors" id = "/2022/09/25/U133852-1007T1-%E4%BA%8C%E6%AC%A1%E5%89%A9%E4%BD%99/">
                 <text class="post-meta-item-text">阅读数 </text>
                 <i class="leancloud-visitors-count">nan</i>
             </span>
             <br>
-            <!-- flag of hidden posts -->
+            <p>考虑题目提到<strong>所有数在</strong> $[1,10^5]$ <strong>范围内</strong>，那么当 $t\le10^5$ 时，只有当 $x$ 离某个二次函数的对称轴 $\le\sqrt{10^5}$ 时才有可能被删除。</p>
+<p>考虑对于每个对称轴建一个可重集，存放二次函数的最小值 $k$。</p>
+<p>那么在每次删除时，只向左向右扫 $\sqrt{10^5}$ 的对称轴，判断每个可重集中最小的能否满足，删到不能删为止。</p>
+<p>每个二次函数最多删一次，复杂度 $\mathcal{O}(n\sqrt{n})$。</p>
+<!-- flag of hidden posts -->
             <div id="vcomments"></div>
         </div>
 

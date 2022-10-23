@@ -107,7 +107,7 @@
             <div id = "post-title"> OI idea(s) </div>
             <div id = "post-author"> By WyyOIer | </div>
             <div id = "post-date" title = "发布时间"> 2022-07-29 13:24:02 / </div>
-            <div id = "post-updated" title = "更新时间"> 2022-10-16 19:39:28 </div>
+            <div id = "post-updated" title = "更新时间"> 2022-10-23 08:48:55 </div>
             <span class = "leancloud_visitors" id = "/2022/07/29/OI-idea-s/">
                 <text class="post-meta-item-text">阅读数 </text>
                 <i class="leancloud-visitors-count">nan</i>
@@ -344,7 +344,7 @@
 <p>设 $dp_{i,j}$ 表示在当前这一类做之前，第 $1$ 行的总重量为 $i$，第 $2$ 行的总重量为 $j$ 的方案数。第 $2$ 行和第 $2$ 列当前重量可以减一下得到。</p>
 <p>对于当前城市的贡献，记一个 $f0_j,f1_j$ 表示都放入第 $1$ 行，第 $1$ 列重量为 $j$ 的方案数和都放入第 $2$ 行，第 $1$ 列重量为 $j$ 的方案数。</p>
 <p>那么我们直接看每个物品取哪个位置，然后更新 $f_0,f_1$。最后更新即为：</p>
-<p>$dp_{i,j}+f0_k\rightarrow dp’<em>{i+k,j+k},dp</em>{i,j}+f1_k\rightarrow dp’_{i,j+k}$。</p>
+<p>$dp_{i,j}+f0_k\rightarrow dp_{i+k,j+k},dp_{i,j}+f1_k\rightarrow dp_{i,j+k}$。</p>
 <p>计算 $f$ 的总复杂度为 $\mathcal{O}(nM)$，$f$ 合并到 $dp$ 的总复杂度为 $\mathcal{O}(nM^3)$，得分 $40$。</p>
 <p>这是一个好想加好写的做法，你不难推测大部分人都会这个做法，让我们向着更高的目标前进！</p>
 <p>接下来我们考虑一个优化：<strong>平衡转移和合并的复杂度</strong>。</p>
