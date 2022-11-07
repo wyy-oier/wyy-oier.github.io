@@ -319,6 +319,16 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <h1 id="text-Day-38"><a href="#text-Day-38" class="headerlink" title="$\text{Day -38}$"></a>$\text{Day -38}$</h1><p>今天讲了正解，才知道暴力 dp 其实可以拿 $76$。</p>
 <p>特殊性质的测试点的期望复杂度为 $\mathcal{O}(n\log n)$，而给的样例 $4$ 刚好为 $k&#x3D;3$，有特殊性质的，我以为跑不动，如果跑了就能找到错误，然后就能 $36\rightarrow76$，血亏无比。</p>
 <p>正解是树剖优化 dp 转移，其实就是我想的 dp 状态套矩阵乘法。</p>
+<h1 id="text-Day-25"><a href="#text-Day-25" class="headerlink" title="$\text{Day -25}$"></a>$\text{Day -25}$</h1><p>出分，$100+100+0+32&#x3D;232$，真就又低于民间数据 $4$ 分。</p>
+<p>我们来看看这次比赛的顶尖数据：</p>
+<ul>
+<li>$\text{T1}$ 不开 <code>long long</code> 可以得到 $100$ 分。</li>
+<li>$\text{T1}$ 写了假算法可以得到 $100$ 分。</li>
+<li>$\text{T3}$ 暴力输出 <code>NO</code> 获得 $45$ 分。</li>
+<li>$\text{T3}$ 的正常暴力可以获得 $65$ 分。</li>
+</ul>
+<p>如果 $\text{NOIP}$ 的数据强度也是如此严格的话，那我一定要在考前加紧学模拟退火。</p>
+<p>不出意外的话，$6$ 级线和 $7$ 级线大概向上平移 $30$。</p>
 ]]></content>
       <categories>
         <category>比赛游记</category>
