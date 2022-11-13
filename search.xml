@@ -757,7 +757,7 @@ lf <span class="token function">getEnergy</span><span class="token punctuation">
 <span class="token punctuation">}</span>
 </code></pre>
 <p>开始的时候跑一遍 <code>SimulateAnneal()</code> 错了，改成了跑两遍就过了。</p>
-<h2 id="P2210-Haywire"><a href="#P2210-Haywire" class="headerlink" title="P2210 Haywire"></a>P2210 Haywire</h2><p>我们对于答案的最优排列做模拟退火，本题的能量计算就是对于一个排列的答案。</p>
+<h2 id="P2210-Haywire"><a href="#P2210-Haywire" class="headerlink" title="P2210 Haywire"></a><a href="https://www.luogu.com.cn/problem/P2210">P2210 Haywire</a></h2><p>我们对于答案的最优排列做模拟退火，本题的能量计算就是对于一个排列的答案。</p>
 <p>随机的时候就没有能用温度来控制变化范围的需要，我们随机两个点 $x,y$，交换 $now_x,now_y$ 作为新一轮的排列。</p>
 <pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
 
