@@ -628,7 +628,51 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <li>转移与合并的平衡：在转移和合并复杂度差距较大时，观察到其中的特点，例如此题在转移的时加了一维状态来辅助合并，优化了整体复杂度。</li>
 <li>若干独立情况的整合：我认为这是本道题的精华所在。在做 $k&#x3D;0$ 的时候就已经有<strong>行列独立</strong>的美妙性质，正解对若干个情况独立的分别解决的思路也是登峰造极。这题的数据范围对于这种想法也有提示，如 $k\le30,s_i\le10$，观察到这些是否可以想到有限制的物品和无限制的物品分开做呢？</li>
 </ul>
-<h2 id="双调巡游"><a href="#双调巡游" class="headerlink" title="双调巡游"></a>双调巡游</h2>]]></content>
+<h2 id="双调巡游"><a href="#双调巡游" class="headerlink" title="双调巡游"></a>双调巡游</h2><h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><p>一些基本的树概念就不写了。</p>
+<h2 id="树的直径-text-diameter"><a href="#树的直径-text-diameter" class="headerlink" title="树的直径 $\text{(diameter)}$"></a>树的直径 $\text{(diameter)}$</h2><p>形式化的定义树的直径，对于直径 $(x,y)$，$\forall (u,v),dist(u,v)\le dist(x,y)$，也就是直径是树上任意两点最长距离的点对。</p>
+<p>树的直径的求法一般为两遍 dfs，或者树形 dp，复杂度 $\mathcal{O}(n)$。</p>
+<p>直径常规套路为把直径拉起来，子树挂在直径的链上，进行一系列相关操作。</p>
+<p><a href="https://www.luogu.com.cn/problem/P2491">P2491 [SDOI2011] 消防</a> 把直径拉出来后，首先可以证明选的路径一定在直径上，那么选择的部分就是一个滑动窗口，拿单调队列去优化，当然这题用带 log 的倍增也行，复杂度 $\mathcal{O}(n\log n)&#x2F;\mathcal{O}(n)$。</p>
+<p><a href="https://www.luogu.com.cn/problem/U119268">U119268 搞搞新意思（gao）</a></p>
+<p>同样是将直径拉出来，首先可以明确一点，如果不修改直径，直径不会变小，但是如果根本就不修改，直径一定不変。那么每次修改仅有可能在直径上修改。也就是我们在看直径上的所有边被修改后，直径会不会变小，不会取原直径即可。那么现在有一个 $\mathcal{O}(qn^2)$ 的暴力做法：每次询问枚举哪条边修改，然后暴力计算修改后的直径。</p>
+<p>考虑优化，记录 $dist$ 为直径长度，$dep_u$ 表示以直径上的点 $u$ 为根的子树到子树内最深点的距离，$pre_u$ 表示直径上 $u$ 节点到 $u$ 之前所有位置的最长距离，$suf_u$ 表示直径上 $u$ 节点到 $u$ 之后所有位置的最长距离，$pre_u$ 和 $suf_u$ 可以通过递推求出。</p>
+<p>假设我们要修改直径上的一条边 $(u,v)$，从 $w0$ 改成 $w$，那么新的直径一定是：</p>
+<p>$\max(pre_u, suf_v, dist-w0+w)$</p>
+<p>观察这个式子，除了 $dist-w0+w$ 这一项随着询问不同的权值改变，而前两项只跟这条边的位置有关。那么设 $Val_u&#x3D;max(pre_u, suf_v)$，那么当 $Val_u\ge dist-w0+w$ 时，取前者，否则取后者。整理可得 $w\le Val_u-dist+w0$，那么我们以 $Val_u-dist+w0$ 升序排序，那么满足一段前缀，取得的最大值为 $Val_u$，后缀的最大值为 $dist-0+w$，二分查一下再次维护一个前后缀答案的 $\max$ 即能通过。复杂度 $\mathcal{O }(n\log n)$。</p>
+<h2 id="最近公共祖先-text-Lowest-Common-Ancestor"><a href="#最近公共祖先-text-Lowest-Common-Ancestor" class="headerlink" title="最近公共祖先 $\text{(Lowest Common Ancestor)}$"></a>最近公共祖先 $\text{(Lowest Common Ancestor)}$</h2><p>树的重要知识，很多题都需要求 lca 辅助做题。</p>
+<p>lca 的求法一般掌握两种求法即可，一个是在线倍增做法 $\mathcal{O}(n\log n)-\mathcal{O}(\log n)$，一个是离线 tarjan 做法 $\mathcal{O}(n\alpha)-\mathcal{O}(1)$。不会有人想学 $\mathcal{O}(n)-\mathcal{O}(1)$ 的 $\text{Method of Four Russians}$ 吧。</p>
+<h3 id="lca-相关性质："><a href="#lca-相关性质：" class="headerlink" title="lca 相关性质："></a>lca 相关性质：</h3><ol>
+<li>$\text{LCA}(u)&#x3D;u$</li>
+<li>$u$ 是 $v$ 的祖先，当且仅当 $\text{LCA}(u,v)&#x3D;u$</li>
+<li>前序遍历（根左右）中，$\text{LCA}(S)$ 出现在 $S$ 点集所有点之前；后序遍历（左右根）中，$\text{LCA}(S)$ 出现在 $S$ 点集所有点之后。</li>
+<li><strong>两点集并的最近公共祖先为两点集分别的最近公共祖先的最近公共祖先</strong>，即 $\text{LCA}(A,B)&#x3D;\text{LCA(LCA(A), LCA(B))}$。</li>
+<li>$dist(u,v)&#x3D;dep_u+dep_v-2dep_{lca}$。</li>
+<li>$\text{LCA}(l\sim r)&#x3D;\text{LCA}(x,y)$，$x$ 和 $y$ 分别是 $l\sim r$ 中 dfn 序最小和最大的节点。</li>
+</ol>
+<h3 id="树上距离问题"><a href="#树上距离问题" class="headerlink" title="树上距离问题"></a>树上距离问题</h3><ol>
+<li>点 $x$ 到路径 $(u,v)$ 距离：$\dfrac{dist(x,u)+dist(x,v)-dist(u,v)}{2}$</li>
+<li>点 $x$ 是否在路径 $(u,v)$ 上，利用上式判是否等于 $0$。</li>
+<li>两条直径 $(u_1,v_1)(u_2,v_2)$ 是否点相交：判断 $lca_1$ 和 $lca_2$ 是否分别在路径 $(u_2,v_2)$ 和 $(u_1,v_1)$ 上。</li>
+<li>两条路径边相交的长度：$\dfrac{|dist(u_1,v_2)+dist(u_2,v_1)-dist(u_1,v_1)-dist(u_2,v_2)|}{2}$，顺便可判边相交。<a href="https://www.luogu.com.cn/user/62948">Crabby_Maskiv</a></li>
+<li>两条路径之间的距离： $\dfrac{dist(u_1,v_2)+dist(u_2,v_1)-dist(u_1,v_1)-dist(u_2,v_2)}{2}$，若路径点相交为 $0$。</li>
+</ol>
+<h2 id="树上差分"><a href="#树上差分" class="headerlink" title="树上差分"></a>树上差分</h2><p>树上差分定义：$d_u&#x3D;a_u-\sum\limits_{v\in son_u}a_v$，最后利用差分求回原值：$a_u&#x3D;\sum\limits_{v\in tree_u,v\neq u}d_v$。</p>
+<p>经典问题</p>
+<ul>
+<li>子树修改，子树查询：线段树 dfn 序 $\rightarrow$ 区间修改，区间查询。</li>
+<li>单点修改，路径查询：路径查询转为根到节点的路径长度，那么单点修改就变成了子树查询。</li>
+<li>路径修改，单点查询：用树状数组实现单点修改&#x2F;子树查询。</li>
+<li>路径修改，子树查询：记录 $\sum d_u$ 和 $\sum d_u\times dep_u$ 的权值，开两个树状数组维护。</li>
+<li><del>路径修改，路径查询：树剖。</del></li>
+</ul>
+<h2 id="重心-text-centriod"><a href="#重心-text-centriod" class="headerlink" title="重心 $\text{(centriod)}$"></a>重心 $\text{(centriod)}$</h2><p>定义：</p>
+<ul>
+<li>如果以重心为根，每个子树的大小不超过 $\lfloor \dfrac{n}{2}\rfloor$。</li>
+<li>树上山区建一所小学应该建在重心。（其它点的距离到重心的距离最短）</li>
+<li>在一棵树上添加或删除一个叶子，那么重心最多只移动一条边的距离。（同时可以尝试拓展到添删一棵子树）</li>
+<li>以 $u$ 为根的子树的重心必定在以 $u$ 为 $top$ 的重链上。</li>
+</ul>
+]]></content>
   </entry>
   <entry>
     <title>模拟退火算法</title>
