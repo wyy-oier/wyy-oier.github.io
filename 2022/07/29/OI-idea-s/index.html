@@ -107,7 +107,7 @@
             <div id = "post-title"> OI idea(s) </div>
             <div id = "post-author"> By WyyOIer | </div>
             <div id = "post-date" title = "发布时间"> 2022-07-29 13:24:02 / </div>
-            <div id = "post-updated" title = "更新时间"> 2022-11-21 09:14:58 </div>
+            <div id = "post-updated" title = "更新时间"> 2022-11-21 15:25:19 </div>
             <span class = "leancloud_visitors" id = "/2022/07/29/OI-idea-s/">
                 <text class="post-meta-item-text">阅读数 </text>
                 <i class="leancloud-visitors-count">nan</i>
@@ -400,7 +400,20 @@
 <li>转移与合并的平衡：在转移和合并复杂度差距较大时，观察到其中的特点，例如此题在转移的时加了一维状态来辅助合并，优化了整体复杂度。</li>
 <li>若干独立情况的整合：我认为这是本道题的精华所在。在做 $k&#x3D;0$ 的时候就已经有<strong>行列独立</strong>的美妙性质，正解对若干个情况独立的分别解决的思路也是登峰造极。这题的数据范围对于这种想法也有提示，如 $k\le30,s_i\le10$，观察到这些是否可以想到有限制的物品和无限制的物品分开做呢？</li>
 </ul>
-<h2 id="双调巡游"><a href="#双调巡游" class="headerlink" title="双调巡游"></a>双调巡游</h2><h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><p>一些基本的树概念就不写了。</p>
+<h2 id="计数-dp"><a href="#计数-dp" class="headerlink" title="计数 dp"></a>计数 dp</h2><h3 id="容斥"><a href="#容斥" class="headerlink" title="容斥"></a>容斥</h3><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5664">P5664 [CSP-S2019] Emiya 家今天的饭</a></p>
+<p>考虑如果没有主要食材在一半的菜的条件求方案，用乘法原理求求方案。</p>
+<p>那么如何求出不合法的方案数？考虑到<strong>最多只有一种主要食材会超过一半</strong>，那么我们枚举哪个食材超了，然后 $dp_{i,j}$ 表示前 $i$ 行，钦定的食材数量的选择数比其它选择的食材数量多 $j$ 的方案数。</p>
+<p>转移就是当前这行不选&#x2F;选钦定食材&#x2F;选其它食材三种转移，然后 $j\in [-n,n]$，答案的取值范为 $dp_{n,j},j\in[1,n]$，当然要先平移一下内存存储。</p>
+<p>时间复杂度 $\mathcal{O}(mn^2)$。</p>
+<p>优化思想：</p>
+<p>合法方案不方便求，但是总方案非常好求，而不合法方案<strong>在本题的限制下也变得非常好求</strong>，所以采用了容斥的思想。</p>
+<h2 id="双调巡游"><a href="#双调巡游" class="headerlink" title="双调巡游"></a>双调巡游</h2><p>双调巡游，即为求出选择 $2$ <strong>条方向单调且点互不相交路径</strong>的一类问题。</p>
+<p>如：给定一个 $n$ 个点 $m$ 条边的带边权有向图，问选择两条点不相交的最短路径的方案数是多少。</p>
+<p>首先把最短路 DAG 求出来，那么路径方向就是单调的，可以使用双调巡游。</p>
+<p>如果我们按 $1\rightarrow u$ 的路径长度大小给所有点重新标号，那么<strong>每拓展一次最短路编号一定越来越大</strong>。</p>
+<p>设 $dp_{x,y}$ 表示一条路径走到了 $x$，另一条路径走到了 $y$ 的方案数，初值 $dp_{1,1}&#x3D;1$，最终答案为 $dp_{n,n}$。</p>
+<p>对于 $dp_{x,y}$ ，其中 $dis_x\le dis_y$，那么我们去转移所有 $x$ 在最短路上的出边更新状态即可，复杂度 $\mathcal{O}(nm)$。</p>
+<h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><p>一些基本的树概念就不写了。</p>
 <h2 id="树的直径-text-diameter"><a href="#树的直径-text-diameter" class="headerlink" title="树的直径 $\text{(diameter)}$"></a>树的直径 $\text{(diameter)}$</h2><p>形式化的定义树的直径，对于直径 $(x,y)$，$\forall (u,v),dist(u,v)\le dist(x,y)$，也就是直径是树上任意两点最长距离的点对。</p>
 <p>树的直径的求法一般为两遍 dfs，或者树形 dp，复杂度 $\mathcal{O}(n)$。</p>
 <p>直径常规套路为把直径拉起来，子树挂在直径的链上，进行一系列相关操作。</p>
