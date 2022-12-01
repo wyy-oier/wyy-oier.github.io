@@ -107,7 +107,7 @@
             <div id = "post-title"> 模拟退火算法 </div>
             <div id = "post-author"> By WyyOIer | </div>
             <div id = "post-date" title = "发布时间"> 2022-11-07 19:44:14 / </div>
-            <div id = "post-updated" title = "更新时间"> 2022-11-13 16:50:23 </div>
+            <div id = "post-updated" title = "更新时间"> 2022-11-25 16:42:44 </div>
             <span class = "leancloud_visitors" id = "/2022/11/07/%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%AB%E7%AE%97%E6%B3%95/">
                 <text class="post-meta-item-text">阅读数 </text>
                 <i class="leancloud-visitors-count">nan</i>
@@ -176,7 +176,7 @@
 <pre class=" language-cpp"><code class="language-cpp">lf nxtx <span class="token operator">=</span> nowx <span class="token operator">+</span> <span class="token function">Rand</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1e4</span><span class="token punctuation">,</span> <span class="token number">1e4</span><span class="token punctuation">)</span> <span class="token operator">*</span> t0<span class="token punctuation">,</span> nxty <span class="token operator">=</span> nowy <span class="token operator">+</span> <span class="token function">Rand</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1e4</span><span class="token punctuation">,</span> <span class="token number">1e4</span><span class="token punctuation">)</span> <span class="token operator">*</span> t0<span class="token punctuation">;</span>
 </code></pre>
 <p>当温度降到终止温度后，我们可以再随机 $T$ 次，求得最终的解。</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
 
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 <span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">double</span> lf<span class="token punctuation">;</span>
@@ -243,7 +243,7 @@ lf <span class="token function">getEnergy</span><span class="token punctuation">
 <p>开始的时候跑一遍 <code>SimulateAnneal()</code> 错了，改成了跑两遍就过了。</p>
 <h2 id="P2210-Haywire"><a href="#P2210-Haywire" class="headerlink" title="P2210 Haywire"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2210">P2210 Haywire</a></h2><p>我们对于答案的最优排列做模拟退火，本题的能量计算就是对于一个排列的答案。</p>
 <p>随机的时候就没有能用温度来控制变化范围的需要，我们随机两个点 $x,y$，交换 $now_x,now_y$ 作为新一轮的排列。</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
 
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 <span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">double</span> lf<span class="token punctuation">;</span>
@@ -313,6 +313,167 @@ mt19937 <span class="token function">engine</span><span class="token punctuation
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<h2 id="P3878-TJOI2010-分金币"><a href="#P3878-TJOI2010-分金币" class="headerlink" title="P3878 [TJOI2010]分金币"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3878">P3878 [TJOI2010]分金币</a></h2><p>首先将前 $\dfrac{n}{2}$ 个分为一组，剩下 $(n-\dfrac{n}{2})$ 个为一组。</p>
+<p>每次在两组间随机挑选一对换一下跑模拟退火。</p>
+<p>思路十分简单，但参数的调整十分困难。</p>
+<p>由于本题是多测，所以不好控制每个询问的时间，直接对于每组询问跑了 $450$ 遍。</p>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">long</span> ll<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">double</span> lf<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> T<span class="token punctuation">,</span> n<span class="token punctuation">;</span>
+ll a<span class="token punctuation">[</span><span class="token number">30</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+ll seq<span class="token punctuation">[</span><span class="token number">30</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+ll ans <span class="token operator">=</span> <span class="token number">1e18</span><span class="token punctuation">;</span>
+
+mt19937 <span class="token function">engine</span><span class="token punctuation">(</span>chrono<span class="token operator">::</span>steady_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">time_since_epoch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">Rand</span><span class="token punctuation">(</span><span class="token keyword">int</span> l<span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    uniform_int_distribution<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">dist</span><span class="token punctuation">(</span>l<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token function">dist</span><span class="token punctuation">(</span>engine<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">inline</span> ll <span class="token function">Abs</span><span class="token punctuation">(</span>ll x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> x <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">?</span> x <span class="token operator">:</span> <span class="token punctuation">(</span><span class="token operator">-</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> 
+
+ll <span class="token function">getEnergy</span><span class="token punctuation">(</span>ll now<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ll sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> n <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        sum <span class="token operator">+</span><span class="token operator">=</span> now<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> n <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        sum <span class="token operator">-</span><span class="token operator">=</span> now<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    sum <span class="token operator">=</span> <span class="token function">Abs</span><span class="token punctuation">(</span>sum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>ans <span class="token operator">></span> sum<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        ans <span class="token operator">=</span> sum<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> sum<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">SimulateAnneal</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    lf t0 <span class="token operator">=</span> <span class="token number">2000</span><span class="token punctuation">,</span> tk <span class="token operator">=</span> <span class="token number">1e-10</span><span class="token punctuation">,</span> d <span class="token operator">=</span> <span class="token number">0.95</span><span class="token punctuation">;</span>
+    ll now<span class="token punctuation">[</span><span class="token number">30</span><span class="token punctuation">]</span><span class="token punctuation">,</span> nxt<span class="token punctuation">[</span><span class="token number">30</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">memcpy</span><span class="token punctuation">(</span>now<span class="token punctuation">,</span> a<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>now<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>t0 <span class="token operator">></span> tk<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token function">Rand</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> n <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> y <span class="token operator">=</span> <span class="token function">Rand</span><span class="token punctuation">(</span>n <span class="token operator">/</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token function">memcpy</span><span class="token punctuation">(</span>nxt<span class="token punctuation">,</span> now<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>nxt<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">swap</span><span class="token punctuation">(</span>nxt<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">,</span> nxt<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ll delta <span class="token operator">=</span> <span class="token function">getEnergy</span><span class="token punctuation">(</span>nxt<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">getEnergy</span><span class="token punctuation">(</span>now<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">exp</span><span class="token punctuation">(</span><span class="token operator">-</span>delta <span class="token operator">/</span> t0<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token punctuation">(</span>lf<span class="token punctuation">)</span><span class="token function">Rand</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1e4</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1e4</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">memcpy</span><span class="token punctuation">(</span>now<span class="token punctuation">,</span> nxt<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>now<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        t0 <span class="token operator">*</span><span class="token operator">=</span> d<span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ios<span class="token operator">::</span><span class="token function">sync_with_stdio</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cin<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cout<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    cin <span class="token operator">>></span> T<span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>T<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cin <span class="token operator">>></span> n<span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            cin <span class="token operator">>></span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span> 
+        <span class="token punctuation">}</span> 
+        <span class="token keyword">if</span><span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            cout <span class="token operator">&lt;&lt;</span> a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> <span class="token string">'\n'</span><span class="token punctuation">;</span>
+            <span class="token keyword">continue</span><span class="token punctuation">;</span> 
+        <span class="token punctuation">}</span>
+        ans <span class="token operator">=</span> <span class="token function">getEnergy</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> test <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>test <span class="token operator">&lt;=</span> <span class="token number">450</span><span class="token punctuation">;</span>test<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">random_shuffle</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> a <span class="token operator">+</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">SimulateAnneal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        cout <span class="token operator">&lt;&lt;</span> ans <span class="token operator">&lt;&lt;</span> <span class="token string">'\n'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    cout<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="P7962-NOIP2021-方差"><a href="#P7962-NOIP2021-方差" class="headerlink" title="P7962 [NOIP2021] 方差"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7962">P7962 [NOIP2021] 方差</a></h2><p>这道题就是我想在 $\text{NOIP}$ 前学模拟退火的原因，基于一个正常的考场情况，我们肯定是希望在 $1h$ 内拿到这题的一个比较高的分数然后花时间冲 $\text{T4}$ 暴力，至于使用模拟退火通过那大可不必，因为：</p>
+<ul>
+<li>在数据稍微加强一些的情况下，模拟退火是大概率过不去后面的点的。</li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/_post/394190">这篇题解</a>所提到的模拟退火正解已经用到了此题<strong>几乎全部的性质</strong>，那么我相信了解了所有性质后会更倾向于写<strong>正确性有保证的</strong>动态规划。</li>
+</ul>
+<p>所以最后的程序十分简单：观察出交换差分的性质后，随机找两个位置交换跑模拟退火，洛谷上可以得 $72$ 分，相比于观察差分单谷的性质，这个做法会更暴力无脑一些，适合一些一般同学性价比较高的做法。</p>
+<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">long</span> ll<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">double</span> lf<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> n<span class="token punctuation">,</span> a<span class="token punctuation">[</span><span class="token number">405</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> D<span class="token punctuation">[</span><span class="token number">405</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+ll ans<span class="token punctuation">;</span>
+
+mt19937 <span class="token function">engine</span><span class="token punctuation">(</span>chrono<span class="token operator">::</span>steady_clock<span class="token operator">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">time_since_epoch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">Rand</span><span class="token punctuation">(</span><span class="token keyword">int</span> l<span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    uniform_int_distribution<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">dist</span><span class="token punctuation">(</span>l<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token function">dist</span><span class="token punctuation">(</span>engine<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+ll <span class="token function">getEnergy</span><span class="token punctuation">(</span><span class="token keyword">int</span> now<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ll res <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> s <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        sum <span class="token operator">+</span><span class="token operator">=</span> now<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        res <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">1ll</span> <span class="token operator">*</span> n <span class="token operator">*</span> sum <span class="token operator">*</span> sum<span class="token punctuation">;</span>
+        s <span class="token operator">+</span><span class="token operator">=</span> sum<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    res <span class="token operator">-</span><span class="token operator">=</span> s <span class="token operator">*</span> s<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>ans <span class="token operator">></span> res<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        ans <span class="token operator">=</span> res<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">SimulateAnneal</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    lf t0 <span class="token operator">=</span> <span class="token number">3000</span><span class="token punctuation">,</span> tk <span class="token operator">=</span> <span class="token number">1e-8</span><span class="token punctuation">,</span> d <span class="token operator">=</span> <span class="token number">0.99</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> now<span class="token punctuation">[</span><span class="token number">405</span><span class="token punctuation">]</span><span class="token punctuation">,</span> nxt<span class="token punctuation">[</span><span class="token number">405</span><span class="token punctuation">]</span><span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">;</span>
+    <span class="token function">memcpy</span><span class="token punctuation">(</span>now<span class="token punctuation">,</span> D<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>now<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>t0 <span class="token operator">></span> tk<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">do</span> <span class="token punctuation">{</span>
+            x <span class="token operator">=</span> <span class="token function">Rand</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">,</span> y <span class="token operator">=</span> <span class="token function">Rand</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">while</span><span class="token punctuation">(</span>x <span class="token operator">==</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">memcpy</span><span class="token punctuation">(</span>nxt<span class="token punctuation">,</span> now<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>nxt<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">swap</span><span class="token punctuation">(</span>nxt<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">,</span> nxt<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        lf delta <span class="token operator">=</span> <span class="token function">getEnergy</span><span class="token punctuation">(</span>nxt<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">getEnergy</span><span class="token punctuation">(</span>now<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">exp</span><span class="token punctuation">(</span><span class="token operator">-</span>delta <span class="token operator">/</span> t0<span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token punctuation">(</span>lf<span class="token punctuation">)</span><span class="token function">Rand</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1e4</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1e4</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">memcpy</span><span class="token punctuation">(</span>now<span class="token punctuation">,</span> nxt<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>now<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        t0 <span class="token operator">*</span><span class="token operator">=</span> d<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ios<span class="token operator">::</span><span class="token function">sync_with_stdio</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cin<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cout<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    cin <span class="token operator">>></span> n<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cin <span class="token operator">>></span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        D<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> a<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    ans <span class="token operator">=</span> <span class="token function">getEnergy</span><span class="token punctuation">(</span>D<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    lf TimeLimit <span class="token operator">=</span> <span class="token number">0.96</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span>lf<span class="token punctuation">)</span><span class="token function">clock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">/</span> CLOCKS_PER_SEC <span class="token operator">&lt;</span> TimeLimit<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">SimulateAnneal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    cout <span class="token operator">&lt;&lt;</span> ans <span class="token operator">&lt;&lt;</span> <span class="token string">'\n'</span><span class="token punctuation">;</span>
+    
+    
+    cout<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>模拟退火终究是乱搞，在赛时争取高分时可以视情况使用，但在算法学习中不建议乱搞，所以大概率不会再往里加题，除非有什么模拟退火的优化技巧或者场上有用模拟退火拿高分的题目会更新到这里。</p>
 
             <div id="vcomments"></div>
         </div>

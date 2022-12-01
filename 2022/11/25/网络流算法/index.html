@@ -1,0 +1,608 @@
+<head>
+    <title> 网络流算法 - WyyOIer </title><meta name="robots" content="noindex">
+  	<link rel="stylesheet" href="/css/main.css">
+  	<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <script type = "text/javascript" async src="/javascript/main.js"></script>
+    <script id="MathJax-script" async src="/javascript/math/tex-mml-chtml.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+
+
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeBlockFuction.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeCopy.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/clipboard.min.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeShrink.js"></script> -->
+   <!-- <style type="text/css">code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }</style> -->
+
+    <!-- <link rel="stylesheet" href="/highlight/styles/atom-one-dark.min.css"> -->
+    
+    <!-- <link rel="stylesheet" href="/css/bootstrap.min.css"> -->
+    <script id="Valine" src='https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js'></script>
+<meta name="generator" content="Hexo 6.2.0"><link rel="stylesheet" href="/css/prism-sh.css" type="text/css"></head>
+
+<body>
+
+
+<div id = "background">
+    <div id = "index">
+        <div id="menu">
+
+    <div style="text-align: center;font-size: 32px;font-family: consolas;">
+        <p>WyyOIer</p>
+    </div>
+
+    <div style="height: 150px;float: up;display: flex;flex-direction: column;align-items: center;">
+        <div id="headstyle">
+            
+        </div>
+    </div>
+	
+    <div style="height: 50px;width: 30%;float: left;text-align: center;">
+        <text id = "pcount" title = "文章数" style = "font-family: consolas;font-size: 20px;">17</text>
+    </div>
+
+    <div style="height: 50px;width: 30%;float: left;text-align: center;">
+        <text id = "commentcount" title = "评论数" style = "font-family: consolas;font-size: 20px;">0</text>
+    </div>
+
+    <div style="height: 50px;width: 40%;float: left;text-align: center;">
+        <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/159610">
+        <img src="https://www.luogu.com.cn/favicon.ico" alt="洛谷" width="24" height="24"></a>
+        &nbsp; 
+        <a target="_blank" rel="noopener" href="https://codeforces.com/profile/WyyOIer">
+        <img src="https://codeforces.com/favicon.ico" alt="CF" width="24" height="24"></a>
+    </div>
+
+
+    <div class="list-group">
+        <a class="list-group-item" href="/"><i class="fa fa-home fa-fw"></i>&nbsp; 首页</a>
+        <a class="list-group-item" href="/about"><i class="fa fa-user fa-fw"></i>&nbsp; 关于</a>
+        <a class="list-group-item" href="/links"><i class="fa fa-link fa-fw"></i>&nbsp; 友链</a>
+        <a class="list-group-item" onclick = "Search()"><i class="fa fa-search fa-fw"></i>&nbsp; 搜索</a>
+        <a class="list-group-item" href="/template"><i class="fa fa-file-code-o fa-fw"></i>&nbsp; 模板</a>
+        <a class="list-group-item" href="/config"><i class="fa fa-cog fa-fw"></i>&nbsp; 设置</a>
+    </div>
+
+    <script>
+        function changemusicid(){
+            var v = document.getElementById("num").value, text, f = 0;
+            if(v == null || v == "") {
+            text = "输入不能为空。";
+            f = 1;
+            }
+            if(f == 0) document.getElementById("music").innerHTML= '<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=250 height=95 src="//music.163.com/outchain/player?type=2&id=' + v + '&auto=0&height=66"></iframe> ';
+            else document.getElementById("musictext").innerHTML = text;
+        }
+    </script>
+
+    <div style="height: 13%;width: 30%;float: left" id="music">
+    <!-- <input id = "num" placeholder = "输入网易音乐 id，如 480517594" style = "width: 230px;"> -->
+    <!-- <button type="button" onclick="changemusicid()">提交</button> -->
+    <!-- <p id = "musictext"></p> -->
+    </div>
+
+</div>
+
+
+    </div>
+
+    
+
+    
+
+
+    
+
+        <div id = "article">
+            <div id = "post-title"> 网络流算法 </div>
+            <div id = "post-author"> By WyyOIer | </div>
+            <div id = "post-date" title = "发布时间"> 2022-11-25 16:06:46 / </div>
+            <div id = "post-updated" title = "更新时间"> 2022-12-01 22:03:47 </div>
+            <span class = "leancloud_visitors" id = "/2022/11/25/%E7%BD%91%E7%BB%9C%E6%B5%81%E7%AE%97%E6%B3%95/">
+                <text class="post-meta-item-text">阅读数 </text>
+                <i class="leancloud-visitors-count">nan</i>
+            </span>
+            <br>
+            <h1 id="流网络-text-Flow-Network"><a href="#流网络-text-Flow-Network" class="headerlink" title="流网络 $\text{(Flow Network)}$"></a>流网络 $\text{(Flow Network)}$</h1><p>对于一个有向图 $G&#x3D;(V,E)$，$\forall(u,v)\in E$，有一个权值 $c(u,v)$，代表 $u\rightarrow v$ 这条边的流量 $\text{(capacity)}$，当 $(u,v)\notin E$ 时有 $c(u,v)&#x3D;0$。</p>
+<p>在这个有向图中，存在 $s\in V,t\in V$，我们称之为源点 $\text{(source)}$ 和汇点 $\text{(sink)}$，且 $s\neq t$ 。</p>
+<p>我们把这样的图称之为网络。</p>
+<h1 id="可行流-text-Flow"><a href="#可行流-text-Flow" class="headerlink" title="可行流 $\text{(Flow)}$"></a>可行流 $\text{(Flow)}$</h1><p>$\forall u\in V,v\in V$，定义函数 $f(u,v)$ 为 $u\rightarrow v$ 的流量，$c’(u,v)&#x3D;c(u,v)-f(u,v)\ge 0$ 称为 $u\rightarrow v$ 的剩余容量。此时不考虑反向边会比较好。</p>
+<p>我们定义可行流函数 $f(u,v)$ 满足如下性质：</p>
+<ol>
+<li>$\forall(u,v)\in E,f(u,v)\le c(u,v)$，任意一条边的流量不超过这条边的容量。</li>
+<li>$\forall x\in V,x\neq s,t,\sum\limits_{(u,x)\in E}f(u,x)&#x3D;\sum\limits_{(x,v)\in E}f(x,v)$，即任意一个点，进入这个点的流量都等于出去的流量。</li>
+</ol>
+<p>一个网络的流就是源点发出的全部流量，记 $F&#x3D;\sum\limits_{\forall(s,u)\in E}f(s,u)$。</p>
+<h1 id="残留网络"><a href="#残留网络" class="headerlink" title="残留网络"></a>残留网络</h1><p>残留网络的点集和边集与原网络是一样的，但唯一不同的是每条边存在一个<strong>剩余容量</strong>，这里我们对于一个有向边，考虑其的<strong>反向边</strong>：</p>
+<ul>
+<li>当 $(u,v)\in E$，$c’(u,v)&#x3D;c(u,v)-f(u,v),c’(v,u)&#x3D;f(u,v)$。</li>
+</ul>
+<p>反向边的加入是为了存在反悔贪心的操作，保证了算法正确性，在程序中我们所建的都是残留网络。</p>
+<h1 id="增广路"><a href="#增广路" class="headerlink" title="增广路"></a>增广路</h1><p>对于一条从 $s$ 到 $t$ 的路径，对于路径上任意一条边 $(u,v)$，满足 $c’(u,v)&gt;0$，我们就称这条路径为增广路。</p>
+<p>那么如果有了一条增广路，我们就会尝试让源点分一点流量给这条增广路，而分配的流量就是每条边剩余容量的最小值（显然多了也流不过去），不难发现，当网络中存在增广路，则最大流答案将变大。</p>
+<h1 id="割"><a href="#割" class="headerlink" title="割"></a>割</h1><p>如果有网络 $G&#x3D;(V,E)$，存在集合 $S,T\subseteq V,S\cap T&#x3D;\emptyset,S\cup T&#x3D;V,s\in S,t\in T$，则称 $S,T$ 是对于网络 $G$ 的一个割。</p>
+<h2 id="割的容量"><a href="#割的容量" class="headerlink" title="割的容量"></a>割的容量</h2><p>对于一个割 $S,T$，$c(S,T)&#x3D;\sum\limits_{u\in S,v\in T,(u,v)\in E}c(u,v)$，我们称之为割的容量。</p>
+<h2 id="最小割"><a href="#最小割" class="headerlink" title="最小割"></a>最小割</h2><p>最小割的指的是割的最小<strong>容量</strong>。</p>
+<h2 id="割的流量"><a href="#割的流量" class="headerlink" title="割的流量"></a>割的流量</h2><p>对于一个割 $S,T$，$f(S,T)&#x3D;\sum\limits_{u\in S,v\in T, (u,v)\in E}f(u,v)-\sum\limits_{u\in S,v\in T,(u,v)\in E}f(v,u)$，我们称之为割的容量。</p>
+<p>意思为从 $S$ 中的点流到 $T$ 中的点的流量减去从 $T$ 的点流回到 $S$ 的点的流量。</p>
+<h2 id="割的性质"><a href="#割的性质" class="headerlink" title="割的性质"></a>割的性质</h2><ol>
+<li><p>$f(X,Y)+f(Y,X)&#x3D;0$</p>
+</li>
+<li><p>$f(X,X)&#x3D;0$</p>
+</li>
+<li><p>$f(Z,X\cup Y)&#x3D;f(Z,X)+f(Z,Y)$</p>
+</li>
+<li><p>$f(X\cup Y,Z)&#x3D;f(X,Z)+f(Y,Z)$</p>
+</li>
+<li><p>$\forall [S,T],\forall f,f(S,T)\le c(S,T)$。即任意的一个割与原网络的任意一个可行流，有割的流量不超过割的容量。</p>
+</li>
+<li><p>$f(S,T)&#x3D;F$，即割的流量的原网络的可行流。</p>
+<blockquote>
+<p>证明：</p>
+<p>$\because f(S,V)&#x3D;f(S,S)+f(S,T)$（性质 $3$）且 $f(S,S)&#x3D;0$（性质 $2$）</p>
+<p>$\therefore f(S,V)&#x3D;f(S,T)$</p>
+<p>又 $\because f(S,V)&#x3D;f({s},V)+f(S\backslash{s},V)$ （性质 $4$）</p>
+<p>记 $S’&#x3D;S\backslash {s}$，$S’$ 中不存在源点和汇点，则流量守恒，有 $f(S’,V)&#x3D;0$</p>
+<p>$\therefore f(S,T)&#x3D;f({s},V)&#x3D;F$</p>
+</blockquote>
+</li>
+<li><p>$F\le c(S,T)$，由性质 $5,6$ 可得。则我们能得到<strong>最大流不超过最小割</strong>。</p>
+</li>
+</ol>
+<h1 id="最大流"><a href="#最大流" class="headerlink" title="最大流"></a>最大流</h1><p>对于一个在网络的所有可行流，所得到的最大的 $F$ 称为网络的最大流，记作 $F_{\max}$。</p>
+<p>最大流指的是最大可行流。</p>
+<h1 id="最大流最小割定理"><a href="#最大流最小割定理" class="headerlink" title="*最大流最小割定理"></a>*最大流最小割定理</h1><p>最大流最小割定理指的是这样 $3$ 个条件互相等价：</p>
+<p>$\text{A.}$ 原网络取到最大流 $F_{\max}$</p>
+<p>$\text{B.}$ 残留网络中不存在增广路</p>
+<p>$\text{C.}$ 存在 $[S,T],c(S,T)&#x3D;F$</p>
+<blockquote>
+<p>证明：</p>
+<p>$\mathcal{I.}\text{A}\Rightarrow \text{B}$</p>
+<p>若当原网络取到最大流 $F_{\max}$ 时，残留网络仍存在增广路。</p>
+<p>那么我可以通过增广这条增广路的方式增加原网络流量使其不是最大流。</p>
+<p>证毕。</p>
+<p>$\mathcal{II.}\text{B}\Rightarrow\text{C}$</p>
+<p>由于只需存在一个割满足，那么考虑一种构造方式：</p>
+<p>对于当前的残留网络，$S$ 集合为源点 $s$ 通过剩余容量不为 $0$ 的边可到达的点集，$T$ 为 $V\backslash S$。</p>
+<p>由于 $\text{B}$ 条件，所以 $S$ 集合一定不包含 $t$。</p>
+<p>考虑此时的 $c(S,T)$。</p>
+<p>$\forall u\in S,v\in T$，我们有 $f(u,v)&#x3D;c(u,v)$。如果 $f(u,v)&lt; c(u,v)$，那么在残留网络中这条边的剩余流量 $c’(u,v)&#x3D;c(u,v)-f(u,v)&gt;0$，则 $v$ 应该也在 $S$ 中矛盾。</p>
+<p>$\forall u\in S, v\in T$，我们有 $f(v,u)&#x3D;0$，证明方式同上。</p>
+<p>那么我们有 $f(S,T)&#x3D;\sum\limits_{u\in S,v\in T, (u,v)\in E}f(u,v)-\sum\limits_{u\in S,v\in T,(u,v)\in E}f(v,u)&#x3D;\sum\limits_{u\in S,v\in T,(u,v)\in E}c(u,v)&#x3D;c(S,T)$</p>
+<p>又有 $f(S,T)&#x3D;F$，$\therefore c(S,T)&#x3D;F$，证毕。</p>
+<p>$\mathcal{III.}\text{C}\Rightarrow A$</p>
+<p>原命题 $\Leftrightarrow$ $F&#x3D;c(S,T)&#x3D;F_{\max}$</p>
+<p>由性质 $7$，最大流小于等于最小割。</p>
+<p>最小割 $\le c(S,T)&#x3D;F\le F_{\max}$</p>
+<p>所以最小割小于等于最大流，所以<strong>最小割等于最大流</strong>，同时得到 $F$ 就是最大流。</p>
+<p>证毕。</p>
+</blockquote>
+<p>那么我们就得到了，残留网络中没有增广路和当前的流是最大流是充要条件。</p>
+<h1 id="最大流算法"><a href="#最大流算法" class="headerlink" title="最大流算法"></a>最大流算法</h1><h2 id="text-Edmonds-Karp"><a href="#text-Edmonds-Karp" class="headerlink" title="$\text{Edmonds Karp}$"></a>$\text{Edmonds Karp}$</h2><p>网络最大流是怎么求的呢？有了对于增广路的概念，我们不难想到一个较为朴素的做法：在当前残留网络中，找到一条增广路，如果能找到增广路，说明当前的流的答案会变大，增加流，然后把增广路上的每条边的容量减掉增广路上所有边的最小容量，重复过程直到不能找到增广路。</p>
+<p>乍一看十分之正确，但是存在一个问题：对于这样的一个贪心模拟的过程是否存在着后效性？</p>
+<p>答案是有可能的，比如有 $s\rightarrow 1\rightarrow 2\rightarrow t,s\rightarrow1\rightarrow3\rightarrow t,s\rightarrow3\rightarrow t$ 这 $3$ 条增广路，如果我们恰好先选了 $s\rightarrow1\rightarrow3\rightarrow t$ 这条，然后恰好增广后 $c’(3,t)$ 变为 $0$，那不就增广不到 $s\rightarrow3\rightarrow t$ 了，但是显然我们还有增广 $s\rightarrow 1\rightarrow 2\rightarrow t,s\rightarrow3\rightarrow t$ 这两条路径的选择，那怎么处理这种情况呢？</p>
+<p>问题的本质是存在后效性，那么能不能想办法采用类似<strong>反悔贪心</strong>的做法来做？</p>
+<p><strong>考虑为每条边开一个反向边</strong>。初始时反向边容量设为 $0$。</p>
+<p>在我们增广了一次之后，将增广的路径上的正向边减少容量，反向边增加容量，这样上面的情况就会被反悔出来。</p>
+<p>由于最大流最小割定理，所以只要残留网络中没有增广路，则一定得到最大流。</p>
+<p>实现十分的容易，就是扫整张网络找增广路，并修改路径上的容量。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">long</span> ll<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> n<span class="token punctuation">,</span> m<span class="token punctuation">,</span> s<span class="token punctuation">,</span> t<span class="token punctuation">;</span>
+ll Flow<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> top <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> head<span class="token punctuation">[</span><span class="token number">205</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> NetWork <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> ver<span class="token punctuation">,</span> capacity<span class="token punctuation">,</span> nxt<span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">ins</span><span class="token punctuation">(</span><span class="token keyword">int</span> u<span class="token punctuation">,</span> <span class="token keyword">int</span> v<span class="token punctuation">,</span> <span class="token keyword">int</span> w<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        ver <span class="token operator">=</span> v<span class="token punctuation">,</span> capacity <span class="token operator">=</span> w<span class="token punctuation">,</span> nxt <span class="token operator">=</span> head<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        head<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">=</span> top<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>Net<span class="token punctuation">[</span><span class="token number">10005</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">></span> pre<span class="token punctuation">[</span><span class="token number">205</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">bool</span> vis<span class="token punctuation">[</span><span class="token number">205</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">bool</span> <span class="token function">bfs</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">memset</span><span class="token punctuation">(</span>vis<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> vis<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> que<span class="token punctuation">;</span>
+    que<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    vis<span class="token punctuation">[</span>s<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>que<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> u <span class="token operator">=</span> que<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> que<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> head<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span>i<span class="token punctuation">;</span>i <span class="token operator">=</span> Net<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>nxt<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> v <span class="token operator">=</span> Net<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>ver<span class="token punctuation">,</span> w <span class="token operator">=</span> Net<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>capacity<span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>vis<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token boolean">false</span> <span class="token operator">&amp;&amp;</span> w <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                pre<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">make_pair</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>v <span class="token operator">==</span> t<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                vis<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+                que<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">EdmondsKarp</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token function">bfs</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        ll mi <span class="token operator">=</span> <span class="token number">1e18</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> u <span class="token operator">=</span> t<span class="token punctuation">;</span>u <span class="token operator">!=</span> s<span class="token punctuation">;</span>u <span class="token operator">=</span> pre<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">.</span>first<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            mi <span class="token operator">=</span> <span class="token function">min</span><span class="token punctuation">(</span>mi<span class="token punctuation">,</span> <span class="token punctuation">(</span>ll<span class="token punctuation">)</span>Net<span class="token punctuation">[</span>pre<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">.</span>second<span class="token punctuation">]</span><span class="token punctuation">.</span>capacity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        Flow <span class="token operator">+</span><span class="token operator">=</span> mi<span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> u <span class="token operator">=</span> t<span class="token punctuation">;</span>u <span class="token operator">!=</span> s<span class="token punctuation">;</span>u <span class="token operator">=</span> pre<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">.</span>first<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Net<span class="token punctuation">[</span>pre<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">.</span>second<span class="token punctuation">]</span><span class="token punctuation">.</span>capacity <span class="token operator">-</span><span class="token operator">=</span> mi<span class="token punctuation">;</span>
+            Net<span class="token punctuation">[</span>pre<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">.</span>second <span class="token operator">^</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>capacity <span class="token operator">+</span><span class="token operator">=</span> mi<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> 
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ios<span class="token operator">::</span><span class="token function">sync_with_stdio</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cin<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cout<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    cin <span class="token operator">>></span> n <span class="token operator">>></span> m <span class="token operator">>></span> s <span class="token operator">>></span> t<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> u<span class="token punctuation">,</span> v<span class="token punctuation">,</span> w<span class="token punctuation">;</span>
+        cin <span class="token operator">>></span> u <span class="token operator">>></span> v <span class="token operator">>></span> w<span class="token punctuation">;</span>
+        <span class="token operator">++</span>top<span class="token punctuation">,</span> Net<span class="token punctuation">[</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span> v<span class="token punctuation">,</span> w<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">++</span>top<span class="token punctuation">,</span> Net<span class="token punctuation">[</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>v<span class="token punctuation">,</span> u<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">EdmondsKarp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> Flow <span class="token operator">&lt;&lt;</span> <span class="token string">'\n'</span><span class="token punctuation">;</span>
+    
+    cout<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="text-Dinic"><a href="#text-Dinic" class="headerlink" title="$\text{Dinic}$"></a>$\text{Dinic}$</h2><p>$\text{Dinic}$ 的主要思想也是增广，但是不同于 EK 的每次增广一条路径，$\text{Dinic}$ 可以增广多条路径。</p>
+<p>那么我们就要用 <code>dfs()</code> 找增广路了，但在找增广路前，首先需要用 <code>bfs()</code> 做一些准备工作，具体就是标注 $dis_u$ 表示 $s\rightarrow u$ 的最短路径长度，当然这里指的是增广路路径长度，<del>要不然跑就不用跑那么多遍</del>。</p>
+<p>这样我们实际是给<strong>网络标了一个 DAG 序</strong>，使 <code>dfs()</code> 不会进入死循环，而其特有的<strong>回溯</strong>功能可使我们遍历到多条增广路。</p>
+<p>那么算法流程是：先用 <code>bfs()</code> 分层，然后 <code>dfs(u, Flow)</code> 表示走到了 $u$ 点，从 $s\rightarrow u$ 的最小的一条边的容量是 $Flow$，每次我们找一个 $v$，使得 $dep_v&#x3D;dep_u+1$，然后在途中就去更新正向边和反向边。</p>
+<h3 id="优化-1"><a href="#优化-1" class="headerlink" title="优化 $1$"></a>优化 $1$</h3><p>一个剪枝，搜的时候记录当前点的<strong>流出量</strong> $used$，显然当 $used&#x3D;Flow$ 时，给到 $u$ 点的流都被用光了，就不用继续再从 $u$ 增广了，可以直接从 $u$ 退出回溯。</p>
+<h3 id="优化-2"><a href="#优化-2" class="headerlink" title="优化 $2$"></a>优化 $2$</h3><p>一个剪枝，叫做<strong>当前弧优化</strong>。</p>
+<p>当我们在枚举 $u$ 的出边时，我们是按我们链式前向星存边的顺序枚举一条出边 $(u,v)$，而此时我们还有 $x_1\rightarrow u,x_2\rightarrow u,\cdots$ 这样的边。</p>
+<p>当 $x_1\rightarrow u$，跑 $u$ 所有的出边找增广路。</p>
+<p>当 $x_2\rightarrow u$，跑 $u$ 所有的出边找增广路。</p>
+<p>当 $x_3\rightarrow u$，跑 $u$ 所有的出边找增广路。</p>
+<p>$\cdots$</p>
+<p>每次都重新跑了所有出边，但由于 <code>dfs()</code> 的性质可能<strong>在前面被枚举到的出边容量</strong>已经增广完了。</p>
+<p>所以记录 $cur_u$ 表示当前 $u$ 的出边在 $cur_u$ 之前被枚举到的已经增广完了，我们现在从 $cur_u$ 再增广就可以了。</p>
+<p>十分有用的优化。</p>
+<h3 id="优化-3"><a href="#优化-3" class="headerlink" title="优化 $3$"></a>优化 $3$</h3><p>对于一条边 $u\rightarrow v$，如果从 $v$ 开始搜索得到的流已经为 $0$，那么这轮搜索中以后再到达 $v$ 的流仍然为 $0$，直接在当前轮中把 $v$ 删掉，实现可以是 $dep_v&#x3D;Inf$ 或其它。</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">long</span> ll<span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> I <span class="token operator">=</span> <span class="token number">0x3f3f3f3f</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> n<span class="token punctuation">,</span> m<span class="token punctuation">,</span> s<span class="token punctuation">,</span> t<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> top <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> head<span class="token punctuation">[</span><span class="token number">205</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+ll Flow<span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> NetWork <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> ver<span class="token punctuation">,</span> capacity<span class="token punctuation">,</span> nxt<span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">ins</span><span class="token punctuation">(</span><span class="token keyword">int</span> u<span class="token punctuation">,</span> <span class="token keyword">int</span> v<span class="token punctuation">,</span> <span class="token keyword">int</span> w<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        ver <span class="token operator">=</span> v<span class="token punctuation">,</span> capacity <span class="token operator">=</span> w<span class="token punctuation">,</span> nxt <span class="token operator">=</span> head<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        head<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">=</span> top<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>Net<span class="token punctuation">[</span><span class="token number">10005</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> dep<span class="token punctuation">[</span><span class="token number">205</span><span class="token punctuation">]</span><span class="token punctuation">,</span> cur<span class="token punctuation">[</span><span class="token number">205</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">bool</span> <span class="token function">bfs</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">memcpy</span><span class="token punctuation">(</span>cur<span class="token punctuation">,</span> head<span class="token punctuation">,</span> <span class="token keyword">sizeof</span> cur<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">memset</span><span class="token punctuation">(</span>dep<span class="token punctuation">,</span> <span class="token number">0x3f</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span> dep<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> que<span class="token punctuation">;</span>
+    que<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span> dep<span class="token punctuation">[</span>s<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>que<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> u <span class="token operator">=</span> que<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> que<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> head<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span>i<span class="token punctuation">;</span>i <span class="token operator">=</span> Net<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>nxt<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> v <span class="token operator">=</span> Net<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>ver<span class="token punctuation">,</span> w <span class="token operator">=</span> Net<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>capacity<span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>dep<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">==</span> I <span class="token operator">&amp;&amp;</span> w <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                dep<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">=</span> dep<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+                que<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>dep<span class="token punctuation">[</span>t<span class="token punctuation">]</span> <span class="token operator">==</span> I<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+ll <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token keyword">int</span> u<span class="token punctuation">,</span> ll flow<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>u <span class="token operator">==</span> t<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> flow<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    ll used <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> cur<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span>i<span class="token punctuation">;</span>i <span class="token operator">=</span> Net<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>nxt<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cur<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">=</span> i<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> v <span class="token operator">=</span> Net<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>ver<span class="token punctuation">,</span> w <span class="token operator">=</span> Net<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>capacity<span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>dep<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">==</span> dep<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> w <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            ll low <span class="token operator">=</span> <span class="token function">dfs</span><span class="token punctuation">(</span>v<span class="token punctuation">,</span> <span class="token function">min</span><span class="token punctuation">(</span>flow <span class="token operator">-</span> used<span class="token punctuation">,</span> <span class="token punctuation">(</span>ll<span class="token punctuation">)</span>w<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>low <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                used <span class="token operator">+</span><span class="token operator">=</span> low<span class="token punctuation">;</span>
+                Net<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>capacity <span class="token operator">-</span><span class="token operator">=</span> low<span class="token punctuation">;</span>
+                Net<span class="token punctuation">[</span>i <span class="token operator">^</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>capacity <span class="token operator">+</span><span class="token operator">=</span> low<span class="token punctuation">;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>used <span class="token operator">==</span> flow<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                dep<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">=</span> I<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> used<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">Dinic</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token function">bfs</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Flow <span class="token operator">+</span><span class="token operator">=</span> <span class="token function">dfs</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> I<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ios<span class="token operator">::</span><span class="token function">sync_with_stdio</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cin<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cout<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    cin <span class="token operator">>></span> n <span class="token operator">>></span> m <span class="token operator">>></span> s <span class="token operator">>></span> t<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> u<span class="token punctuation">,</span> v<span class="token punctuation">,</span> w<span class="token punctuation">;</span>
+        cin <span class="token operator">>></span> u <span class="token operator">>></span> v <span class="token operator">>></span> w<span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span> v<span class="token punctuation">,</span> w<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>v<span class="token punctuation">,</span> u<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">Dinic</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> Flow <span class="token operator">&lt;&lt;</span> <span class="token string">'\n'</span><span class="token punctuation">;</span>
+    
+    cout<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h1 id="最大流相关模型和例题"><a href="#最大流相关模型和例题" class="headerlink" title="最大流相关模型和例题"></a>最大流相关模型和例题</h1><h2 id="二分图匹配"><a href="#二分图匹配" class="headerlink" title="二分图匹配"></a>二分图匹配</h2><p>二分图匹配一般指的是存在两个点集，点集内部没有边，点集之间有若干条边相连，一个匹配指的是从边集中选出一个子集，使得一个点<strong>至多</strong>出现在一条边中。</p>
+<p>我们将其抽象成一个网络流模型，对于每一条边 $(u,v)$，我们在网络中连一条容量为 $1$ 的 $u\rightarrow v$ 的边，这样当这条边的流量为 $1$ 时，代表这条边被选择。</p>
+<h3 id="P2756-飞行员配对方案问题"><a href="#P2756-飞行员配对方案问题" class="headerlink" title="P2756 飞行员配对方案问题"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2756">P2756 飞行员配对方案问题</a></h3><p>最典型的二分图匹配，我们向源点和每一个外籍飞行员连一条容量为 $1$ 的边，英国飞行员连一条容量为 $1$ 的边，然后外籍飞行员和英国飞行员之间的匹配连一条容量为 $1$ 的边。</p>
+<p>我们需要先证明原问题的每一个可行解 $s$，对应一个网络中的可行流 $f$。可行流的满足条件为<strong>容量限制</strong>和<strong>流量守恒</strong>。</p>
+<p>对于一个可行解 $s$ ，一个可行解满足每个人至多在一条匹配边中，这些边的流量设为 $1$，而其余匹配边的流量设为 $0$，对于所有外国籍的点，流出流量最多为 $1$；对于所有英国籍的点，流入流量最多为 $1$。我们可以用源点出边的流量和汇点入边的流量补上使其符合流量守恒，所以一个可行解必定对应一个可行流。</p>
+<p>对于一个可行流 $f$ ，为了符合题意，不妨先假设每条边的流量为 $0$ 或 $1$。</p>
+<p>因为满足流量守恒，所以除了源点和汇点外，每个点的流入的流量和流出的流量相等，外国籍点流入流量和英国记流出流量均最多为 $1$，则每个人要么不匹配，要么至多在一组匹配中，所以一个可行流一定是一个可行解。</p>
+<p>所以现在我们证明了每个可行解 $s$ 和<strong>整数流量的</strong>可行流<strong>一一对应</strong>，那么当我们证明了只要<strong>整数流量的最大流就是全局最大流</strong>的话，那么最大流就是<strong>全局最优解</strong>。</p>
+<p>这个证明比较简单：因为 $\text{Dinic}$ 算法中只用到了整数变量，且得到最大流的充要条件是残留网络中不存在增广路，那么由于 $\text{Dinic}$ 跑完后没有了增广路，所以<strong>整数流量的最大流也是所有情况的最大流</strong>。</p>
+<p>代码十分的简单，在没有特殊情况下，只会放主函数代码节省篇幅。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ios<span class="token operator">::</span><span class="token function">sync_with_stdio</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cin<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cout<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    cin <span class="token operator">>></span> m <span class="token operator">>></span> n<span class="token punctuation">;</span>
+    s <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> t <span class="token operator">=</span> n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> i<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> s<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> m <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> t<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>t<span class="token punctuation">,</span> i<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">int</span> u<span class="token punctuation">,</span> v<span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>cin <span class="token operator">>></span> u <span class="token operator">>></span> v <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>u <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">&amp;&amp;</span> v <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span> v<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>v<span class="token punctuation">,</span> u<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">Dinic</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> Flow <span class="token operator">&lt;&lt;</span> <span class="token string">'\n'</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> u <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>u <span class="token operator">&lt;=</span> m<span class="token punctuation">;</span>u<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> head<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span>i<span class="token punctuation">;</span>i <span class="token operator">=</span> Net<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>nxt<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> v <span class="token operator">=</span> Net<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>ver<span class="token punctuation">,</span> w <span class="token operator">=</span> Net<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>capacity<span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>v <span class="token operator">>=</span> m <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> v <span class="token operator">&lt;=</span> n <span class="token operator">&amp;&amp;</span> w <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                cout <span class="token operator">&lt;&lt;</span> u <span class="token operator">&lt;&lt;</span> <span class="token string">' '</span> <span class="token operator">&lt;&lt;</span> v <span class="token operator">&lt;&lt;</span> <span class="token string">'\n'</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    
+    cout<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="P3254-圆桌问题"><a href="#P3254-圆桌问题" class="headerlink" title="P3254 圆桌问题"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3254">P3254 圆桌问题</a></h3><p>在这道题中，区别仅仅在于从每个点的容量限制的不同，因为一个单位有 $r_i$ 个人，我们从汇点向每个单位连一条容量为 $r_i$ 的边，一个餐桌容纳 $c_i$ 个人，我们从每个餐桌向汇点连一条容量为 $c_i$ 的边，然后因为一个单位的人最多向每个桌子之间派 $1$ 个人，所以每个单位向每个桌子连一条容量为 $1$ 的边，这样不难证明，当网络满流时即是合法方案，所以跑最大流看是不是满流即可。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ios<span class="token operator">::</span><span class="token function">sync_with_stdio</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cin<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cout<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    cin <span class="token operator">>></span> m <span class="token operator">>></span> n<span class="token punctuation">;</span>
+    s <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> t <span class="token operator">=</span> m <span class="token operator">+</span> n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> r<span class="token punctuation">;</span>
+        cin <span class="token operator">>></span> r<span class="token punctuation">;</span>
+        people <span class="token operator">+</span><span class="token operator">=</span> r<span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> i<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> s<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> m <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> m <span class="token operator">+</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> c<span class="token punctuation">;</span>
+        cin <span class="token operator">>></span> c<span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> t<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>t<span class="token punctuation">,</span> i<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> m <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>j <span class="token operator">&lt;=</span> m <span class="token operator">+</span> n<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> j<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>j<span class="token punctuation">,</span> i<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">Dinic</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>Flow <span class="token operator">&lt;</span> people<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token string">"0\n"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token string">"1\n"</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> u <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>u <span class="token operator">&lt;=</span> m<span class="token punctuation">;</span>u<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> head<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span>i<span class="token punctuation">;</span>i <span class="token operator">=</span> Net<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>nxt<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">int</span> v <span class="token operator">=</span> Net<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>ver<span class="token punctuation">,</span> w <span class="token operator">=</span> Net<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>capacity<span class="token punctuation">;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>v <span class="token operator">>=</span> m <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> v <span class="token operator">&lt;=</span> m <span class="token operator">+</span> n <span class="token operator">&amp;&amp;</span> w <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    cout <span class="token operator">&lt;&lt;</span> v <span class="token operator">-</span> m <span class="token operator">&lt;&lt;</span> <span class="token string">' '</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            cout <span class="token operator">&lt;&lt;</span> <span class="token string">'\n'</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> 
+    <span class="token punctuation">}</span>
+    
+    cout<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="无源汇上下界可行流"><a href="#无源汇上下界可行流" class="headerlink" title="无源汇上下界可行流"></a>无源汇上下界可行流</h2><p>给定一个无源点和汇点的网络，每条边要求的流量存在上下界，求这个网络是否存在可行流。</p>
+<p>因为没有源点和汇点，所以一个可行流需要保证<strong>所有的点满足流量守恒</strong>。</p>
+<p>如果本题在没有下界的情况下，在初始什么流量也没有的时候，所有点均满足流量守恒，但如果我们先给所有边流下界的流量，并不能保证所有点流量守恒，那么我们为了满足流量守恒，我们可以记录 $A_i$ 表示 $i$ 号点流入流量下界之和减流出流量下界之和，那么对于流入流量小于流出流量的点，可以将流出流量多的部分分到虚拟汇点上，同理流入流量多的点我们就流量分到虚拟源点，这样我们就强行维护了流量守恒，当然我们还需要对原网络的边的上界改为上界减下界，所以最终只要虚拟源点到虚拟汇点的最大流为满流，则就保证了原图的网络的边都可满足上下界，且流量守恒。下面我们证明新网络的正确性。</p>
+<p>我们不妨设原图为 $G$，可行流为 $f$，新图为 $G’$，满流为 $f’$。</p>
+<p>那么对于一个原图可行流 $f$，这个流在 $G$ 上满足容量限制和流量守恒，那么对于 $G’$ 上的每一个点的流量，我们形式化地表达：$\text{flow}(u)&#x3D;\sum\limits_{(v,u)\in E}(f(v,u)-\lim(v, u))-\sum\limits_{(u,v)\in E}(f(u,v)-\lim(u,v))+f’(S,u)-f’(u,T)$。</p>
+<p>什么意思？就是在原图中有的那些边的流量，我们在新图中将它们的流量设为流量减下界，那么在新图中<strong>新增的边</strong>为<strong>每个点到虚拟源点&#x2F;虚拟汇点的边</strong>，那么 $f’(S,u)-f’(u,T)$ 应该为 $A_u$，而 $A_u$ 恰好就是流入流量下界之和减流出流量下界之和！则有：</p>
+<p>$\text{flow}(u)&#x3D;\sum\limits_{(v,u)\in E}(f(v,u)-\lim(v, u))-\sum\limits_{(u,v)\in E}(f(u,v)-\lim(u,v))+A_u$</p>
+<p>$&#x3D;\sum\limits_{(v,u)\in E}f(v,u)-\sum\limits_{(u,v)\in E}f(u,v)$</p>
+<p>而由于 $f$ 是个可行流，所以上式的那两部分是相等的，所以我们有 $\text{flow}(u)&#x3D;0$，即流 $f’$ 流量守恒，是一个可行流。当然容量限制一般是一定满足的，所以有时候会省略证明。</p>
+<p>对于一个新图可行流 $f’$，这个流在 $G’$ 上满足容量限制和流量守恒，证明也是一个思路，把每个点那些流到源点和汇点的那些流量在扔回到其它连接这个点的边上，就能证明流量守恒，但是我们还需要注意一个限制：原图中每条边的下限限制。</p>
+<p>这当然也是十分好说的，对于图 $G’$ 的每条不连接虚拟源点&#x2F;汇点的边，有 $0\leq f’(u,v)\leq c(u,v)-\lim(u,v)$，那么由于 $f’$ 是满流，所以肯定保证每条边都至少能分到 $\lim(u,v)$ 所以有 $\lim(u,v)\leq f’(u,v)+\lim(u,v)\leq c(u,v)$。</p>
+<h3 id="LOJ-115-无源汇有上下界可行流"><a href="#LOJ-115-无源汇有上下界可行流" class="headerlink" title="LOJ#115. 无源汇有上下界可行流"></a><a target="_blank" rel="noopener" href="https://loj.ac/p/115">LOJ#115. 无源汇有上下界可行流</a></h3><p>最终流程：求 $A_i\rightarrow$ 建新的残留网络 $\rightarrow$ 跑最大流 $\rightarrow$ 判是否是满流</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> NetWork <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> ver<span class="token punctuation">,</span> limit<span class="token punctuation">,</span> capacity<span class="token punctuation">,</span> nxt<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 注意可能会需要记一个 limit</span>
+    <span class="token keyword">void</span> <span class="token function">ins</span><span class="token punctuation">(</span><span class="token keyword">int</span> u<span class="token punctuation">,</span> <span class="token keyword">int</span> v<span class="token punctuation">,</span> <span class="token keyword">int</span> l<span class="token punctuation">,</span> <span class="token keyword">int</span> w<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        ver <span class="token operator">=</span> v<span class="token punctuation">,</span> limit <span class="token operator">=</span> l<span class="token punctuation">,</span> capacity <span class="token operator">=</span> w<span class="token punctuation">,</span> nxt <span class="token operator">=</span> head<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        head<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">=</span> top<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>Net<span class="token punctuation">[</span><span class="token number">20805</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ios<span class="token operator">::</span><span class="token function">sync_with_stdio</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cin<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cout<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    cin <span class="token operator">>></span> n <span class="token operator">>></span> m<span class="token punctuation">;</span>
+    s <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> t <span class="token operator">=</span> n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> u<span class="token punctuation">,</span> v<span class="token punctuation">,</span> l<span class="token punctuation">,</span> w<span class="token punctuation">;</span>
+        cin <span class="token operator">>></span> u <span class="token operator">>></span> v <span class="token operator">>></span> l <span class="token operator">>></span> w<span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span> v<span class="token punctuation">,</span> l<span class="token punctuation">,</span> w <span class="token operator">-</span> l<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>v<span class="token punctuation">,</span> u<span class="token punctuation">,</span> l<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        A<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">=</span> l<span class="token punctuation">,</span> A<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> l<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 求 A[i]</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>A<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 流入的下界流量之和大于流出的下界流量之和，建 s -> i 的边。</span>
+            Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> i<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> A<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> s<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            sum <span class="token operator">+</span><span class="token operator">=</span> A<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 注意求一下满流大小。</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 反之建 i -> t 的边。</span>
+            Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> t<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">-</span>A<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>t<span class="token punctuation">,</span> i<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">Dinic</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>Flow <span class="token operator">!=</span> sum<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token string">"NO\n"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token string">"YES\n"</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> <span class="token number">2</span> <span class="token operator">*</span> m<span class="token punctuation">;</span>i <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 在输出原网络流的方案时，流量 = 新网络流量 + 边的流量下界。</span>
+            cout <span class="token operator">&lt;&lt;</span> Net<span class="token punctuation">[</span>i <span class="token operator">^</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>capacity <span class="token operator">+</span> Net<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>limit <span class="token operator">&lt;&lt;</span> <span class="token string">'\n'</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    
+    cout<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="有源汇上下界可行流"><a href="#有源汇上下界可行流" class="headerlink" title="有源汇上下界可行流"></a>有源汇上下界可行流</h2><p>有了源点和汇点之后，说明有两个点的流量守恒就不用满足了，那么考虑怎么转化为无源汇上下界可行流。</p>
+<p>这里一个比较巧妙的操作是连 $t\rightarrow s$ 并将容量设为 $\text{Inf}$，此时我们发现原图的源点和汇点也可以满足要求，然后我们按无源汇上下界可行流做就行。</p>
+<h2 id="有源汇上下界最小-x2F-大流"><a href="#有源汇上下界最小-x2F-大流" class="headerlink" title="有源汇上下界最小&#x2F;大流"></a>有源汇上下界最小&#x2F;大流</h2><p>一个十分复杂的题目（指证明）</p>
+<p>我们可以轻易的求一个可行流，但是如何找到最小或最大流呢，做法十分之简单：按有源汇上下界可行流跑虚拟源点到虚拟汇点的最大流，然后把 $t\rightarrow s$ 的边删掉（正反都要），然后跑 $s$ 到 $t$ 的最大流，最终的最大流就是第一部分的最大流加第二部分的最大流，如果是最小流就跑 $t$ 到 $s$ 的最大流，最小流就是第一部分的最大流减第二部分的最大流。</p>
+<p>下面我们来证明一下。</p>
+<p>我们设原图为 $G$，原图的一个可行流为 $f$，我们设<strong>按有源汇上下界可行流建出来的图为</strong> $G’$，一个满流为 $f’$，$G’$ 的残留网络记为 $G_{f’}$，残留网络的可行流为 $f_0$。</p>
+<p>那么我们首先观察 $f_0+f’$ 的性质。不难发现，$f_0$ 中与虚拟源点和虚拟汇点相关的边的流量均为 $0$，因为 $f_0$ 是可行流，所以虚拟源点和虚拟汇点在源点和汇点分别是 $s$ 和 $t$ 的情况下，就变成了一个普通点，也是需要满足流量守恒的，而虚拟源点和虚拟汇点又分别都只能流出去流量和流进去流量，因此<strong>不可能再给它们流量</strong>，所以 $f_0+f’$ 仍然是一个满足容量限制的 $G’$ 的一个满流，且由 $f_0$ 我们可以得到，除了 $s$ 和 $t$ 外，其它点都是流量守恒的，而 $s$ 和 $t$ 通过 $G’$ 的 $t\rightarrow s$ 的反向边，也是可以满足流量守恒这一点的。因此，我们说，对于任意一个可行流 $f_0$，存在一个满流 $f’$，使得 $f_0+f’$ 是仍然是满流，这样就对应了原图 $G$ 的可行流 $f$。</p>
+<p>那么接下来我们观察任意两个 $G’$ 的满流相减 $f’-f’’$。</p>
+<p>考虑到两个满流都保证了虚拟源点流出的流量和虚拟汇点流入的流量是满的，那么相减之后<strong>这些有关虚拟源点和虚拟汇点的边的流量均变为了</strong> $0$，这是后续证明正确的重点。</p>
+<p>那么我们看这个是否对应一个残留网络的可行流 $f_0$ 呢，答案是对应的。因为两个可行流相减肯定还是可行流（但注意这个减完得到的还是虚拟源点到虚拟汇点的可行流），且虚拟源点和虚拟汇点的边的流量都减到了 $0$，所以除去虚拟源点和虚拟汇点这两个点后，网络仍满足流量守恒，这就足以说明有一个 $f_0$ 的可行流。</p>
+<p>所以综上，我们证明了：残留网络 $G_{f’}$ 上的可行流 $f_0$ 加上新图 $G’$ 的满流 $f’$ 就等价于一个原图的可行流 $f$。所以才有了开头那个看似十分感性但正确的做法。</p>
+<h3 id="LOJ-116-有源汇有上下界最大流"><a href="#LOJ-116-有源汇有上下界最大流" class="headerlink" title="LOJ#116. 有源汇有上下界最大流"></a><a target="_blank" rel="noopener" href="https://loj.ac/p/116">LOJ#116. 有源汇有上下界最大流</a></h3><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ios<span class="token operator">::</span><span class="token function">sync_with_stdio</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cin<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cout<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    cin <span class="token operator">>></span> n <span class="token operator">>></span> m <span class="token operator">>></span> s <span class="token operator">>></span> t<span class="token punctuation">;</span>
+    S <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> T <span class="token operator">=</span> n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> u<span class="token punctuation">,</span> v<span class="token punctuation">,</span> l<span class="token punctuation">,</span> w<span class="token punctuation">;</span>
+        cin <span class="token operator">>></span> u <span class="token operator">>></span> v <span class="token operator">>></span> l <span class="token operator">>></span> w<span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span> v<span class="token punctuation">,</span> w <span class="token operator">-</span> l<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>v<span class="token punctuation">,</span> u<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        A<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">=</span> l<span class="token punctuation">,</span> A<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> l<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>A<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>S<span class="token punctuation">,</span> i<span class="token punctuation">,</span> A<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> S<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            sum <span class="token operator">+</span><span class="token operator">=</span> A<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> T<span class="token punctuation">,</span> <span class="token operator">-</span>A<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>T<span class="token punctuation">,</span> i<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> 
+    Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>t<span class="token punctuation">,</span> s<span class="token punctuation">,</span> I<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> t<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">Dinic</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>Flow <span class="token operator">&lt;</span> sum<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token string">"please go home to sleep\n"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> res <span class="token operator">=</span> Net<span class="token punctuation">[</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span>capacity<span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span>capacity <span class="token operator">=</span> Net<span class="token punctuation">[</span>top <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>capacity <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        S <span class="token operator">=</span> s<span class="token punctuation">,</span> T <span class="token operator">=</span> t<span class="token punctuation">;</span>
+        Flow <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token function">Dinic</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        cout <span class="token operator">&lt;&lt;</span> res <span class="token operator">+</span> Flow <span class="token operator">&lt;&lt;</span> <span class="token string">'\n'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    cout<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<!-- flag of hidden posts -->
+            <div id="vcomments"></div>
+        </div>
+
+        <div id = "toc">
+        </div>
+
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: 'CEGJD6I3uLgJeTF6fPsqgGmw-gzGzoHsz',
+                appKey: 'R3wowhGv7IL3peB3tT06CjzS',
+                visitor: true,
+                master: '28a6ec927125219298a15dcb5c104f67'
+            })
+        </script>
+
+    
+
+</div>
+
+</body>
