@@ -107,13 +107,70 @@
             <div id = "post-title"> KMP/AC自动机 </div>
             <div id = "post-author"> By WyyOIer | </div>
             <div id = "post-date" title = "发布时间"> 2022-12-11 18:36:01 / </div>
-            <div id = "post-updated" title = "更新时间"> 2022-12-11 21:53:31 </div>
+            <div id = "post-updated" title = "更新时间"> 2022-12-12 12:59:28 </div>
             <span class = "leancloud_visitors" id = "/2022/12/11/KMP-AC%E8%87%AA%E5%8A%A8%E6%9C%BA/">
                 <text class="post-meta-item-text">阅读数 </text>
                 <i class="leancloud-visitors-count">nan</i>
             </span>
             <br>
-            <p>​	</p>
+            <h1 id="text-KMP"><a href="#text-KMP" class="headerlink" title="$\text{KMP}$"></a>$\text{KMP}$</h1><p>$\text{KMP}$  的作用主要是为了对一个字符串求出 $nxt$ 数组，在详细介绍之前，需要一些前置概念，</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="子串"><a href="#子串" class="headerlink" title="子串"></a>子串</h3><p>在 CF 的题目中比较常见，我们可以直接引用：</p>
+<blockquote>
+<p>A string $a$ is a substring of a string $b$ if $a$ can be obtained from $b$ by deletion of several (possibly, zero or all) characters from the beginning and several (possibly, zero or all) characters from the end.</p>
+</blockquote>
+<p>简单的说，就是字符串中的<strong>连续一段字符</strong>，对于一个字符串 $s$，记其中的 $l\sim r$ 段为 $s(l,r)$。</p>
+<h3 id="前缀"><a href="#前缀" class="headerlink" title="前缀"></a>前缀</h3><p>对于一个字符串 $s$，记前 $k$ 个字符构成的子串为 $pre(s,k)$。</p>
+<h3 id="后缀"><a href="#后缀" class="headerlink" title="后缀"></a>后缀</h3><p>对于一个字符串 $s$，记前 $k$ 个字符构成的子串为 $suf(s,k)$。</p>
+<h3 id="最长公共前缀"><a href="#最长公共前缀" class="headerlink" title="最长公共前缀"></a>最长公共前缀</h3><p>对于字符串 $s,t$，记 $s,t$ 的最长的完全相同的前缀长度为 $lcp(s,t)$。</p>
+<hr>
+<p>接下来是关于 $\text{KMP}$ 涉及到的概念。</p>
+<h3 id="周期"><a href="#周期" class="headerlink" title="周期"></a>周期</h3><ul>
+<li>$0&lt;p&lt;|s|$</li>
+<li>$\forall i\in [1,|s|-p],s_i&#x3D;s_{i+p}$</li>
+<li>满足以上条件，称 $p$ 为 $s$ 的周期。</li>
+</ul>
+<p><img src="/.com//KMP-AC%E8%87%AA%E5%8A%A8%E6%9C%BA-01.png" alt="周期 period"></p>
+<h3 id="text-Border"><a href="#text-Border" class="headerlink" title="$\text{Border}$"></a>$\text{Border}$</h3><ul>
+<li>$0&lt;r&lt;|s|$</li>
+<li>$pre(s,r)&#x3D;suf(s,r)$</li>
+<li>满足以上条件，称 $pre(s,r)$ 是 $s$ 的 $\text{Border}$，所以 $\text{Border}$ 指的<strong>仍是一个字符串</strong>。</li>
+</ul>
+<p><img src="/.com//KMP-AC%E8%87%AA%E5%8A%A8%E6%9C%BA-02.png" alt="Border"></p>
+<p>【重要结论】 $pre(s,k)$ 是 $s$ 的 $\text{Border}$ $\Leftrightarrow$ $|s|-k$ 是 $s$ 的周期</p>
+<p>举个例子，我们假设下图的蓝色部分是一个 $\text{Border}$：</p>
+<p><img src="/.com//KMP-AC%E8%87%AA%E5%8A%A8%E6%9C%BA-03.png" alt="Also a Border"></p>
+<p>那么红色就一定是一个满足要求的周期，反过来也同样成立。</p>
+<p><img src="/.com//KMP-AC%E8%87%AA%E5%8A%A8%E6%9C%BA-04.png" alt="Border to period"></p>
+<h3 id="text-Border-的传递性"><a href="#text-Border-的传递性" class="headerlink" title="*$\text{Border}$ 的传递性"></a>*$\text{Border}$ 的传递性</h3><p>这个也是十分重要的结论。串 $s$ 是 $t$ 的 $\text{Border}$，串 $t$ 是 $r$ 的 $\text{Border}$，那么 $s$ 是 $r$ 的 $\text{Border}$。</p>
+<p><img src="/.com//KMP-AC%E8%87%AA%E5%8A%A8%E6%9C%BA-05.png" alt="subBorder"></p>
+<p>一个更强的传递性：若串 $s$ 是 $r$ 的 $\text{Border}$，串 $t$ 是 $r$ 的 $\text{Border}$，且 $|t|&gt;|s|$ ，那么有 $s$ 是 $t$ 的 $\text{Border}$。	</p>
+<p>有了这个性质，我们就能得到，如果向 $s$ 和它的最长 $\text{Border}$ 连边，那么对于 $s$ 的所有 $\text{Border}$，其一定构成了<strong>一条由</strong> $s$ <strong>到以空串结尾</strong>的一条链，且<strong>长度严格递减</strong>。这是 $\text{KMP}$ 正确性的前提。</p>
+<h2 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h2><p>$\text{KMP}$ 主要是为了求出 $nxt$ 数组，其中 $nxt_i$ 表示 $pre(s,i)$ 的最长 $\text{Border}$ 的长度，</p>
+<p>我们在循环 $i&#x3D;1\rightarrow n$ 时，同时记录一个临时变量 $j$，代表 $i-1$ 时能匹配 $\text{Border}$ 的最长长度 $j$，那么我们有 $s(i - j, i - 1)&#x3D;pre(1,j)$。</p>
+<p>那么我们如何求出当前的 $j$ 呢？考虑如果我们想增大 $j$，则我们需要使下一个位置的字符继续保持匹配，即 $s_i&#x3D;s_{j+1}$。</p>
+<p>当我们不能匹配时，我们通过不断的跳 $nxt$ 使得出现 $s_i&#x3D;s_{j+1}$，那么代码即为：</p>
+<pre class=" language-cpp"><code class="language-cpp">nxt<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">,</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>j <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> str<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">!=</span> str<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        j <span class="token operator">=</span> nxt<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>str<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> str<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        j<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    nxt<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> j<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>我们需要说明两个问题来证明正确性：</p>
+<ol>
+<li><p>为什么这样求出的 $nxt_i$ 是最长的？</p>
+<p>首先我们有，如果 $pre(1,j)$ 是 $pre(1,i)$ 的 $\text{Border}$，那么就一定有等价于 $pre(1,j-1)$ 是 $pre(1,i-1)$ 的 $\text{Border}$。</p>
+<p>设 <code>while()</code> 停止时的 $j$ 为 $j_0$，那么 $j_0$ 一定是满足 $s_{j_0+1}&#x3D;s_i$ 的 $pre(1,i-1)$ 的最长 $\text{Border}$，而这个满足的最长 $pre(1,i-1)$ 的 $\text{Border}$ 就可以转化为 $pre(1,i)$ 的最长 $\text{Border}$。</p>
+</li>
+<li><p>为什么下面的 <code>if</code> 只需要判断一次（即不用也改成 <code>while()</code>）？</p>
+<p>这个根据上面其实比较好推出。找到最大的 $j_0$ 后，最多只会往后匹配一个字符。如果能匹配超过一个字符，则我们的 $j_0$ 一定还会增大，因为此时这个更长的也会成为 $pre(s,i-1)$ 的更长的 $\text{Border}$ 且满足 $s_i&#x3D;s_{j_0+1}$。</p>
+</li>
+</ol>
+<p>那么解决了这两个问题，我们就可以分析一下时间复杂度。在 <code>while()</code> 中，$j$ 每次严格减小 $1$ 且减到 $0$ 后不再减小；在 <code>if</code> 中，$j$ 每次最多增加 $1$。所以 $j$ 的变化次数是 $\mathcal{O}(n)$，最终的时间复杂度是 $\mathcal{O}(n)$ 的。</p>
 
             <div id="vcomments"></div>
         </div>
