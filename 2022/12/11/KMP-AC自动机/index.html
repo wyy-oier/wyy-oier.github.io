@@ -107,7 +107,7 @@
             <div id = "post-title"> KMP/AC自动机 </div>
             <div id = "post-author"> By WyyOIer | </div>
             <div id = "post-date" title = "发布时间"> 2022-12-11 18:36:01 / </div>
-            <div id = "post-updated" title = "更新时间"> 2022-12-12 12:59:28 </div>
+            <div id = "post-updated" title = "更新时间"> 2022-12-12 15:06:46 </div>
             <span class = "leancloud_visitors" id = "/2022/12/11/KMP-AC%E8%87%AA%E5%8A%A8%E6%9C%BA/">
                 <text class="post-meta-item-text">阅读数 </text>
                 <i class="leancloud-visitors-count">nan</i>
@@ -129,20 +129,20 @@
 <li>$\forall i\in [1,|s|-p],s_i&#x3D;s_{i+p}$</li>
 <li>满足以上条件，称 $p$ 为 $s$ 的周期。</li>
 </ul>
-<p><img src="/.com//KMP-AC%E8%87%AA%E5%8A%A8%E6%9C%BA-01.png" alt="周期 period"></p>
+<p><img src="https://cdnjson.com/images/2022/12/12/KMP-AC-01.png" alt="period"></p>
 <h3 id="text-Border"><a href="#text-Border" class="headerlink" title="$\text{Border}$"></a>$\text{Border}$</h3><ul>
 <li>$0&lt;r&lt;|s|$</li>
 <li>$pre(s,r)&#x3D;suf(s,r)$</li>
 <li>满足以上条件，称 $pre(s,r)$ 是 $s$ 的 $\text{Border}$，所以 $\text{Border}$ 指的<strong>仍是一个字符串</strong>。</li>
 </ul>
-<p><img src="/.com//KMP-AC%E8%87%AA%E5%8A%A8%E6%9C%BA-02.png" alt="Border"></p>
+<p><img src="https://cdnjson.com/images/2022/12/12/KMP-AC-02.png" alt="Border"></p>
 <p>【重要结论】 $pre(s,k)$ 是 $s$ 的 $\text{Border}$ $\Leftrightarrow$ $|s|-k$ 是 $s$ 的周期</p>
 <p>举个例子，我们假设下图的蓝色部分是一个 $\text{Border}$：</p>
-<p><img src="/.com//KMP-AC%E8%87%AA%E5%8A%A8%E6%9C%BA-03.png" alt="Also a Border"></p>
+<p><img src="https://cdnjson.com/images/2022/12/12/KMP-AC-03.png" alt="Also a Border"></p>
 <p>那么红色就一定是一个满足要求的周期，反过来也同样成立。</p>
-<p><img src="/.com//KMP-AC%E8%87%AA%E5%8A%A8%E6%9C%BA-04.png" alt="Border to period"></p>
+<p><img src="https://cdnjson.com/images/2022/12/12/KMP-AC-04.png" alt="Border to period"></p>
 <h3 id="text-Border-的传递性"><a href="#text-Border-的传递性" class="headerlink" title="*$\text{Border}$ 的传递性"></a>*$\text{Border}$ 的传递性</h3><p>这个也是十分重要的结论。串 $s$ 是 $t$ 的 $\text{Border}$，串 $t$ 是 $r$ 的 $\text{Border}$，那么 $s$ 是 $r$ 的 $\text{Border}$。</p>
-<p><img src="/.com//KMP-AC%E8%87%AA%E5%8A%A8%E6%9C%BA-05.png" alt="subBorder"></p>
+<p><img src="https://cdnjson.com/images/2022/12/12/KMP-AC-05.png" alt="subBorder"></p>
 <p>一个更强的传递性：若串 $s$ 是 $r$ 的 $\text{Border}$，串 $t$ 是 $r$ 的 $\text{Border}$，且 $|t|&gt;|s|$ ，那么有 $s$ 是 $t$ 的 $\text{Border}$。	</p>
 <p>有了这个性质，我们就能得到，如果向 $s$ 和它的最长 $\text{Border}$ 连边，那么对于 $s$ 的所有 $\text{Border}$，其一定构成了<strong>一条由</strong> $s$ <strong>到以空串结尾</strong>的一条链，且<strong>长度严格递减</strong>。这是 $\text{KMP}$ 正确性的前提。</p>
 <h2 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h2><p>$\text{KMP}$ 主要是为了求出 $nxt$ 数组，其中 $nxt_i$ 表示 $pre(s,i)$ 的最长 $\text{Border}$ 的长度，</p>
@@ -171,6 +171,7 @@
 </li>
 </ol>
 <p>那么解决了这两个问题，我们就可以分析一下时间复杂度。在 <code>while()</code> 中，$j$ 每次严格减小 $1$ 且减到 $0$ 后不再减小；在 <code>if</code> 中，$j$ 每次最多增加 $1$。所以 $j$ 的变化次数是 $\mathcal{O}(n)$，最终的时间复杂度是 $\mathcal{O}(n)$ 的。</p>
+<h1 id="text-AC-automaton"><a href="#text-AC-automaton" class="headerlink" title="$\text{AC-automaton}$"></a>$\text{AC-automaton}$</h1><p>AC 自动机，本质上是字典树和 $fail$ 指针构成。</p>
 
             <div id="vcomments"></div>
         </div>
