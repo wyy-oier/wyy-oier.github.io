@@ -107,7 +107,7 @@
             <div id = "post-title"> 网络流算法 </div>
             <div id = "post-author"> By WyyOIer | </div>
             <div id = "post-date" title = "发布时间"> 2022-11-25 16:06:46 / </div>
-            <div id = "post-updated" title = "更新时间"> 2022-12-10 13:51:34 </div>
+            <div id = "post-updated" title = "更新时间"> 2022-12-20 20:19:06 </div>
             <span class = "leancloud_visitors" id = "/2022/11/25/%E7%BD%91%E7%BB%9C%E6%B5%81%E7%AE%97%E6%B3%95/">
                 <text class="post-meta-item-text">阅读数 </text>
                 <i class="leancloud-visitors-count">nan</i>
@@ -823,8 +823,8 @@ ll <span class="token function">dfs</span><span class="token punctuation">(</spa
 <p>顺便说明一个最小割构造方式，由最大流最小割定理的证明过程，当我们求出一个可行流后，沿着所有剩余容量大于 $0$ 的点一直走到的所有点放到 $S$ 集合，其余放到 $T$ 集合，那么 $[S,T]$ 就是一个与当前可行流相等的割的容量。</p>
 <p>代码略。</p>
 <h1 id="最小割相关模型和例题"><a href="#最小割相关模型和例题" class="headerlink" title="最小割相关模型和例题"></a>最小割相关模型和例题</h1><h2 id="最小割直接应用"><a href="#最小割直接应用" class="headerlink" title="最小割直接应用"></a>最小割直接应用</h2><h3 id="AcWing2279-网络战争"><a href="#AcWing2279-网络战争" class="headerlink" title="AcWing2279. 网络战争"></a><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/2281/">AcWing2279. 网络战争</a></h3><p>对于平均最小边权，不难想到 01 分数规划的做法。</p>
-<p>二分一个值 $mid$ 并判断是否可行，等价于看 $\dfrac{\sum\limits_{e\in C}w_e}{|C|}\leq mid$。</p>
-<p>移项后得 $\sum\limits_{e\in C}(w_e - mid)\leq 0$，由于本题中对于边割集的定义为删去这些边后 $s$ 和 $t$ 不连通，那么我们可以多删一些边。因此我们先将 $w_e\le mid$ 的边都选上，那么剩下的边中都为正权，为了最小化代价，我们选最小割即可。</p>
+<p>二分一个值 $mid$ 并判断是否可行，等价于判断 $\dfrac{\sum\limits_{e\in C}w_e}{|C|}\leq mid$。</p>
+<p>移项后得 $\sum\limits_{e\in C}(w_e - mid)\leq 0$，由于本题中对于边割集的定义为删去这些边后 $s$ 和 $t$ 不连通，因此我们先将 $w_e\le mid$ 的边都选上，那么剩下的边中都为正权，为了最小化代价，我们选最小割即可。</p>
 <p>注意精度问题。</p>
 <pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">bool</span> <span class="token function">chk</span><span class="token punctuation">(</span>lf mid<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     Flow <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -869,6 +869,138 @@ ll <span class="token function">dfs</span><span class="token punctuation">(</spa
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<h2 id="AcWing2280-最优标号"><a href="#AcWing2280-最优标号" class="headerlink" title="AcWing2280. 最优标号"></a><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/2282/">AcWing2280. 最优标号</a></h2><p>看到求异或值最大，不难想到拆位求的思路。</p>
+<p>把每一位抠出来后，每个点的编号都只能是 $0$ 或 $1$。</p>
+<p>那如何把 $0$ 和 $1$ 之间的异或值与割联系起来呢？</p>
+<p>考虑到我们如果将割 $[S,T]$ 的 $S$ 集的权值都设为 $0$，$T$ 集的权值都设为 $1$，那么当且仅当只有连接 $0$ 和 $1$ 的边会有贡献，也就是割的割边，所以最小值就是最小割。</p>
+<p>注意一些点可能已经被设权值，要提前先加入 $S&#x2F;T$  割集中。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">build</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">memset</span><span class="token punctuation">(</span>head<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span> head<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    top <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> u <span class="token operator">=</span> edge<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>first<span class="token punctuation">,</span> v <span class="token operator">=</span> edge<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>second<span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span> v<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>v<span class="token punctuation">,</span> u<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> j <span class="token operator">&amp;</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> t<span class="token punctuation">,</span> I<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>t<span class="token punctuation">,</span> i<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> i<span class="token punctuation">,</span> I<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> s<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">Dinic</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">build</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token function">bfs</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Flow <span class="token operator">+</span><span class="token operator">=</span> <span class="token punctuation">(</span>ll<span class="token punctuation">)</span><span class="token function">dfs</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> I<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> j<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ios<span class="token operator">::</span><span class="token function">sync_with_stdio</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cin <span class="token operator">>></span> n <span class="token operator">>></span> m<span class="token punctuation">;</span>
+    s <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> t <span class="token operator">=</span> n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    
+    <span class="token function">memset</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span> a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cin <span class="token operator">>></span> edge<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>first <span class="token operator">>></span> edge<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>second<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">int</span> k<span class="token punctuation">;</span>
+    cin <span class="token operator">>></span> k<span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>k<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> u<span class="token punctuation">,</span> p<span class="token punctuation">;</span>
+        cin <span class="token operator">>></span> u <span class="token operator">>></span> p<span class="token punctuation">;</span>
+        a<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">=</span> p<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>j <span class="token operator">&lt;</span> <span class="token number">31</span><span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">Dinic</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    cout <span class="token operator">&lt;&lt;</span> Flow <span class="token operator">&lt;&lt;</span> <span class="token string">'\n'</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="最大权闭合图"><a href="#最大权闭合图" class="headerlink" title="最大权闭合图"></a>最大权闭合图</h2><p>对于一张图 $G&#x3D;(V,E)$，每个点有一个点权，我们定义：</p>
+<p>一个闭合图指从图中选出一些点构成集合 $S$，使得 $\forall u\in S,(u,v)\in E$，有 $v\in S$，我们可称这样的点集 $S$ 或点集 $S$ 与里面的边集合起来是一个闭合图。</p>
+<p>一个闭合图的权是闭合图点集中的点权之和。</p>
+<p>最大权闭合图就是所有闭合图中权值最大的那个。</p>
+<p>这个问题与最小割有什么联系？我们先说网络建法：对于图中的原先的边，在网络中添加容量为 $Inf$ 的边。对于权值大于 $0$ 的点，再从虚拟源点向这个点连容量为这个点点权大小的边，对于权值小于等于 $0$ 的点，再从这个点向虚拟汇点连容量为这个点点权相反数大小的边。</p>
+<p><img src="https://cdnjson.com/images/2022/12/18/5b6f0d6dbda6d4ed3fb5bdbbf297c93d.png" alt="最大权闭合图"></p>
+<p>我们定义一个特殊的割叫做<strong>简单割</strong>，表示所有的割边都跟源点和汇点相连。那么按上述方式建的网络的最小割是不是简单割呢，由最大流最小割定理，最小割等于最大流，而最大流是有限的，则割边不可能包括中间容量为 $Inf$ 的边。</p>
+<p>接下来我们要证明闭合图与简单割一一对应。对于一个闭合子图，记它的点集为 $V’$，我们构造割 $[S,T]$，$S&#x3D;{s}+V’,T&#x3D;V\backslash S+{t}$。而又因为 $V’$ 构成一个闭合图，那么从 $V’$ 中的点怎么走，最终还是只能走到 $V’$ 集合，也就是不可能通过那些容量 $Inf$ 的边从 $S$ 走到 $T$，那么割边不包括容量 $Inf$ 的边，即这是一个简单割。</p>
+<p>那么对于一个简单割 $[S,T]$ ，由于不存在容量 $Inf$ 的割边，所以 $S$ 中的点也只能走到 $S$ 中的点，所以是一个闭合图。</p>
+<p>那么闭合图的权到底和这个简单割的容量的有什么关系？</p>
+<p>设 $S&#x3D;{s}+V_S,T&#x3D;{t}+V_T$，我们看如下四类割边各自造成的贡献：</p>
+<ol>
+<li>$s\rightarrow t$，虚拟源点到虚拟汇点没有直接的边，没有贡献。</li>
+<li>$V_S\rightarrow V_T$，由于是<strong>简单割</strong>，所以没有贡献。</li>
+<li>$s\rightarrow V_T$，每条割边的容量对应割中的那些正权点的权值，所以这块贡献为正权点权值之和。</li>
+<li>$V_S\rightarrow t$，每条割边的容量对应割中的那些负权点的权值，所以这块贡献为负权点权值之和。</li>
+</ol>
+<p>所以最后写成式子就是：$c(S,T)&#x3D;\sum\limits_{v\in V_T^+}w_v+\sum\limits_{v\in V_S^-}(-w_v)$。</p>
+<p>我们去看 $V_S$ 构成的闭合子图的权值：</p>
+<p>$w(V_S)&#x3D;\sum\limits_{v\in V_S^+}w_v-\sum\limits_{v\in V_S^-}(-w_v)$</p>
+<p>$&#x3D;\sum\limits_{v\in V_S^+}w_v+\sum\limits_{v\in V_T^+}w_v-c(S,T)$</p>
+<p>$&#x3D;\sum\limits_{v\in V}w_v-c(S,T)$</p>
+<p>则 $V_S$ 的权值是<strong>所有点的权值之和减去简单割的容量</strong>，那么什么时候有最大值呢，<strong>最小割的时候</strong>。</p>
+<p>至此完成证明。</p>
+<h2 id="NOI2006-最大获利"><a href="#NOI2006-最大获利" class="headerlink" title="[NOI2006] 最大获利"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4174">[NOI2006] 最大获利</a></h2><p>本题中如果把建设中转站的费用看作负权点，用户收益看作正权点的话，我们可以转化为最大权闭合图问题。</p>
+<p>我们只需向每个用户群和对应的两个中转站连边，当且仅当两个中转站都选了，这个用户群才能选，所以从每个用户群出发得保证走到两个中转站，所以是个闭合子图。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ios<span class="token operator">::</span><span class="token function">sync_with_stdio</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cin<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cout<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    cin <span class="token operator">>></span> n <span class="token operator">>></span> m<span class="token punctuation">;</span>
+    s <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> t <span class="token operator">=</span> n <span class="token operator">+</span> m <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cin <span class="token operator">>></span> p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>i <span class="token operator">+</span> m<span class="token punctuation">,</span> t<span class="token punctuation">,</span> p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>t<span class="token punctuation">,</span> i <span class="token operator">+</span> m<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> u<span class="token punctuation">,</span> v<span class="token punctuation">,</span> w<span class="token punctuation">;</span>
+        cin <span class="token operator">>></span> u <span class="token operator">>></span> v <span class="token operator">>></span> w<span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> i<span class="token punctuation">,</span> w<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> s<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> u <span class="token operator">+</span> m<span class="token punctuation">,</span> I<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>u <span class="token operator">+</span> m<span class="token punctuation">,</span> i<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> v <span class="token operator">+</span> m<span class="token punctuation">,</span> I<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Net<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ins</span><span class="token punctuation">(</span>v <span class="token operator">+</span> m<span class="token punctuation">,</span> i<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        sum <span class="token operator">+</span><span class="token operator">=</span> w<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">Dinic</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> sum <span class="token operator">-</span> Flow <span class="token operator">&lt;&lt;</span> <span class="token string">'\n'</span><span class="token punctuation">;</span>
+    
+    cout<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="最大密度子图"><a href="#最大密度子图" class="headerlink" title="最大密度子图"></a>最大密度子图</h2><p>对于一个点集 $V$，$E&#x3D;{(u,v)|u\in V, v\in V}$，则对应密度为 $\dfrac{|E|}{|V|}$，请你找到最大密度子图。</p>
+<p>看到除法，我们使用 01 分数规划，判定 $\dfrac{|E|}{|V|}\ge g$。</p>
+<p>$|E|-g\cdot |V|\ge 0$，我们要最大化 $|E|-g\cdot |V|$，也就是最小化 $g\cdot |V|-|E|$。</p>
+<p>$g\cdot |V|-|E|&#x3D;\sum\limits_{v\in V}g-(\dfrac{\sum\limits_{v\in V}d_v}{2}-\dfrac{c(V,V’)}{2})$，其中 $V’$ 是点的全集和 $V$ 的差集，$d_u$ 是 $u$ 点的度。	</p>
+<p>我们把系数提到前面得到 $\dfrac{1}{2}(\sum\limits_{v\in V}(g-d_v)+c(V,V’))$，观察到有 $c(V,V’)$ 这样的割的容量的部分，但是我们如何去把前面那项结合起来？</p>
+<p>于是有了如下的建图：从超级源点向每个点连容量为 $U$ 的边，从每个点向超级汇点连容量为 $U+2g-d_v$ 的边，原图中的边的容量均为 $1$。$U$ 是为了放置边的容量爆负加的偏移量。</p>
+<p>我们还是分类算割的容量：</p>
+<ol>
+<li>$s\rightarrow t$，没有，无贡献。</li>
+<li>$s\rightarrow V’$，每条的容量为 $U$。</li>
+<li>$V\rightarrow t$，每条的容量为 $U+2g-d_v$。</li>
+<li>$V\rightarrow V’$，每条的容量均为 $1$。</li>
+</ol>
+<p>$c(V,V’)&#x3D;\sum\limits_{v\in V’}U+\sum\limits_{v\in V}(U+2g-d_v)+\sum\limits_{u\in V}\sum\limits_{v\in V’}c(u,v)$</p>
+<p>$&#x3D;U\cdot n +2g\sum\limits_{v\in V’}1-\sum\limits_{u\in V}\sum\limits_{v\in V}c(u,v)$</p>
+<p>$&#x3D;U\cdot n+2g|V|-2|E|$</p>
+<p>这样我们只需最小化 $c(V,V’)$，就能最小化 $g\cdot |V|-|E|$。</p>
 <!-- flag of hidden posts -->
             <div id="vcomments"></div>
         </div>
