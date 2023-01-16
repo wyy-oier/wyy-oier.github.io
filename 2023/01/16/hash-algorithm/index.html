@@ -1,5 +1,5 @@
 <head>
-    <title> U175993 旅行计划 - WyyOIer </title>
+    <title> Hash 算法 - WyyOIer </title>
   	<link rel="stylesheet" href="/css/main.css">
   	<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -104,23 +104,16 @@
     
 
         <div id = "article">
-            <div id = "post-title"> U175993 旅行计划 </div>
+            <div id = "post-title"> Hash 算法 </div>
             <div id = "post-author"> By WyyOIer | </div>
-            <div id = "post-date" title = "发布时间"> 2022-07-24 13:08:19 / </div>
-            <div id = "post-updated" title = "更新时间"> 2022-07-24 13:58:06 </div>
-            <span class = "leancloud_visitors" id = "/2022/07/24/U175993-%E6%97%85%E8%A1%8C%E8%AE%A1%E5%88%92/">
+            <div id = "post-date" title = "发布时间"> 2023-01-16 19:46:55 / </div>
+            <div id = "post-updated" title = "更新时间"> 2023-01-16 19:47:17 </div>
+            <span class = "leancloud_visitors" id = "/2023/01/16/hash-algorithm/">
                 <text class="post-meta-item-text">阅读数 </text>
                 <i class="leancloud-visitors-count">nan</i>
             </span>
             <br>
-            <p>设 $e_j$ 表示以 $j$ 为右端点，不乏味旅程 $[i,j]$ 的 $i$ 的<strong>最大值</strong>，可以通过双指针预处理得出。</p>
-<p>考虑询问 $[k,l]$ 的答案 $ans$</p>
-<p>$ans&#x3D;\sum\limits_{j&#x3D;k}^l [e_j\ge k]\sum\limits_{i&#x3D;k}^{e_j}(j-i)$</p>
-<p>$&#x3D;\sum\limits_{j&#x3D;k}^l[e_j\ge k](j(e_j-k+1)-\sum\limits_{i&#x3D;k}^{e_j}i)$</p>
-<p>$&#x3D;\sum\limits_{j&#x3D;k}^l[e_j\ge k]je_j-\sum\limits_{j&#x3D;k}^{e_j}[e_j\ge k]jk+(l-k+1)[e_j\ge k]-\sum\limits_{j&#x3D;k}^l[e_j\ge k](\sum\limits_{i&#x3D;1}^{e_j}i-\sum\limits_{i&#x3D;1}^{k-1}i)$</p>
-<p>这样我们按 $l$ 排序，再扫 $e_j$ 用树状数组维护 $\sum je_j,\sum j,\sum\sum\limits_{i&#x3D;1}^{e_j}i$ 以及满足 $e_j\ge k$ 的 $j$ 的个数。</p>
-<p>时间复杂度 $\mathcal{O}(n\log n)$。</p>
-
+            
             <div id="vcomments"></div>
         </div>
 

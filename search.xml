@@ -7,7 +7,7 @@
 <p>$\text{No more chance…}$</p>
 </blockquote>
 <h1 id="text-2022-年-7-sim8-月（暑假）"><a href="#text-2022-年-7-sim8-月（暑假）" class="headerlink" title="$\text{2022}$ 年 $7\sim8$ 月（暑假）"></a>$\text{2022}$ 年 $7\sim8$ 月（暑假）</h1><p>暑假集训模拟赛，相比于去年，确实有点进步。但真的就是倒数的次数少了一点，感觉我的各次比赛的方差应该是最大的，为什么会这样呢。</p>
-<h1 id="text-2022-年-9-sim-10-月"><a href="#text-2022-年-9-sim-10-月" class="headerlink" title="$\text{2022}$ 年 $9\sim 10$ 月"></a>$\text{2022}$ 年 $9\sim 10$ 月</h1><p>这段时间做了一次跟去年重复的工作，就是把联赛范围内的知识都再次拿出来复习。但<strong>重复的学习不代表重复的收获</strong>，每一次学习都会加深记忆，这次我也做了一个关于一些知识点和套路的整理，[见此](<a href="https://wyy-oier.github.io/2022/07/29/OI-idea-s/">OI idea(s) - WyyOIer (wyy-oier.github.io)</a>)。所以总的来说，我会更认为自己比之前更掌握了联赛范围内的知识。</p>
+<h1 id="text-2022-年-9-sim-10-月"><a href="#text-2022-年-9-sim-10-月" class="headerlink" title="$\text{2022}$ 年 $9\sim 10$ 月"></a>$\text{2022}$ 年 $9\sim 10$ 月</h1><p>这段时间做了一次跟去年重复的工作，就是把联赛范围内的知识都再次拿出来复习。但<strong>重复的学习不代表重复的收获</strong>，每一次学习都会加深记忆，这次我也做了一个关于一些知识点和套路的整理，<a href="https://wyy-oier.github.io/2022/07/29/OI-idea-s/">见此</a>。所以总的来说，我会更认为自己比之前更掌握了联赛范围内的知识。</p>
 <h2 id="text-2022-10-15"><a href="#text-2022-10-15" class="headerlink" title="$\text{2022.10.15}$"></a>$\text{2022.10.15}$</h2><p>没记错的话这天是 $\text{CSP-S}$ 的日子，游记在<a href="https://wyy-oier.github.io/2022/09/18/NOIP2022-%E5%90%8C%E6%AD%A5%E8%B5%9B%E6%B8%B8%E8%AE%B0/">这里</a>，相关的一些问题和总结也说了，但是还是想重申一点：<strong>注重基础算法的理解和运用</strong>，当然这次做的还是很好的，问题主要是在于<strong>需要加快思考的速度</strong>，如果就连 $\text{T1,T2}$  一共都得想 $30$ 分钟，写 $70$ 分钟的话，那后面的题目必然就没有足够的时间，<strong>最后的结果还是失败</strong>。</p>
 <h1 id="text-2022-年-11-sim-12-月"><a href="#text-2022-年-11-sim-12-月" class="headerlink" title="$\text{2022}$ 年 $11\sim 12$ 月"></a>$\text{2022}$ 年 $11\sim 12$ 月</h1><h2 id="text-2022-11-19-2022-11-26"><a href="#text-2022-11-19-2022-11-26" class="headerlink" title="$\text{2022.11.19~2022.11.26}$"></a>$\text{2022.11.19~2022.11.26}$</h2><p>这是 $\text{NOIP}$ 前一周停课的时间，当然因为网课，所以停课带来的 whk 进度上的问题并不大。</p>
 <p>这一周内我将未整理的树的知识整理，当然这段时间有 $2$ 场模拟赛，打的效果… 还是倒数。</p>
@@ -715,6 +715,11 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <li>以 $u$ 为根的子树的重心必定在以 $u$ 为 $top$ 的重链上。</li>
 </ul>
 ]]></content>
+  </entry>
+  <entry>
+    <title>Hash 算法</title>
+    <url>/2023/01/16/hash-algorithm/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>有向图强联通分量/无向图割点割边</title>
@@ -5768,113 +5773,100 @@ ll ans<span class="token punctuation">;</span>
   </entry>
   <entry>
     <title>后缀数组(SA)/后缀自动机(SAM)</title>
-    <url>/2021/12/13/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84-SA-%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BA-SAM/</url>
-    <content><![CDATA[<p>　<span id="more"></span></p>
-<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><blockquote>
-<p>读入一个长度为 $n$ 的由大小写英文字母或数字组成的字符串，请把这个字符串的所有非空后缀按字典序（用 ASCII 数值比较）从小到大排序，然后按顺序输出后缀的第一个字符在原串中的位置。位置编号为 $1$ 到 $n$。 $n\le10^6$</p>
+    <url>/2021/12/13/suffix-array/</url>
+    <content><![CDATA[<h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><blockquote>
+<p>给定长度为 $n$ 的字符串，请把这个字符串的所有 $n$ 个非空后缀按字典序（用 ASCII 数值比较）从小到大排序，然后按顺序输出排名。位置编号为 $1$ 到 $n$。 </p>
+<p>对于 $100%$ 的数据，$n\le10^6$。</p>
 </blockquote>
-<p>暴力怎么做？<del>暴力是不是，加边，加边，加边，然后，并查集查询</del></p>
-<p>不难想到用 $\text{sort}$ 进行排序，但比较两个串是 $O(n)$ 的啊，于是我们可以用哈希和二分优化，复杂度 $O(n\log^2n)$。</p>
+<p>暴力怎么做？<del>暴力是不是，加边，加边，加边，然后，并查集查询。</del></p>
+<p>不难想到用 $\text{sort}$ 进行排序，我们可以用哈希和二分优化，复杂度 $O(n\log^2n)$。</p>
 <p>对于一般的题目，暴力与正解往往有所关联，但是…</p>
 <p>好了，下面正式开始介绍算法。</p>
-<h2 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h2><p>我们采用的是倍增思想，如需对字符串 $s&#x3D;\texttt{abcaabc}$ 排序。</p>
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>记 $suf(i)$ 表示字符串 $s[i, n]$ 所对应的子串，同时也称以 $n$ 为结尾的子串为<strong>字符串的后缀</strong>。</p>
+<p>定义 $SA_i$ 表示排名第 $i$ 的后缀的开始位置。$SA_i$ 建立的是 “排名 $\rightarrow$ 位置” 映射关系。</p>
+<p>定义 $rk_i$ 表示 $suf(i)$ 这个后缀在所有后缀中的字典序排名。$rk_i$ 建立的是 “位置 $\rightarrow$ 排名” 映射关系。</p>
+<h1 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h1><p>我们采用的是倍增思想，如需对字符串 $s&#x3D;\texttt{abcaabc}$ 排序。</p>
 <p>首先我们先对每个后缀的前 $1$ 位进行比较，若相等则他们的排名一样。</p>
 <p><img src="https://s2.loli.net/2021/12/13/iz5qtBnZSjh3uvf.png"></p>
-<p>然后比较前 $2$ 位时，我们就可以用两个 $1$ 来凑出，这样每一位就有了一个二元组，然后我们用二元组排名。</p>
+<p>然后比较前 $2$ 位时，我们就可以用两个连续的 $1$ 位字符拼接，这样每一位就有了一个二元组，然后我们用二元组排名。</p>
 <p><img src="https://s2.loli.net/2021/12/13/b8Ylh4NQOUTAgic.png"></p>
 <p>注意，如果没有完整的话就补 $0$。</p>
 <p>然后继续比较前 $4$ 位。</p>
 <p><img src="https://s2.loli.net/2021/12/13/gJkv4jeRusyX2O5.png"></p>
 <p>这时你突然发现，好像所有位置的排名都不一样了！那么算法就结束了。</p>
-<p>看起来十分容易理解，<del>但是这个算法充分体现了能不能理解和能不能实现是两回事。</del></p>
-<p>实现的时候，我们需要 $SA_i,x_i,y_i,c_i$ 这四个数组实现。</p>
-<p>$SA_i$ 表示的为排名第 $i$ 的是以 $SA_i$ 为起始的后缀。</p>
-<p>$x_i$ 表示此时第 $i$ 位的第一关键字是什么，$y_i$ 存储了第二关键字从小到大的下标，$c_i$ 一会再说。</p>
-<p>首先我们要按前 $1$ 位排序，为了方便我们直接用 $\text{Ascii}$ 码作为权值存入桶 $c$ 中，然后做一下 $c$ 的前缀和，这样我们就先给 $SA_i$ 赋了一个初值。</p>
-<p>然后开始循环，枚举一个 $j$ 代表当前处理了前 $j$ 位，经过处理后变为 $2j$ 位。</p>
-<p>这里由于每一个位置可以看作是 $x,y$ 的双关键字排序，所以用一下基数排序，大致思路为先将优先级小的存入桶中（也就是排序），然后再排大的。</p>
-<p>不难发现，最后长度不到 $j$ 的第二关键字应都为 $0$，所以它们的第二关键字应该最小。</p>
-<p>然后我们从前往后遍历 $SA_i$，如果它的其实点大于 $j$，那么说明它也可以直接进入第二关键字。</p>
-<p>然后利用基数排序思想，打入 $c$ 数组，重新更新一遍 $SA_i$，这样这一轮的 $SA$ 就更新完。</p>
-<p>最后就是更新 $x$ 了，我们只需要按照上面图片的思路，看是否有两个关键字一样，如果一样就用一样的编号，否则用更大的编号。</p>
-<p>如果最后给 $x$ 的编号总数已经到达 $n$，算法结束，退出。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>如果上文介绍没有特别清晰，请读者一定要结合代码仔细分析和思考，看透算法的本质。</p>
-<p>本代码可解决 <a href="https://www.luogu.com.cn/problem/P3809">$\text{Luogu P3809}$</a>。</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-<span class="token keyword">const</span> <span class="token keyword">int</span> maxn <span class="token operator">=</span> <span class="token number">2000005</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> n<span class="token punctuation">,</span> m <span class="token operator">=</span> <span class="token number">128</span><span class="token punctuation">;</span>
-<span class="token keyword">char</span> s<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> x<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">,</span> y<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">,</span> c<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">,</span> tmp<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">,</span> top<span class="token punctuation">,</span> p<span class="token punctuation">;</span>
-<span class="token keyword">int</span> SA<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">,</span> height<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">,</span> rk<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<h1 id="代码（全文背诵）"><a href="#代码（全文背诵）" class="headerlink" title="代码（全文背诵）"></a>代码（全文背诵）</h1><p>在具体实现时，对二元组排序我们采用基数排序，先排第二维后排第一维，排序复杂度 $\mathcal{O}(n\log n)\rightarrow \mathcal{O}(n)$，加上倍增总时间复杂度为 $\mathcal{O}(n\log n)$，一般情况下足够使用。而因为常数较大，代码进行了卡常操作，因此部分实现原理可能并不显然，推荐采用理解思路+记忆细节的方式完成代码。（作者暂时也并未深究）</p>
+<p>进行压行处理后 <code>suffixArray()</code> 函数仅有 $20$ 行，十分容易记忆，<strong>一定要全文背诵！一定要全文背诵！一定要全文背诵！</strong></p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> sa<span class="token punctuation">[</span><span class="token number">1000005</span><span class="token punctuation">]</span><span class="token punctuation">,</span> rk<span class="token punctuation">[</span><span class="token number">2000005</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 注意 rk 和 oldrk 需要开 2 倍字符串长度。</span>
+<span class="token keyword">int</span> cnt<span class="token punctuation">[</span><span class="token number">1000005</span><span class="token punctuation">]</span><span class="token punctuation">,</span> id<span class="token punctuation">[</span><span class="token number">1000005</span><span class="token punctuation">]</span><span class="token punctuation">,</span> px<span class="token punctuation">[</span><span class="token number">1000005</span><span class="token punctuation">]</span><span class="token punctuation">,</span> oldrk<span class="token punctuation">[</span><span class="token number">2000005</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    n <span class="token operator">=</span> <span class="token function">strlen</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    n<span class="token operator">++</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        x<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        c<span class="token punctuation">[</span>x<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+<span class="token keyword">inline</span> <span class="token keyword">bool</span> <span class="token function">cmp</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span> <span class="token keyword">int</span> y<span class="token punctuation">,</span> <span class="token keyword">int</span> j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>oldrk<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">==</span> oldrk<span class="token punctuation">[</span>y<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> oldrk<span class="token punctuation">[</span>x <span class="token operator">+</span> j<span class="token punctuation">]</span> <span class="token operator">==</span> oldrk<span class="token punctuation">[</span>y <span class="token operator">+</span> j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">suffixArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    m <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">,</span> j<span class="token punctuation">,</span> t<span class="token punctuation">;</span>	
+    <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token operator">++</span>cnt<span class="token punctuation">[</span>rk<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> str<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> m<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> cnt<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> cnt<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> n<span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token operator">--</span>i<span class="token punctuation">)</span> sa<span class="token punctuation">[</span>cnt<span class="token punctuation">[</span>rk<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">--</span><span class="token punctuation">]</span> <span class="token operator">=</span> i<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> j <span class="token operator">&lt;&lt;=</span> <span class="token number">1</span><span class="token punctuation">,</span> m <span class="token operator">=</span> t<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span>t <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> i <span class="token operator">=</span> n<span class="token punctuation">;</span> i <span class="token operator">></span> n <span class="token operator">-</span> j<span class="token punctuation">;</span> <span class="token operator">--</span>i<span class="token punctuation">)</span> id<span class="token punctuation">[</span><span class="token operator">++</span>t<span class="token punctuation">]</span> <span class="token operator">=</span> i<span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>	
+            <span class="token keyword">if</span><span class="token punctuation">(</span>sa<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> j<span class="token punctuation">)</span> id<span class="token punctuation">[</span><span class="token operator">++</span>t<span class="token punctuation">]</span> <span class="token operator">=</span> sa<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> j<span class="token punctuation">;</span>
+        <span class="token function">memset</span><span class="token punctuation">(</span>cnt<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span> cnt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token operator">++</span>cnt<span class="token punctuation">[</span>px<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> rk<span class="token punctuation">[</span>id<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> m<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> cnt<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> cnt<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> n<span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token operator">--</span>i<span class="token punctuation">)</span> sa<span class="token punctuation">[</span>cnt<span class="token punctuation">[</span>px<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">--</span><span class="token punctuation">]</span> <span class="token operator">=</span> id<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token function">memcpy</span><span class="token punctuation">(</span>oldrk<span class="token punctuation">,</span> rk<span class="token punctuation">,</span> <span class="token keyword">sizeof</span> oldrk<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span>t <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> 
+            rk<span class="token punctuation">[</span>sa<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">cmp</span><span class="token punctuation">(</span>sa<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> sa<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> j<span class="token punctuation">)</span> <span class="token operator">?</span> t <span class="token operator">:</span> <span class="token operator">++</span>t<span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>t <span class="token operator">==</span> n<span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        c<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> c<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        SA<span class="token punctuation">[</span><span class="token operator">--</span>c<span class="token punctuation">[</span>x<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> i<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>j <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span>j <span class="token operator">&lt;&lt;=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        top <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> n <span class="token operator">-</span> j<span class="token punctuation">;</span>i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            y<span class="token punctuation">[</span>top<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> i<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>SA<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">>=</span> j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                y<span class="token punctuation">[</span>top<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> SA<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> j<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            c<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            c<span class="token punctuation">[</span>x<span class="token punctuation">[</span>y<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            c<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> c<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            SA<span class="token punctuation">[</span><span class="token operator">--</span>c<span class="token punctuation">[</span>x<span class="token punctuation">[</span>y<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> y<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            tmp<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> x<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        
-        p <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        x<span class="token punctuation">[</span>SA<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>tmp<span class="token punctuation">[</span>SA<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">==</span> tmp<span class="token punctuation">[</span>SA<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> tmp<span class="token punctuation">[</span>SA<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> j<span class="token punctuation">]</span> <span class="token operator">==</span> tmp<span class="token punctuation">[</span>SA<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> j<span class="token punctuation">]</span><span class="token punctuation">)</span> x<span class="token punctuation">[</span>SA<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> p <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
-            <span class="token keyword">else</span> x<span class="token punctuation">[</span>SA<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> p<span class="token operator">++</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        
-        <span class="token keyword">if</span><span class="token punctuation">(</span>p <span class="token operator">>=</span> n<span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
-        m <span class="token operator">=</span> p<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    
-    n<span class="token operator">--</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d "</span><span class="token punctuation">,</span> SA<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<p>小建议：不要在做题时直接套用模板，每一次都要认真手打。我的真实体验是做 $3$ 道题就能完全自己写对模板。</p>
+<h1 id="text-Height"><a href="#text-Height" class="headerlink" title="$\text{Height}$"></a>$\text{Height}$</h1><p>假设现在给你这么一道题：在 $\mathcal{O}(n\log n)-\mathcal{O}(1)$ 的复杂度求出 $\text{lcp}(suf(i), suf(j))$，很显然你想不到这和 SA 有什么关系，那么接下来我们引入新定义。</p>
+<p>记 $height_i$ 表示 $suf(SA_i)$ 与 $suf(SA_{i-1})$ 的最长公共前缀长度，即 $\text{lcp}(suf(SA_i), suf(SA_{i-1}))$，那么有结论：</p>
+<p>$\text{lcp}(suf(i),suf(j))&#x3D;\min\limits_{rk_i&lt;i\leq rk_j}height_i$，这里假设 $rk_i&lt;rk_j$，那么为什么有这个结论呢，我们需要证明：</p>
+<blockquote>
+<p>记 $s_1&#x3D;suf(i),s_2&#x3D;suf(j),s_3&#x3D;suf(k)$。</p>
+<p>有 $\forall s_1&lt;s_2&lt;s_3,\text{ s.t. } \text{lcp}(s_1,s_3)&#x3D;\min(\text{lcp}(s_1,s_2),\text{lcp}(s_2,s_3))$。</p>
+</blockquote>
+<p>对于这个命题，我们只需分类讨论即可。大致根据 $\text{lcp}(s_1,s_2)$ 和 $\text{lcp}(s_2,s_3)$ 的大小关系分为 $3$ 种简单的小情况：</p>
+<img src="https://cdnjson.com/images/2023/01/16/height.png" alt="height.png" style="zoom:80%;" />
+
+<p>上图分别对应 $\text{lcp}(s_1,s_2)&gt;\text{lcp}(s_2,s_3)$，$\text{lcp}(s_1,s_2)&lt;\text{lcp}(s_2,s_3)$ 和 $\text{lcp}(s_1,s_2)&#x3D;\text{lcp}(s_2,s_3)$ 的情况。</p>
+<p>特别说明 $\text{lcp}(s_1,s_2)&#x3D;\text{lcp}(s_2,s_3)$ 的情况，因为 $s_1&lt;s_2&lt;s_3$，所以 $s_1$ 和 $s_3$ 下一个字符不能相同，因此满足 $\text{lcp}(s_1,s_3)&#x3D;\min(\text{lcp}(s_1,s_2),\text{lcp}(s_2,s_3))$。</p>
+<p>那么任意两个后缀，它们的最长公共前缀就成了 $height$ 上的 RMQ 问题，因此能 $\mathcal{O}(n\log n)-\mathcal{O}(1)$ 解决。</p>
+<h2 id="新的问题：如何求出-text-Height-数组"><a href="#新的问题：如何求出-text-Height-数组" class="headerlink" title="新的问题：如何求出 $\text{Height}$ 数组"></a>新的问题：如何求出 $\text{Height}$ 数组</h2><p>不要高兴太早，现在我们还需要以较低的复杂度求出 $\text{Height}$ 数组。</p>
+<p>暴力 $\mathcal{O}(n^2)$ 留给读者思考，我们接下来证明下一个结论：</p>
+<blockquote>
+<p>$\forall i\in[1,n],\text{ s.t. }height_{rk_i}\geq height_{rk_{i-1}}-1$</p>
+</blockquote>
+<p>我们考虑 $suf(k)$ 与 $suf(i-1)$ 的最长公共前缀，$suf(k)$ 表示在按<strong>字典序顺序</strong>排在 $suf(i-1)$ 的前一个的后缀，此时最长公共前缀显然为 $height_{rk_{i-1}}$。</p>
+<p>分情况讨论一下：</p>
+<ol>
+<li><p>$suf(k)$ 与 $suf(i-1)$ 的首字母不相同，那么此时 $height_{rk_{i-1}}&#x3D;0$，一定有 $height_{rk_i}\geq 0&gt;height_{rk_{i-1}}$。</p>
+</li>
+<li><p>$suf(k)$ 与 $suf(i-1)$ 的首字母相同，此时我们有必要讨论 $suf(k+1)$ 与 $suf(i)$ 的关系。</p>
+<p>观察到两个后缀均去掉了首字母，得 $\text{lcp}(suf(k+1),suf(i))&#x3D;height_{rk_{i-1}}-1$。</p>
+<p>又因为 $suf(k)$ 的排名小于 $suf(i-1)$，则去掉首字母的排名 $suf(k+1)$ 小于 $suf(i)$，那么根据上面刚证明的结论，一定有：</p>
+<p>$\text{lcp}(suf(rk_i-1),suf(i))\geq \text{lcp}(suf(k+1),suf(i))$，代入整理后可得：</p>
+<p>$hright_{rk_i}\geq height_{rk_{i-1}}-1$。</p>
+</li>
+</ol>
+<p>综上，任何情况下，都有 $height_{rk_i}\geq height_{rk_{i-1}}-1$。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>那么现在我们只需按 $rk_1\sim rk_n$ 顺序求 $height$ 数组，根据<strong>摊还</strong>分析，复杂度就是 $\mathcal{O}(n)$。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    j <span class="token operator">=</span> sa<span class="token punctuation">[</span>rk<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> height<span class="token punctuation">[</span>rk<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>str<span class="token punctuation">[</span>i <span class="token operator">+</span> k<span class="token punctuation">]</span> <span class="token operator">==</span> str<span class="token punctuation">[</span>j <span class="token operator">+</span> k<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">++</span>k<span class="token punctuation">;</span>
+    height<span class="token punctuation">[</span>rk<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> k<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>现在你已点亮了关于 SA 的所有技能点！<del>（SAM 应该还有新的）</del></p>
+<p>下面你就可以快乐的刷题，大部分题用完 SA 后会转化为另一道可出在联赛的题目。</p>
+<p>​	</p>
 ]]></content>
       <categories>
         <category>学习笔记</category>
