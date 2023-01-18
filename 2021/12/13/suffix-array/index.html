@@ -107,7 +107,7 @@
             <div id = "post-title"> 后缀数组(SA)/后缀自动机(SAM) </div>
             <div id = "post-author"> By WyyOIer | </div>
             <div id = "post-date" title = "发布时间"> 2021-12-13 19:49:02 / </div>
-            <div id = "post-updated" title = "更新时间"> 2023-01-18 15:27:53 </div>
+            <div id = "post-updated" title = "更新时间"> 2023-01-18 15:35:31 </div>
             <span class = "leancloud_visitors" id = "/2021/12/13/suffix-array/">
                 <text class="post-meta-item-text">阅读数 </text>
                 <i class="leancloud-visitors-count">nan</i>
@@ -461,7 +461,7 @@
 <h2 id="CF204E-Little-Elephant-and-Strings"><a href="#CF204E-Little-Elephant-and-Strings" class="headerlink" title="CF204E Little Elephant and Strings"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF204E">CF204E Little Elephant and Strings</a></h2><p>我们先把所有包含<strong>恰好</strong> $k$ <strong>个串的后缀</strong>所在的排名区间找到，那么一个后缀对其所在串的贡献就是此后缀所在的所有区间 $\text{height}$ 最小值中的最大值。那么找到了所有区间后，我们考虑依次对每个后缀维护答案。</p>
 <p>不难发现区间左右指针单调（非严格）递增，因此相当于维护滑动窗口区间最大值，用单调队列即可。</p>
 <p>时间复杂度 $\mathcal{O}(n\log n)$。</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
 
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 <span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">long</span> ll<span class="token punctuation">;</span>
@@ -586,7 +586,7 @@ ll sum<span class="token punctuation">[</span><span class="token number">200005<
 <p>那么当我们找到 $Height_i&#x3D;k$ 时，把 $suf(sa_i)$ 后缀和 $suf(sa_{i+1})$ 后缀所在的并查集合并起来，方案数贡献大小就是两个并查集大小相乘，这样我们就能维护全部方案。</p>
 <p>这样的话最大美味度也能维护，但注意到<strong>美味度有负数</strong>，需要同时维护并查集内最大值和最小值，贡献时最小值$\times$最小值和最大值$\times$最大值都能贡献。</p>
 <p>时间复杂度 $\mathcal{O}(n\log n)$。</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+<h3 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
 
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 <span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">long</span> ll<span class="token punctuation">;</span>
@@ -684,7 +684,7 @@ ll sum<span class="token punctuation">[</span><span class="token number">300005<
 </ul>
 <p>如果你做过<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1972">P1972 [SDOI2009] HH的项链</a>，那么这题就迎刃而解了。</p>
 <p>时间复杂度 $\mathcal{O}(n\log n)$。</p>
-<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+<h3 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
 
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
@@ -869,7 +869,7 @@ vector<span class="token operator">&lt;</span><span class="token keyword">int</s
 <p>首先我们可以通过倍增的方式找到区间 $[posl,posr]$ 使得它们的最长公共前缀为 $|A|$，而每一个位置相当于对应一个 $sa_i$ 的权值，代表这个后缀的开始位置，也就是说，我们用区间查询 $[posl,posr]$ 看里面是否存在 $i\in [posl,posr],\text{ s.t. }sa_i\in[l,r-p_i+1]$，这个东西我们直接上主席树维护，那么如果找到，说明 $p_i$ 长度仍可以变大，然后依次判断所有的即可。</p>
 <p>注意最后找到所有 $p_i$ 后，答案的贡献与本质不同子串的计算不要重叠，具体可参考代码上实现。</p>
 <p>时间复杂度 $\mathcal{O}(n\log n)$，空间复杂度 $\mathcal{O}(n\log n)$，代码常数较大。</p>
-<h3 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+<h3 id="代码-6"><a href="#代码-6" class="headerlink" title="代码"></a>代码</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
 
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 <span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">long</span> ll<span class="token punctuation">;</span>
