@@ -107,7 +107,7 @@
             <div id = "post-title"> Hash 算法 </div>
             <div id = "post-author"> By WyyOIer | </div>
             <div id = "post-date" title = "发布时间"> 2023-01-16 19:46:55 / </div>
-            <div id = "post-updated" title = "更新时间"> 2023-01-20 15:44:43 </div>
+            <div id = "post-updated" title = "更新时间"> 2023-01-21 09:18:38 </div>
             <span class = "leancloud_visitors" id = "/2023/01/16/hash-algorithm/">
                 <text class="post-meta-item-text">阅读数 </text>
                 <i class="leancloud-visitors-count">nan</i>
@@ -468,7 +468,7 @@ ll <span class="token function">qpow</span><span class="token punctuation">(</sp
 <h2 id="P8499-NOI2022-挑战-NPC-Ⅱ"><a href="#P8499-NOI2022-挑战-NPC-Ⅱ" class="headerlink" title="P8499 [NOI2022] 挑战 NPC Ⅱ"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P8499">P8499 [NOI2022] 挑战 NPC Ⅱ</a></h2><p>个人认为本题是整场 NOI 中<strong>代码难度和思维难度</strong>都是最低的一题。<del>时间复杂度其实可能会被诈骗到。</del></p>
 <p>本题中出现了树同构，再根据下方提示给出的信息，不难想到此题与树哈希有关。</p>
 <p>观察数据，$k\leq 5$，再根据题目名称，猜想此题是一个跟 $k$ 有关的非多项式算法。</p>
-<p>定义 <code>merge(uG, uH, lim)</code> 表示 $G$ 子树 $uG$ 和 $H$ 子树 $uH$ 是否能在删除 $lim$ 个节点后同构，这么定义的原因是：如果对于 $uG$ 和 $uH$，它们所对应的所有儿子均能同构，那么就同时会有 $uG$ 和 $uH$ 同构，也就是说，我们向下逐一去递归判断是否可行即可。</p>
+<p>定义 <code>match(uG, uH, lim)</code> 表示 $G$ 子树 $uG$ 和 $H$ 子树 $uH$ 是否能在删除 $lim$ 个节点后同构，这么定义的原因是：如果对于 $uG$ 和 $uH$，它们所对应的所有儿子均能同构，那么就同时会有 $uG$ 和 $uH$ 同构，也就是说，我们向下逐一去递归判断是否可行即可。</p>
 <p>那么由于 $k\leq 5$，所以如果多于 $5&#x2F;lim$  棵子树未同构，则显然可以直接判为 <code>false</code>，但是<strong>所有已经能够匹配上的子树我们直接匹配是否是可行</strong>？</p>
 <p>容易证明命题：如果存在已经匹配的子树，我们匹配后对答案是<strong>不劣的</strong>。</p>
 <p>记 $G$ 的两棵子树为 $G_A$ 和 $G_B$，$H$ 的两棵子树为 $H_A$ 和 $H_B$，不妨设 $G_B$ 和 $H_B$ 同构，那么来比较 $G_A\rightarrow H_A$ 配对方案和 $G_A\rightarrow H_B,G_B\rightarrow H_A$ 配对方案：在删除的次数上看，$G_A\rightarrow H_A$ 删除的节点数为 $|G_A|-|H_A|$，$G_A\rightarrow H_B,G_B\rightarrow H_A$ 删除的节点数为 $|G_A|-|H_B|+|G_B|-|H_A|&#x3D;|G_A|-|H_A|$，两种决策等价。</p>
