@@ -107,7 +107,7 @@
             <div id = "post-title"> Codeforces Contest Practice </div>
             <div id = "post-author"> By WyyOIer | </div>
             <div id = "post-date" title = "发布时间"> 2022-02-02 17:03:52 / </div>
-            <div id = "post-updated" title = "更新时间"> 2022-08-18 14:25:02 </div>
+            <div id = "post-updated" title = "更新时间"> 2023-01-22 13:25:03 </div>
             <span class = "leancloud_visitors" id = "/2022/02/02/Codeforces-Contest-Practice/">
                 <text class="post-meta-item-text">阅读数 </text>
                 <i class="leancloud-visitors-count">nan</i>
@@ -182,7 +182,8 @@
 <p>$①+②$ 得：$\lfloor\dfrac{a+b}{p+1}\rfloor\le a’+b’\le\lfloor\dfrac{a+b}{p}\rfloor$</p>
 <p>而 $k&#x3D;a’+b’$，两个范围取交则得到了循环节数量为 $p$ 时 $k$ 的取值方案，计算过后，将 $l$ 设为 $\dfrac{n}{\lfloor\dfrac{n}{l}\rfloor}+1$。</p>
 <p>时间复杂度 $\mathcal{O}(\sqrt{a+b})$。</p>
-<h1 id="Educational-Codeforces-Round-71-text-1207"><a href="#Educational-Codeforces-Round-71-text-1207" class="headerlink" title="Educational Codeforces Round 71$\text{(1207)}$"></a>Educational Codeforces Round 71$\text{(1207)}$</h1><table>
+<h1 id="Educational-Codeforces-Round-71-text-1207"><a href="#Educational-Codeforces-Round-71-text-1207" class="headerlink" title="Educational Codeforces Round 71$\text{(1207)}$"></a>Educational Codeforces Round 71$\text{(1207)}$</h1><p>比赛时间：$\text{2022&#x2F;1&#x2F;29 20:05}$</p>
+<table>
 <thead>
 <tr>
 <th align="center">$\text{Penalty}$</th>
@@ -226,7 +227,6 @@
 <td align="center">√</td>
 </tr>
 </tbody></table>
-<p>比赛时间：$\text{2022&#x2F;1&#x2F;29 20:05}$</p>
 <h2 id="A-There-Are-Two-Types-Of-Burgers"><a href="#A-There-Are-Two-Types-Of-Burgers" class="headerlink" title="A. There Are Two Types Of Burgers"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1207/problem/A">A. There Are Two Types Of Burgers</a></h2><p>$\text{Solution:}$</p>
 <p>看哪个贵就先做哪个，若还有剩余的面包就再做另一个。</p>
 <h2 id="B-Square-Filling"><a href="#B-Square-Filling" class="headerlink" title="B. Square Filling"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1207/problem/B">B. Square Filling</a></h2><p>$\text{Solution:}$</p>
@@ -332,21 +332,17 @@
 <p>那么我们如何得知边的大小关系发生了改变呢？</p>
 <p>比如，对于两条边 $x$ 和 $y$，它们的边权为 $w_x$ 和 $w_y$ 且 $w_x&lt;w_y$，设当前询问的值为 $v$。</p>
 <ul>
-<li><p>当 $v&lt; w_x$ 时，$w_x-v&lt;w_y-v$；</p>
-</li>
-<li><p>当 $w_x\le v&lt; \lfloor \dfrac{w_x+w_y}{2} \rfloor+1$ 时，$v-w_x \le w_y-v$；</p>
-</li>
-<li><p>当 $\lfloor \dfrac{w_x+w_y}{2}\rfloor +1\le v&lt; w_y$ 时，$v-w_x&gt;w_y-v$；</p>
-</li>
-<li><p>当 $v\ge w_y$ 时， $v-w_x&lt;v-w_y$。</p>
+<li>当 $v&lt; w_x$ 时，$w_x-v&lt;w_y-v$；</li>
+<li>当 $w_x\le v&lt; \lfloor \dfrac{w_x+w_y}{2} \rfloor+1$ 时，$v-w_x \le w_y-v$；</li>
+<li>当 $\lfloor \dfrac{w_x+w_y}{2}\rfloor +1\le v&lt; w_y$ 时，$v-w_x&gt;w_y-v$；</li>
+<li>当 $v\ge w_y$ 时， $v-w_x&lt;v-w_y$。</li>
+</ul>
 <p>所以可得，对于每两条边，共有 $4$ 种情况，所以总共的情况也只有 $m^2$ 量级，可以接受。</p>
 <p>那么我们只需将原边权与 $\lfloor \dfrac{w_x+w_y}{2}\rfloor+1$ 放入一个数组并排序，再将所有询问排序。</p>
 <p>当询问的值又超过了一条新边的边权，代表有边的大小关系改变，我们需要重求一遍最小生成树；若这一次询问的并没有使边的大小关系发生改变，我们仍然可以用上一次最小生成树的结果，再加上这次询问对绝对值的贡献。</p>
 <p>时间复杂度 $\mathcal{O}(q\log q+m^3\log m)$。</p>
 <p>但如果把优先预处理出所有最小生成树的情况，询问的时候二分出对应的情况，复杂度会变为 $\mathcal{O}(q\log m^2+m^3\log m)$，稍有优化。</p>
 <p>$\text{Code: }$<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1633/submission/144900383">Submission #144900383 - Codeforces</a></p>
-</li>
-</ul>
 <h2 id="F-Perfect-Matching"><a href="#F-Perfect-Matching" class="headerlink" title="*F. Perfect Matching"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1633/problem/F">*F. Perfect Matching</a></h2><p>$\text{Solution:}$</p>
 <p>依题意，分析满足完美匹配的条件。</p>
 <p>我们有一种贪心的策略来检查是否可以完美匹配：定义一次匹配操作为选择当前最深的激活节点，与它的父亲之间连边，并删去这两个点，重复一次匹配操作，直到激活节点全部被清空即为完美匹配。时间复杂度 $\mathcal{O}(n)$。</p>
@@ -369,7 +365,8 @@
 <p>在进行 $2$ 操作时，只需 $dfs$ 一遍，求子树 $sz$，判断这个点是否为奇数节点，如果是就将此节点和其父亲连接。</p>
 <p>时间复杂度 $\mathcal{O}(n\log^2 n)$。</p>
 <p>$\text{Code: }$<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1633/submission/144900385">Submission #144900385 - Codeforces</a></p>
-<h1 id="CodeTON-Round-1-text-1656"><a href="#CodeTON-Round-1-text-1656" class="headerlink" title="CodeTON Round 1$\text{(1656)}$"></a>CodeTON Round 1$\text{(1656)}$</h1><table>
+<h1 id="CodeTON-Round-1-text-1656"><a href="#CodeTON-Round-1-text-1656" class="headerlink" title="CodeTON Round 1$\text{(1656)}$"></a>CodeTON Round 1$\text{(1656)}$</h1><p>比赛时间： $\text{2022&#x2F;7&#x2F;28 08:30}$</p>
+<table>
 <thead>
 <tr>
 <th align="center">$\text{Score}$</th>
@@ -421,7 +418,6 @@
 <td align="center">.</td>
 </tr>
 </tbody></table>
-<p>比赛时间： $\text{2022&#x2F;7&#x2F;28 08:30}$</p>
 <p>为即将到来的 CodeTON Round 2 练习一下。</p>
 <h2 id="A-Good-Pairs"><a href="#A-Good-Pairs" class="headerlink" title="A. Good Pairs"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1656/problem/A">A. Good Pairs</a></h2><p>$\text{Solution:}$</p>
 <p>考虑 $|a_i-a_k|+|a_k-a_j|&#x3D;|a_i-a_j|$ 什么时候成立，即找到 $a_i\le a_k\le a_j$ 的三元组，由于题目保证有解，所以取最小值和最大值就行。</p>
@@ -480,7 +476,8 @@
 <p>这样我们就解决了这道题。</p>
 <p>时间复杂度上界为排序的 $\mathcal{O}(n\log n)$。</p>
 <p>$\text{Code: }$	<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1656/submission/165986233">Submission #165986233 - Codeforces</a></p>
-<h1 id="Codeforces-Global-Round-21-text-1696"><a href="#Codeforces-Global-Round-21-text-1696" class="headerlink" title="Codeforces Global Round 21$\text{(1696)}$"></a>Codeforces Global Round 21$\text{(1696)}$</h1><table>
+<h1 id="Codeforces-Global-Round-21-text-1696"><a href="#Codeforces-Global-Round-21-text-1696" class="headerlink" title="Codeforces Global Round 21$\text{(1696)}$"></a>Codeforces Global Round 21$\text{(1696)}$</h1><p>比赛时间：$\text{2022&#x2F;7&#x2F;30 08:30}$</p>
+<table>
 <thead>
 <tr>
 <th align="center">$\text{Score}$</th>
@@ -528,7 +525,6 @@
 <td align="center">.</td>
 </tr>
 </tbody></table>
-<p>比赛时间：$\text{2022&#x2F;7&#x2F;30 08:30}$</p>
 <h2 id="A-NIT-orz"><a href="#A-NIT-orz" class="headerlink" title="A. NIT orz!"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1696/problem/A">A. NIT orz!</a></h2><p>$\text{Solution:}$</p>
 <p>因为 $z$ 只能被进行<strong>与</strong>操作，也就是 $z$ 在二进制下 $1$ 的个数越来越少，所以我们不如用最开始的 $z$ 去和 $a$ 中的数进行<strong>或</strong>操作求得最大值。</p>
 <h2 id="B-NIT-Destroys-the-Universe"><a href="#B-NIT-Destroys-the-Universe" class="headerlink" title="B. NIT Destroys the Universe"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1696/problem/B">B. NIT Destroys the Universe</a></h2><p>$\text{Solution:}$</p>
@@ -558,7 +554,8 @@
 <p>而 $\sum\limits_{j&#x3D;0}^{a_i-1} A_{i+j}^i$ 是整数裂项的形式，化简后为 $\dfrac{\prod\limits_{j&#x3D;a_i-1}^{a_i+i}j}{i+1}&#x3D;\dfrac{A_{a_i+i}^{a_i+i}}{(i+1)A_{a_i-1}^{a_i-1}}$</p>
 <p>最终 $\sum\limits_{j&#x3D;0}^{a_i}f(i,j)&#x3D;\dfrac{A_{a_i+i}^{a_i+i}}{(i+1)A_{a_i-1}^{a_i-1}A_i^i}&#x3D;\dfrac{A_{a_i+i}^{a_i+i}}{A_{a_i-1}^{a_i-1}A_{i+1}^{i+1}}&#x3D;{a_i+i\choose a_i-1}$。</p>
 <p>于是预处理阶乘和逆元，复杂度为 $\mathcal{O}(n)$。</p>
-<h1 id="CodeTON-Round-2-text-1704"><a href="#CodeTON-Round-2-text-1704" class="headerlink" title="CodeTON Round 2$\text{(1704)}$"></a>CodeTON Round 2$\text{(1704)}$</h1><table>
+<h1 id="CodeTON-Round-2-text-1704"><a href="#CodeTON-Round-2-text-1704" class="headerlink" title="CodeTON Round 2$\text{(1704)}$"></a>CodeTON Round 2$\text{(1704)}$</h1><p>比赛时间：$\text{2022&#x2F;7&#x2F;31 22:05}$</p>
+<table>
 <thead>
 <tr>
 <th align="center">$\text{Score}$</th>
@@ -610,7 +607,6 @@
 <td align="center">.</td>
 </tr>
 </tbody></table>
-<p>比赛时间：$\text{2022&#x2F;7&#x2F;31 22:05}$</p>
 <p>打的仍然没有达到我的预期。</p>
 <p>$\texttt{AB}$ 做的较慢，但靠 $\texttt{C}$ 挽救了回来，而 $\texttt{D}$ 挂了两发还是很晚才过，况且写法复杂，结论靠猜，算是实力缺陷的体现。</p>
 <p>不过说实话，以现在的水平，真的无法快速想到 $\texttt{D}$ 的性质，希望能有四十分钟开出前 $4$ 题的时候吧。</p>
@@ -647,78 +643,8 @@
 <p>当 $\texttt{R}$ 和 $\texttt{B}$ 的个数相同时，记一段 $\texttt{RBRB}\cdots$  的长度为 $l$。那么每次每个人都会选择一段 $\texttt{RB}$ 或 $\texttt{BR}$ 消掉，两人可以同时操作且操作后局面相同，是公平博弈论，可以求 $SG$ 函数。</p>
 <p>$SG_l&#x3D;\text{mex}(SG_{i-1}\oplus SG_{l-i-1})$</p>
 <p>求出 $SG$ 后发现，当 $l\ge 69$ 时，有长度为 $34$ 的循环节，所以只用打表前 $34\times3&#x3D;102$ 位 $SG$ 就足够。</p>
-<h1 id="Codeforces-Round-808-text-1707"><a href="#Codeforces-Round-808-text-1707" class="headerlink" title="Codeforces Round #808$\text{(1707)}$"></a>Codeforces Round #808$\text{(1707)}$</h1><table>
-<thead>
-<tr>
-<th align="center">$\text{Score}$</th>
-<th align="center">$\texttt{2A}$</th>
-<th align="center">$\texttt{2B}$</th>
-<th align="center">$\texttt{2C&#x2F;1A}$</th>
-<th align="center">$\texttt{2D&#x2F;1B}$</th>
-<th align="center">$\texttt{2E&#x2F;1C}$</th>
-<th align="center">$\texttt{2F&#x2F;1D}$</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">$1452$</td>
-<td align="center">$\texttt{492}$</td>
-<td align="center">$\texttt{960}$</td>
-<td align="center">$\texttt{-3}$</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center">$\text{00:04}$</td>
-<td align="center">$\text{00:10}$</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">补题</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center">.</td>
-</tr>
-</tbody></table>
-<p>比赛时间：$\text{2022&#x2F;7&#x2F;16 22:35}$</p>
-<h2 id="2A-Difference-Operations"><a href="#2A-Difference-Operations" class="headerlink" title="2A. Difference Operations"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1708/problem/A">2A. Difference Operations</a></h2><p>$\text{Solution:}$</p>
-<p>不妨从 $a_2$ 开始考虑，因为 $a_2$ 进行的操作只有减去 $a_1$，所以 $a_2$ 必须是 $a_1$ 的倍数，然后我们就可以将 $a_2$ 减去若干个 $a_1$ 后变成 $a_1$。</p>
-<p>考虑 $a_3$ 及以后的数也是如此，所以序列满足条件当且仅当 $a_i$ 都是 $a_1$ 的倍数，其中 $2\le i\le n$。</p>
-<h2 id="2B-Difference-of-GCDs"><a href="#2B-Difference-of-GCDs" class="headerlink" title="2B. Difference of GCDs"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1708/problem/B">2B. Difference of GCDs</a></h2><p>$\text{Solution:}$</p>
-<p>显然 $\gcd(i,a_i) \le \min(i,a_i)\le i$，又因为题目要求 $\forall 1\le i\le n$，$\gcd(i, a_i)$ 互不相等，所以 $\gcd(i,a_i)&#x3D;i$。</p>
-<p>那么只需在 $l\sim r$ 看有没有 $i$ 的倍数即可，否则输出 <code>-1</code>。</p>
-<h2 id="2C-x2F-1A-Doremy’s-IQ"><a href="#2C-x2F-1A-Doremy’s-IQ" class="headerlink" title="2C&#x2F;1A. Doremy’s IQ"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1707/problem/A">2C&#x2F;1A. Doremy’s IQ</a></h2><p>$\text{Solution:}$</p>
-<p>场上被骗的一道题目，如果正向考虑，肯定是希望做减智商的测试越晚越好，但不容易实现。</p>
-<p>那就反向考虑，设初始智商为 $0$，倒向做测试，遇到做不动的智商 $+1$，智商最多加到 $q$，这样如果我们遇到一个做不动的测试，但智商还没加到 $q$，那么我们一定要去做，因为智商越高，后面更有可能完成更多测试。</p>
-<p>时间复杂度 $\mathcal{O}(n)$。</p>
-<h2 id="2D-x2F-1B-Difference-Array"><a href="#2D-x2F-1B-Difference-Array" class="headerlink" title="2D&#x2F;1B. Difference Array"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1707/problem/B">2D&#x2F;1B. Difference Array</a></h2><p>$\text{Solution:}$</p>
-<p>不妨来证明暴力做法复杂度的正确性。</p>
-<p>我们设每次操作后并忽略 $0$ 的 $a$ 数组总和为 $S$，$S&#x3D;\sum\limits_{i&#x3D;1}^ma_i$，且根据题意有 $\forall1&lt;i\le m$，$a_{i+1}-a_{i}&gt;0$。</p>
-<p>$S&#x3D;\sum\limits_{i&#x3D;1}^ma_i\ge m-1+a_m$</p>
-<p>那么差分一次后的数组变为 $a_2-a_1,a_3-a_2,\cdots,a_m-a_{m-1}$，现在的总和 $S’&#x3D;a_m-a_1\le a_m$。</p>
-<p>原本大于等于 $a_m+m-1$，现在小于等于 $a_m$，说明每次至少减少了 $m-1$，在第一次差分后，数组总和不超过 $a_n$，那么最坏情况的复杂度就为 $\mathcal{O}(A\log A)$，其中 $A&#x3D;\max(n,a_n)$。</p>
-<h2 id="2E-x2F-1C-DFS-Trees"><a href="#2E-x2F-1C-DFS-Trees" class="headerlink" title="2E&#x2F;1C. DFS Trees"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1707/problem/C">2E&#x2F;1C. DFS Trees</a></h2><p>$\text{Solution:}$</p>
-<p>这题有个结论：如果 $\text{findMST(u)}$ 得到的生成树为最小生成树，那么图中没有交叉边。</p>
-<p>关于交叉边的定义，我们可以用一个例子理解。</p>
-<img src="https://s2.loli.net/2022/07/18/doOfyY3MSw2NZqb.jpg" alt="CF1707C-1.jpg" style="zoom:50%;" />
-
-<p>白边为生成树边，则红边为交叉边，而蓝边不是交叉边，即交叉边的最近公共祖先不为边的端点。</p>
-<p>至于上面的结论为什么成立，现在还不太知道，先硬记一下吧。</p>
-<p>那么对于每条非树边，如果能作为以 $u$ 为根的生成树的交叉边，那么 $\text{findMST(u)}$ 就得不到最小生成树。</p>
-<p>我们以 $1$ 为根节点，跑出最小生成树，对于一条非树边 $(u,v)$：</p>
-<ul>
-<li>$lca&#x3D;u$ 或 $lca&#x3D;v$，那么以 $u,v$ 这条路径中间的点（不包括 $u,v$）为根，$(u,v)$ 就会作为一条交叉边，这些点都得不到最小生成树。</li>
-<li>否则，那么从 $1$ 到 $u$ 的父节点和 $1$ 到 $v$ 的父节点的路径就全部得不到最小生成树。</li>
-</ul>
-<p>最后统计答案即可，维护方法有很多，时间复杂度 $\mathcal{O}(n\log n)$。</p>
-<h1 id="Codeforces-Round-809-Div-2-text-1706"><a href="#Codeforces-Round-809-Div-2-text-1706" class="headerlink" title="Codeforces Round #809 (Div. 2)$\text{(1706)}$"></a>Codeforces Round #809 (Div. 2)$\text{(1706)}$</h1><table>
+<h1 id="Codeforces-Round-809-Div-2-text-1706"><a href="#Codeforces-Round-809-Div-2-text-1706" class="headerlink" title="Codeforces Round #809 (Div. 2)$\text{(1706)}$"></a>Codeforces Round #809 (Div. 2)$\text{(1706)}$</h1><p>比赛时间：$\text{2022&#x2F;7&#x2F;18 22:35}$</p>
+<table>
 <thead>
 <tr>
 <th align="center">$\text{Score}$</th>
@@ -758,7 +684,6 @@
 <td align="center">√</td>
 </tr>
 </tbody></table>
-<p>比赛时间：$\text{2022&#x2F;7&#x2F;18 22:35}$</p>
 <p>这打的是什么垃圾，策略有误而且能力还有欠缺。</p>
 <h2 id="A-Another-String-Minimization-Problem"><a href="#A-Another-String-Minimization-Problem" class="headerlink" title="A. Another String Minimization Problem"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1706/problem/A">A. Another String Minimization Problem</a></h2><p>$\text{Solution:}$</p>
 <p>按题意模拟，注意要先改靠前的位置。</p>
@@ -798,6 +723,77 @@
 <p>由于我们只需对所有被经过的边取最大值，我们可以只去求相邻两点的最近公共祖先，就能涵盖到所有要求的路径。（想一想应该也可以理解）</p>
 <p>最后用倍增就能得到答案。</p>
 <p>时间复杂度 $\mathcal{O}(n\log n)$。</p>
+<h1 id="Codeforces-Round-808-text-1707"><a href="#Codeforces-Round-808-text-1707" class="headerlink" title="Codeforces Round #808$\text{(1707)}$"></a>Codeforces Round #808$\text{(1707)}$</h1><p>比赛时间：$\text{2022&#x2F;7&#x2F;16 22:35}$</p>
+<table>
+<thead>
+<tr>
+<th align="center">$\text{Score}$</th>
+<th align="center">$\texttt{2A}$</th>
+<th align="center">$\texttt{2B}$</th>
+<th align="center">$\texttt{2C&#x2F;1A}$</th>
+<th align="center">$\texttt{2D&#x2F;1B}$</th>
+<th align="center">$\texttt{2E&#x2F;1C}$</th>
+<th align="center">$\texttt{2F&#x2F;1D}$</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">$1452$</td>
+<td align="center">$\texttt{492}$</td>
+<td align="center">$\texttt{960}$</td>
+<td align="center">$\texttt{-3}$</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">$\text{00:04}$</td>
+<td align="center">$\text{00:10}$</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">补题</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">.</td>
+</tr>
+</tbody></table>
+<h2 id="2A-Difference-Operations"><a href="#2A-Difference-Operations" class="headerlink" title="2A. Difference Operations"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1708/problem/A">2A. Difference Operations</a></h2><p>$\text{Solution:}$</p>
+<p>不妨从 $a_2$ 开始考虑，因为 $a_2$ 进行的操作只有减去 $a_1$，所以 $a_2$ 必须是 $a_1$ 的倍数，然后我们就可以将 $a_2$ 减去若干个 $a_1$ 后变成 $a_1$。</p>
+<p>考虑 $a_3$ 及以后的数也是如此，所以序列满足条件当且仅当 $a_i$ 都是 $a_1$ 的倍数，其中 $2\le i\le n$。</p>
+<h2 id="2B-Difference-of-GCDs"><a href="#2B-Difference-of-GCDs" class="headerlink" title="2B. Difference of GCDs"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1708/problem/B">2B. Difference of GCDs</a></h2><p>$\text{Solution:}$</p>
+<p>显然 $\gcd(i,a_i) \le \min(i,a_i)\le i$，又因为题目要求 $\forall 1\le i\le n$，$\gcd(i, a_i)$ 互不相等，所以 $\gcd(i,a_i)&#x3D;i$。</p>
+<p>那么只需在 $l\sim r$ 看有没有 $i$ 的倍数即可，否则输出 <code>-1</code>。</p>
+<h2 id="2C-x2F-1A-Doremy’s-IQ"><a href="#2C-x2F-1A-Doremy’s-IQ" class="headerlink" title="2C&#x2F;1A. Doremy’s IQ"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1707/problem/A">2C&#x2F;1A. Doremy’s IQ</a></h2><p>$\text{Solution:}$</p>
+<p>场上被骗的一道题目，如果正向考虑，肯定是希望做减智商的测试越晚越好，但不容易实现。</p>
+<p>那就反向考虑，设初始智商为 $0$，倒向做测试，遇到做不动的智商 $+1$，智商最多加到 $q$，这样如果我们遇到一个做不动的测试，但智商还没加到 $q$，那么我们一定要去做，因为智商越高，后面更有可能完成更多测试。</p>
+<p>时间复杂度 $\mathcal{O}(n)$。</p>
+<h2 id="2D-x2F-1B-Difference-Array"><a href="#2D-x2F-1B-Difference-Array" class="headerlink" title="2D&#x2F;1B. Difference Array"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1707/problem/B">2D&#x2F;1B. Difference Array</a></h2><p>$\text{Solution:}$</p>
+<p>不妨来证明暴力做法复杂度的正确性。</p>
+<p>我们设每次操作后并忽略 $0$ 的 $a$ 数组总和为 $S$，$S&#x3D;\sum\limits_{i&#x3D;1}^ma_i$，且根据题意有 $\forall1&lt;i\le m$，$a_{i+1}-a_{i}&gt;0$。</p>
+<p>$S&#x3D;\sum\limits_{i&#x3D;1}^ma_i\ge m-1+a_m$</p>
+<p>那么差分一次后的数组变为 $a_2-a_1,a_3-a_2,\cdots,a_m-a_{m-1}$，现在的总和 $S’&#x3D;a_m-a_1\le a_m$。</p>
+<p>原本大于等于 $a_m+m-1$，现在小于等于 $a_m$，说明每次至少减少了 $m-1$，在第一次差分后，数组总和不超过 $a_n$，那么最坏情况的复杂度就为 $\mathcal{O}(A\log A)$，其中 $A&#x3D;\max(n,a_n)$。</p>
+<h2 id="2E-x2F-1C-DFS-Trees"><a href="#2E-x2F-1C-DFS-Trees" class="headerlink" title="2E&#x2F;1C. DFS Trees"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1707/problem/C">2E&#x2F;1C. DFS Trees</a></h2><p>$\text{Solution:}$</p>
+<p>这题有个结论：如果 $\text{findMST(u)}$ 得到的生成树为最小生成树，那么图中没有交叉边。</p>
+<p>关于交叉边的定义，我们可以用一个例子理解。</p>
+<img src="https://s2.loli.net/2022/07/18/doOfyY3MSw2NZqb.jpg" alt="CF1707C-1.jpg" style="zoom:50%;" />
+
+<p>白边为生成树边，则红边为交叉边，而蓝边不是交叉边，即交叉边的最近公共祖先不为边的端点。</p>
+<p>至于上面的结论为什么成立，现在还不太知道，先硬记一下吧。</p>
+<p>那么对于每条非树边，如果能作为以 $u$ 为根的生成树的交叉边，那么 $\text{findMST(u)}$ 就得不到最小生成树。</p>
+<p>我们以 $1$ 为根节点，跑出最小生成树，对于一条非树边 $(u,v)$：</p>
+<ul>
+<li>$lca&#x3D;u$ 或 $lca&#x3D;v$，那么以 $u,v$ 这条路径中间的点（不包括 $u,v$）为根，$(u,v)$ 就会作为一条交叉边，这些点都得不到最小生成树。</li>
+<li>否则，那么从 $1$ 到 $u$ 的父节点和 $1$ 到 $v$ 的父节点的路径就全部得不到最小生成树。</li>
+</ul>
+<p>最后统计答案即可，维护方法有很多，时间复杂度 $\mathcal{O}(n\log n)$。</p>
 <h1 id="Educational-Codeforces-Round-132-text-1709"><a href="#Educational-Codeforces-Round-132-text-1709" class="headerlink" title="Educational Codeforces Round 132$\text{(1709)}$"></a>Educational Codeforces Round 132$\text{(1709)}$</h1><p>比赛时间：$\text{2022&#x2F;7&#x2F;21 22:35}$</p>
 <table>
 <thead>
@@ -855,6 +851,90 @@
 <p>我们可以对每一个节点开一个 set 表示以 $u$ 到 $u$ 子树内一点能表示出的所有的异或值，记为 $s_u$，然后对于 $u$ 的子节点 $v$，考虑是否有 $x\in s_u,y\in s_v,x\oplus y\oplus a_u&#x3D;0$，如果存在，说明我们必须修改 $a_u$，修改后清空 $s_u$；如果不存在，将 $s_v$ 合并入 $s_u$。</p>
 <p>最后用 dsu on tree，将复杂度优化至 $\mathcal{O}(n\log^2 n)$。</p>
 <p>$\text{Code: }$<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1709/submission/165254294">Submission #165254294 - Codeforces</a></p>
+<h1 id="Codeforces-Round-845-Div-2-text-1777"><a href="#Codeforces-Round-845-Div-2-text-1777" class="headerlink" title="Codeforces Round #845 (Div. 2)$\text{(1777)}$"></a>Codeforces Round #845 (Div. 2)$\text{(1777)}$</h1><p>比赛时间：$\text{2023&#x2F;1&#x2F;21 22:35}$</p>
+<table>
+<thead>
+<tr>
+<th align="center">$\text{Score}$</th>
+<th align="center">$\texttt{A}$</th>
+<th align="center">$\texttt{B}$</th>
+<th align="center">$\texttt{C}$</th>
+<th align="center">$\texttt{D}$</th>
+<th align="center">$\texttt{E}$</th>
+<th align="center">$\texttt{F}$</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">$4434$</td>
+<td align="center">$496$</td>
+<td align="center">$\texttt{972}$</td>
+<td align="center">$\texttt{1374}$</td>
+<td align="center">$\texttt{1592}$</td>
+<td align="center">$\texttt{-4}$</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">$\text{00:02}$</td>
+<td align="center">$\text{00:07}$</td>
+<td align="center">$\text{00:21}$</td>
+<td align="center">$\text{00:51}$</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">补题</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">√</td>
+<td align="center">√</td>
+</tr>
+</tbody></table>
+<p>又是一年除夕夜，又是一次上分场。</p>
+<p><img src="https://cdnjson.com/images/2023/01/22/image.png"></p>
+<p>其中后两题用的算法贴合联赛知识点，不得不说是一场适合国人的良心场。</p>
+<h2 id="A-Everybody-Likes-Good-Arrays"><a href="#A-Everybody-Likes-Good-Arrays" class="headerlink" title="A. Everybody Likes Good Arrays!"></a><a target="_blank" rel="noopener" href="https://codeforc.es/contest/1777/problem/A">A. Everybody Likes Good Arrays!</a></h2><p>$\text{Solution:}$</p>
+<p>本题只要观察出 “奇 $\times$ 奇 $&#x3D;$ 奇，偶 $\times$ 偶 $&#x3D;$ 偶” 的性质后，直接统计相邻两数的奇偶性相同的对数即可。</p>
+<p>时间复杂度 $\mathcal{O}(n)$。</p>
+<h2 id="B-Emordnilap"><a href="#B-Emordnilap" class="headerlink" title="B. Emordnilap"></a><a target="_blank" rel="noopener" href="https://codeforc.es/contest/1777/problem/B">B. Emordnilap</a></h2><p>$\text{Solution:}$</p>
+<p>我们将逆序对 $(i,j)$ 分为三类：$(i&lt;j)$</p>
+<ul>
+<li>$1\leq i&lt;j\leq n$</li>
+<li>$1\leq i\leq n,n+1\leq j\leq 2n$</li>
+<li>$n+1\leq i&lt;j\leq 2n$</li>
+</ul>
+<p>观察可知，对于 $n+1\leq i&lt;j\leq 2n$ 的逆序对，<strong>一一对应</strong>一个 $1\leq i&lt;j\leq n$ 的正序对，那么第一类和第三类的总数为 ${n\choose2}$。</p>
+<p>而第二类是在序列的两边分开选的，因此对于 $p_i$ 来说，满足的 $j$ 有 $(p_i-1)$ 个，那么第二类的总数为 $\sum\limits_{i&#x3D;1}^n(i-1)&#x3D;\dfrac{(n-1)n}{2}$。</p>
+<p>因此对于任何一个序列，逆序对数都是 ${n\choose 2} + \dfrac{(n-1)n}{2}&#x3D;(n-1)\cdot n$，那么总数就为 $n!\cdot (n-1)\cdot n$。</p>
+<p>时间复杂度 $\mathcal{O(n)}$。</p>
+<h2 id="C-Quiz-Master"><a href="#C-Quiz-Master" class="headerlink" title="C. Quiz Master"></a><a target="_blank" rel="noopener" href="https://codeforc.es/contest/1777/problem/C">C. Quiz Master</a></h2><p>$\text{Solution:}$</p>
+<p>观察到本题要求极差最小，如果你做过<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7514">P7514 [省选联考 2021 A&#x2F;B 卷] 卡牌游戏</a>，那么就显然发现是一道双指针题。</p>
+<p>本题不需要二分，对于左端点 $i$，找到第一个满足的右端点 $j$，更新答案，然后移动左端点至 $i+1$ 继续找即可。</p>
+<p>判断合法的方法：维护一个桶，添加一个数就将它的所有因数扔到桶里，并统计有多少个桶是不空的，删除同理。如果前 $[1,m]$ 的桶不空，说明当前时刻合法。</p>
+<p>时间复杂度 $\mathcal{O}(n\sqrt{n})&#x2F;\mathcal{O(n\log n)}$ 。</p>
+<h2 id="D-Score-of-a-Tree"><a href="#D-Score-of-a-Tree" class="headerlink" title="D. Score of a Tree"></a><a target="_blank" rel="noopener" href="https://codeforc.es/contest/1777/problem/D">D. Score of a Tree</a></h2><p>$\text{Solution:}$</p>
+<p>样例答案居然是 $32$ 的倍数！</p>
+<p>这题我是这么考虑的，考虑拆贡献计算，对于一个节点 $u$，对于 $u$ 子树内的某一层（记为 $dep$），当且仅当在某一时刻 $t_0$（更具体地，$t_0&#x3D;dep-dep_u$，即这一层的深度减 $u$ 节点的深度），$dep$ 这层上的节点同时合并到 $u$ 节点并贡献给 $u$ 一个 $0$ 或 $1$，不妨设这一层有 $sz$ 个节点。</p>
+<p>我们尝试计数有多少种局面使得 $dep$ 这一层贡献 $u$ 时的答案为 $1$？根据 xor 的结合律，显然当 $sz$ 个节点中有<strong>奇数</strong>个 $1$ 时 xor 和为 $1$，那么这 $sz$ 个点的选择方案为 ${sz\choose 1}+{sz\choose 3}+{sz\choose 5}+\cdots&#x3D;2^{sz-1}$，而剩余 $(n-sz-1)$ 个点可随意选择（注意我们统计的是初始 $n$ 个节点的局面数而不是单看这一层有多少种不同的局面），所以总局面数为 $2^{sz-1}\cdot 2^{n-sz}&#x3D;2^{n-1}$。</p>
+<p><del>此时观察样例确实是 32 的倍数。</del></p>
+<p>那么对于节点 $u$，它子树内每一层都会对 $u$ 产生 $2^{n-1}$ 贡献，记 $f_u$ 表示 $u$ 子树内的最深深度，那么最终答案就是 $2^{n-1}\times \sum\limits_{u&#x3D;1}^n (f_u-dep_u+1)$。</p>
+<p>时间复杂度 $\mathcal{O}(n)$。</p>
+<h2 id="E-Edge-Reverse"><a href="#E-Edge-Reverse" class="headerlink" title="E. Edge Reverse"></a><a target="_blank" rel="noopener" href="https://codeforc.es/contest/1777/problem/E">E. Edge Reverse</a></h2><p>要求最大值最小，先二分一手去掉这个限制。</p>
+<p>那么边权 $w_i\leq mid$ 的都变成了双向边，在这样的一张图上问是否存在一个节点能到达其它全部节点？</p>
+<p>考虑先将所有双向边相连的点用并查集合并起来，因为此时并查集内的点相互可达。</p>
+<p>然后变成了一张只包含有向边的图，我们在上面找到所有强联通分量，一个强联通分量内的点是相互可达的。</p>
+<p>而注意到强联通分量缩点后的图是 DAG，那么存在一个节点能到达其它全部节点等价于 <strong>DAG 上只有一个入度为</strong> $0$ <strong>的点</strong>。</p>
+<p>时间复杂度 $\mathcal{O}(n\log n)$。</p>
+<p><del>好不容易看到一个最近刚学的算法结果写挂了，纯傻逼。</del></p>
+<h2 id="F-Comfortably-Numb"><a href="#F-Comfortably-Numb" class="headerlink" title="F. Comfortably Numb"></a><a target="_blank" rel="noopener" href="https://codeforc.es/contest/1777/problem/F">F. Comfortably Numb</a></h2><p>我们可以借用笛卡尔树形结构理解。</p>
+<p>对于一段区间 $[l,r]$ 的最大值下标 $p$，我们考虑 $i\in[l,p],j\in[p,r]$ 的答案贡献，此时 $i\sim j$ 的最大值已确定为 $a_p$。</p>
+<p>那么问题就变成了 $sum_{i-1}\oplus sum_j\oplus a_p$ 的最大值是多少，由于对于 01-trie 上的查询复杂度稳定 $\mathcal{O}(\log 10^9)$，我们递归维护 $[l,p-1]$ 和 $[p+1,r]$ 的 trie 树，然后选择 $[l,p]$ 和 $[p,r]$ 较短长度的一边，枚举每一个下标，并在另一边的 trie 上查询即可。</p>
+<p>因此最终实现时，我们先递归解决 $[l,p-1]$ 和 $[p+1,r]$，最后才能将左右 trie 树合并。</p>
+<p>由于枚举的较短一边，可以证明最坏情况下的复杂度为 $\mathcal{O}(n\log n\log 10^9)$。</p>
+<p>注意 trie 树中一些边界的点可能没有维护（如 $sum_{l-1},sum_p$），需要再单独贡献一次。</p>
+<p>$\text{Code: }$<a target="_blank" rel="noopener" href="https://codeforc.es/contest/1777/submission/190055840">Submission #190055840 - Codeforces (Unofficial mirror by Menci)</a></p>
 
             <div id="vcomments"></div>
         </div>
