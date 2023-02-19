@@ -1,17 +1,40 @@
-<html>
-  <head>
-  	<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+<head>
+    <title> 线段树合并 - WyyOIer </title>
   	<link rel="stylesheet" href="/css/main.css">
+  	<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-    <link rel="shortcut icon" href="/images/favicon.ico">
-    <script type="text/javascript" src="/javascript/local_search.js"></script>
+    <script type = "text/javascript" async src="/javascript/main.js"></script>
+    <script id="MathJax-script" async src="/javascript/math/tex-mml-chtml.js"></script>
     <script src="/javascript/jquery-3.6.0.min.js"></script>
-    <title> WyyOIer </title>
-  <meta name="generator" content="Hexo 6.2.0"><link rel="stylesheet" href="/css/prism-sh.css" type="text/css"></head>
-  <body>
-    <div id = "background">
-      <div id = "index"> 
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+
+
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeBlockFuction.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeCopy.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/clipboard.min.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeShrink.js"></script> -->
+   <!-- <style type="text/css">code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }</style> -->
+
+    <!-- <link rel="stylesheet" href="/highlight/styles/atom-one-dark.min.css"> -->
+    
+    <!-- <link rel="stylesheet" href="/css/bootstrap.min.css"> -->
+    <script id="Valine" src='https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js'></script>
+<meta name="generator" content="Hexo 6.2.0"><link rel="stylesheet" href="/css/prism-sh.css" type="text/css"></head>
+
+<body>
+
+
+<div id = "background">
+    <div id = "index">
         <div id="menu">
 
     <div style="text-align: center;font-size: 32px;font-family: consolas;">
@@ -71,72 +94,44 @@
 </div>
 
 
-      </div>
-
-      <div style="position: fixed;top: 2%;right: 1%">
-        <p id="site-time" style="text-align: center;font-family: consolas;font-size: 20px"></p>
-        <script>
-          function mytime(){
-            var a = new Date();
-            var b = a.toLocaleTimeString();
-            var c = a.toLocaleDateString();
-            document.getElementById("site-time").innerHTML = c + "<br>" + b;
-          }
-          setInterval(function() {mytime()}, 10);
-        </script>
-      </div>
-    </div>  
-  
-    <div id = "postlist">
-          <div class = "writing">
-        <h1>Writing.</h1>
     </div>
 
-    <section class="posts">
-        
-        <article class="post">
-            
-            <div class="post-title" style="width:600px; height: 32px">
-                <div>
-                    
-                    <div class = "post-meta-top">
-                        
-                
-                    </div>
-                    
-                    <div class="post-time">2020-10-13</div>
-
-                    <a class="post-title-link" href="/2020/10/13/NOIP2020-%E6%B8%B8%E8%AE%B0/">
-                        NOIP2020 游记
-                    </a>
-                
-
-
-                    <a class="category-border-link" href="/categories/%E6%AF%94%E8%B5%9B%E6%B8%B8%E8%AE%B0/">比赛游记</a>
-                </div>
-
-            </div>
-        
-        
-        </article>
-        
-    </section>
-
-    </div>
-
-    <div id = "search-border">
-      <form class="site-search-form">
-        <div style = "background-color: #eeeeee;">
-          <input type="text" id="local-search-input" class="st-search-input" />
-          <i class="fa fa-times-circle" onclick = "closeSearch()"></i>
-        </div>
-      </form>
-      <div id="local-search-result" class="local-search-result-cls"></div>
-    </div>
     
-    <script>
-      var path = "/search.xml";
-      searchFunc(path, 'local-search-input', 'local-search-result');
-    </script>
-  </body>
-</html>
+
+    
+
+
+    
+
+        <div id = "article">
+            <div id = "post-title"> 线段树合并 </div>
+            <div id = "post-author"> By WyyOIer | </div>
+            <div id = "post-date" title = "发布时间"> 2023-02-19 19:04:58 / </div>
+            <div id = "post-updated" title = "更新时间"> 2023-02-19 19:04:58 </div>
+            <span class = "leancloud_visitors" id = "/2023/02/19/segment-merging/">
+                <text class="post-meta-item-text">阅读数 </text>
+                <i class="leancloud-visitors-count">nan</i>
+            </span>
+            <br>
+            
+            <div id="vcomments"></div>
+        </div>
+
+        <div id = "toc">
+        </div>
+
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: 'CEGJD6I3uLgJeTF6fPsqgGmw-gzGzoHsz',
+                appKey: 'R3wowhGv7IL3peB3tT06CjzS',
+                visitor: true,
+                master: '28a6ec927125219298a15dcb5c104f67'
+            })
+        </script>
+
+    
+
+</div>
+
+</body>

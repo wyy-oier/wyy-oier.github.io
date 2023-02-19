@@ -717,6 +717,11 @@ console<span class="token punctuation">.</span><span class="token function">log<
 ]]></content>
   </entry>
   <entry>
+    <title>线段树合并</title>
+    <url>/2023/02/19/segment-merging/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>Hash 算法</title>
     <url>/2023/01/16/hash-algorithm/</url>
     <content><![CDATA[<h1 id="引入（摘自-OI-wiki）"><a href="#引入（摘自-OI-wiki）" class="headerlink" title="引入（摘自 OI-wiki）"></a>引入（摘自 OI-wiki）</h1><p>哈希表又称散列表，一种以「key-value」形式存储数据的数据结构。所谓以「key-value」形式存储数据，是指任意的键值 key 都唯一对应到内存中的某个位置。只需要输入查找的键值，就可以快速地找到其对应的 value。可以把哈希表理解为一种高级的数组，这种数组的下标可以是很大的整数，浮点数，字符串甚至结构体。</p>
