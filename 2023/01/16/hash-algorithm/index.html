@@ -48,7 +48,7 @@
     </div>
 	
     <div style="height: 50px;width: 30%;float: left;text-align: center;">
-        <text id = "pcount" title = "文章数" style = "font-family: consolas;font-size: 20px;">22</text>
+        <text id = "pcount" title = "文章数" style = "font-family: consolas;font-size: 20px;">23</text>
     </div>
 
     <div style="height: 50px;width: 30%;float: left;text-align: center;">
@@ -107,7 +107,7 @@
             <div id = "post-title"> Hash 算法 </div>
             <div id = "post-author"> By WyyOIer | </div>
             <div id = "post-date" title = "发布时间"> 2023-01-16 19:46:55 / </div>
-            <div id = "post-updated" title = "更新时间"> 2023-01-21 09:18:38 </div>
+            <div id = "post-updated" title = "更新时间"> 2023-02-24 21:26:48 </div>
             <span class = "leancloud_visitors" id = "/2023/01/16/hash-algorithm/">
                 <text class="post-meta-item-text">阅读数 </text>
                 <i class="leancloud-visitors-count">nan</i>
@@ -194,7 +194,7 @@
 <h1 id="树哈希"><a href="#树哈希" class="headerlink" title="树哈希"></a>树哈希</h1><p>树哈希通过对树的结构进行哈希，来判断树之间是否同构。</p>
 <p>一种可行的树哈希方法：子树按 hash 值排序后，以括号序字符串拼接。</p>
 <p>注意这种做法也可能产生冲突，但冲突在于对括号序字符串的哈希，而不同的树一定对应一个不同的括号串。</p>
-<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>记几道比较典型的 Hash 题目。</p>
+<h1 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h1><p>记几道比较典型的 Hash 题目。</p>
 <h2 id="红蔷薇白玫瑰（rose）"><a href="#红蔷薇白玫瑰（rose）" class="headerlink" title="红蔷薇白玫瑰（rose）"></a>红蔷薇白玫瑰（rose）</h2><p>借用了学长的题目，可能会视情况保护隐私在文章中撤掉此题。</p>
 <p>给⼀个 01-trie 和⼀个长为 $m$ 的 01 串 $S$，对于每个节点，如果按照 $S$ 能走到⼀个节点则输出该节点，否则输出 $0$。</p>
 <p>解释一下题意：给定一棵有限节点的 01-trie，还有一个给定的长度为 $m$ 的 01 字符串，对于每一个结点 $u$，我们从 $u$ 开始，按照 01 字符串，如果是 0 往 0 儿子走，1 就往 1 儿子走，最后可能会走出 trie 或未走出 trie，如果未走出 trie，输出这个点最终到达的节点。</p>

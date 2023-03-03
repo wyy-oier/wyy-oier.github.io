@@ -48,7 +48,7 @@
     </div>
 	
     <div style="height: 50px;width: 30%;float: left;text-align: center;">
-        <text id = "pcount" title = "文章数" style = "font-family: consolas;font-size: 20px;">22</text>
+        <text id = "pcount" title = "文章数" style = "font-family: consolas;font-size: 20px;">23</text>
     </div>
 
     <div style="height: 50px;width: 30%;float: left;text-align: center;">
@@ -107,13 +107,255 @@
             <div id = "post-title"> 线段树合并 </div>
             <div id = "post-author"> By WyyOIer | </div>
             <div id = "post-date" title = "发布时间"> 2023-02-19 19:04:58 / </div>
-            <div id = "post-updated" title = "更新时间"> 2023-02-19 19:04:58 </div>
+            <div id = "post-updated" title = "更新时间"> 2023-02-25 09:01:34 </div>
             <span class = "leancloud_visitors" id = "/2023/02/19/segment-merging/">
                 <text class="post-meta-item-text">阅读数 </text>
                 <i class="leancloud-visitors-count">nan</i>
             </span>
             <br>
-            
+            <h1 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h1><p>线段树合并是动态开点线段树使用的进阶技巧，实现的操作即为合并两棵线段树上的对应节点的信息，注意此信息应该具有可合并的性质。 </p>
+<p>具体的做法为：从两棵线段树的根节点开始向左右儿子递归，记录 <code>merge(p1, p2)</code> 表示两棵线段树分别走到了 $p_1$ 和 $p_2$ 节点，此时两棵树的节点<strong>对应着同一区间</strong> $[L,R]$ <strong>的合并</strong>。 </p>
+<p>分两种终止情况： </p>
+<ul>
+<li><p>$p_1&#x3D;0 \lor p_2&#x3D;0$，表示一边产生了空节点。 </p>
+</li>
+<li><p>$L&#x3D;R$，表示已经到达叶子节点。</p>
+</li>
+</ul>
+<p>其余情况递归 <code>merge(ls(p1), ls(p2))</code> 与 <code>merge(rs(p1), rs(p2))</code> 即可。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">// 以维护加法合并为例</span>
+<span class="token keyword">int</span> <span class="token function">merge</span><span class="token punctuation">(</span><span class="token keyword">int</span> p1<span class="token punctuation">,</span> <span class="token keyword">int</span> p2<span class="token punctuation">,</span> <span class="token keyword">int</span> l<span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>p1 <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">||</span> p2 <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> p1 <span class="token operator">+</span> p2<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>l <span class="token operator">==</span> r<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        tree<span class="token punctuation">[</span>p1<span class="token punctuation">]</span><span class="token punctuation">.</span>d <span class="token operator">+</span><span class="token operator">=</span> tree<span class="token punctuation">[</span>p2<span class="token punctuation">]</span><span class="token punctuation">.</span>d<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> p1<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">int</span> mid <span class="token operator">=</span> <span class="token punctuation">(</span>l <span class="token operator">+</span> r<span class="token punctuation">)</span> <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">;</span>
+    tree<span class="token punctuation">[</span>p1<span class="token punctuation">]</span><span class="token punctuation">.</span>l <span class="token operator">=</span> <span class="token function">merge</span><span class="token punctuation">(</span><span class="token function">ls</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">ls</span><span class="token punctuation">(</span>p2<span class="token punctuation">)</span><span class="token punctuation">,</span> l<span class="token punctuation">,</span> mid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    tree<span class="token punctuation">[</span>p1<span class="token punctuation">]</span><span class="token punctuation">.</span>r <span class="token operator">=</span> <span class="token function">merge</span><span class="token punctuation">(</span><span class="token function">rs</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">rs</span><span class="token punctuation">(</span>p2<span class="token punctuation">)</span><span class="token punctuation">,</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">pushup</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> p1<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="时间复杂度分析"><a href="#时间复杂度分析" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h2><p>对于一次递归，我们将两个线段树节点合并为一个线段树节点，因此每次递归总节点数改变量 $\mathcal{O}(1)$。不妨设合并前所有线段树节点数量为 $\mathcal{O}(n\log n)$，而合并后线段树节点数量仍为 $\mathcal{O}(n\log n)$，因此线段树节点改变数量为 $\mathcal{O}(n\log n)$，因此递归次数的时间复杂度仍为 $\mathcal{O}(n\log n)$。</p>
+<p>但注意<strong>单次合并的复杂度并不是平均</strong> $\mathcal{O}(\log n)$，而只有 $n$ 次合并的总时间复杂度为 $\mathcal{O}(n\log n)$ 的性质。</p>
+<h1 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h1><h2 id="P1456-Monkey-King"><a href="#P1456-Monkey-King" class="headerlink" title="P1456 Monkey King"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1456">P1456 Monkey King</a></h2><p>考虑对每一只猴子与其朋友我们维护出一个集合，那么考虑一次决斗，就是在两只猴子所对应的集合中挑选最大强壮值的猴子，并将两个集合合并，这是左偏树模板题，现在我们尝试用线段树合并解决。</p>
+<p>那么我们先用并查集维护猴子朋友的集合，在用值域线段树维护强壮值，最后线段树上二分找到最大强壮值即可，合并时需要使用线段树合并。</p>
+<p>时间复杂度 $\mathcal{O}(n\log n)$。</p>
+<h2 id="P4556-Vani有约会-雨天的尾巴-x2F-【模板】线段树合并"><a href="#P4556-Vani有约会-雨天的尾巴-x2F-【模板】线段树合并" class="headerlink" title="P4556 [Vani有约会]雨天的尾巴 &#x2F;【模板】线段树合并"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4556">P4556 [Vani有约会]雨天的尾巴 &#x2F;【模板】线段树合并</a></h2><p>我们尝试对树上每个节点维护一个值域线段树来统计每种颜色的数量，需要先对路径进行差分使修改次数降至 $\mathcal{O}(m)$，从而使总结点数保证在 $\mathcal{O}(m\log n)$。</p>
+<p>最后在树上做线段树合并，找线段树上最大值即可。</p>
+<p>时间复杂度 $\mathcal{O}(m\log n)$。</p>
+<h2 id="P1552-APIO2012-派遣"><a href="#P1552-APIO2012-派遣" class="headerlink" title="P1552 [APIO2012] 派遣"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1552">P1552 [APIO2012] 派遣</a></h2><p>首先我们钦定领导为 $u$，那么 $c_u$ 确定之后，每个忍者的贡献相同，我们所做的只是贪心的选择花费最小的忍者，那么在线段树上二分可以求出最多选出的忍者数。</p>
+<p>最后我们按照 dfs 序钦定领导并线段树合并维护，时间复杂度 $\mathcal{O}(n\log n)$。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">long</span> ll<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> n<span class="token punctuation">,</span> M<span class="token punctuation">;</span>
+<span class="token keyword">int</span> b<span class="token punctuation">[</span><span class="token number">100005</span><span class="token punctuation">]</span><span class="token punctuation">,</span> c<span class="token punctuation">[</span><span class="token number">100005</span><span class="token punctuation">]</span><span class="token punctuation">,</span> l<span class="token punctuation">[</span><span class="token number">100005</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> rt<span class="token punctuation">[</span><span class="token number">100005</span><span class="token punctuation">]</span><span class="token punctuation">,</span> node<span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> SegMent <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> l<span class="token punctuation">,</span> r<span class="token punctuation">,</span> cnt<span class="token punctuation">;</span>
+    ll sum<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>tree<span class="token punctuation">[</span><span class="token number">3200005</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+ll ans<span class="token punctuation">;</span>
+
+<span class="token keyword">inline</span> <span class="token keyword">int</span> <span class="token function">ls</span><span class="token punctuation">(</span><span class="token keyword">int</span> p<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token keyword">return</span> tree<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>l<span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token keyword">inline</span> <span class="token keyword">int</span> <span class="token function">rs</span><span class="token punctuation">(</span><span class="token keyword">int</span> p<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token keyword">return</span> tree<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>r<span class="token punctuation">;</span><span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">pushup</span><span class="token punctuation">(</span><span class="token keyword">int</span> p<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    tree<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>cnt <span class="token operator">=</span> tree<span class="token punctuation">[</span><span class="token function">ls</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">.</span>cnt <span class="token operator">+</span> tree<span class="token punctuation">[</span><span class="token function">rs</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">.</span>cnt<span class="token punctuation">;</span>
+    tree<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>sum <span class="token operator">=</span> tree<span class="token punctuation">[</span><span class="token function">ls</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">.</span>sum <span class="token operator">+</span> tree<span class="token punctuation">[</span><span class="token function">rs</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">.</span>sum<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> 
+
+<span class="token keyword">int</span> <span class="token function">ins</span><span class="token punctuation">(</span><span class="token keyword">int</span> p<span class="token punctuation">,</span> <span class="token keyword">int</span> l<span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">,</span> <span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>p <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        p <span class="token operator">=</span> <span class="token operator">++</span>node<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>l <span class="token operator">==</span> r<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        tree<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>cnt<span class="token operator">++</span><span class="token punctuation">;</span>
+        tree<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>sum <span class="token operator">+</span><span class="token operator">=</span> l<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> mid <span class="token operator">=</span> <span class="token punctuation">(</span>l <span class="token operator">+</span> r<span class="token punctuation">)</span> <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>x <span class="token operator">&lt;=</span> mid<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            tree<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>l <span class="token operator">=</span> <span class="token function">ins</span><span class="token punctuation">(</span><span class="token function">ls</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">,</span> l<span class="token punctuation">,</span> mid<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            tree<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>r <span class="token operator">=</span> <span class="token function">ins</span><span class="token punctuation">(</span><span class="token function">rs</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">,</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> r<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">pushup</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> p<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">merge</span><span class="token punctuation">(</span><span class="token keyword">int</span> p1<span class="token punctuation">,</span> <span class="token keyword">int</span> p2<span class="token punctuation">,</span> <span class="token keyword">int</span> l<span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>p1 <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">||</span> p2 <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> p1 <span class="token operator">+</span> p2<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>l <span class="token operator">==</span> r<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        tree<span class="token punctuation">[</span>p1<span class="token punctuation">]</span><span class="token punctuation">.</span>cnt <span class="token operator">+</span><span class="token operator">=</span> tree<span class="token punctuation">[</span>p2<span class="token punctuation">]</span><span class="token punctuation">.</span>cnt<span class="token punctuation">;</span>
+        tree<span class="token punctuation">[</span>p1<span class="token punctuation">]</span><span class="token punctuation">.</span>sum <span class="token operator">+</span><span class="token operator">=</span> tree<span class="token punctuation">[</span>p2<span class="token punctuation">]</span><span class="token punctuation">.</span>sum<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> mid <span class="token operator">=</span> <span class="token punctuation">(</span>l <span class="token operator">+</span> r<span class="token punctuation">)</span> <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">;</span>
+        tree<span class="token punctuation">[</span>p1<span class="token punctuation">]</span><span class="token punctuation">.</span>l <span class="token operator">=</span> <span class="token function">merge</span><span class="token punctuation">(</span><span class="token function">ls</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">ls</span><span class="token punctuation">(</span>p2<span class="token punctuation">)</span><span class="token punctuation">,</span> l<span class="token punctuation">,</span> mid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        tree<span class="token punctuation">[</span>p1<span class="token punctuation">]</span><span class="token punctuation">.</span>r <span class="token operator">=</span> <span class="token function">merge</span><span class="token punctuation">(</span><span class="token function">rs</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">rs</span><span class="token punctuation">(</span>p2<span class="token punctuation">)</span><span class="token punctuation">,</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">pushup</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> p1<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">que</span><span class="token punctuation">(</span><span class="token keyword">int</span> p<span class="token punctuation">,</span> <span class="token keyword">int</span> l<span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">,</span> <span class="token keyword">int</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>tree<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>sum <span class="token operator">&lt;=</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> tree<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>cnt<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>  
+    <span class="token keyword">if</span><span class="token punctuation">(</span>l <span class="token operator">==</span> r<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> k <span class="token operator">/</span> l<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">int</span> mid <span class="token operator">=</span> <span class="token punctuation">(</span>l <span class="token operator">+</span> r<span class="token punctuation">)</span> <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>tree<span class="token punctuation">[</span><span class="token function">ls</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">.</span>sum <span class="token operator">></span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">que</span><span class="token punctuation">(</span><span class="token function">ls</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">,</span> l<span class="token punctuation">,</span> mid<span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> tree<span class="token punctuation">[</span><span class="token function">ls</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">.</span>cnt <span class="token operator">+</span> <span class="token function">que</span><span class="token punctuation">(</span><span class="token function">rs</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">,</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> r<span class="token punctuation">,</span> k <span class="token operator">-</span> tree<span class="token punctuation">[</span><span class="token function">ls</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">.</span>sum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ios<span class="token operator">::</span><span class="token function">sync_with_stdio</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cin<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cout<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    cin <span class="token operator">>></span> n <span class="token operator">>></span> M<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cin <span class="token operator">>></span> b<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">>></span> c<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">>></span> l<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> 
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> n<span class="token punctuation">;</span>i <span class="token operator">>=</span> <span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        rt<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">ins</span><span class="token punctuation">(</span>rt<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1e9</span><span class="token punctuation">,</span> c<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> num <span class="token operator">=</span> <span class="token function">que</span><span class="token punctuation">(</span>rt<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1e9</span><span class="token punctuation">,</span> M<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ans <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span> <span class="token number">1ll</span> <span class="token operator">*</span> num <span class="token operator">*</span> l<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        rt<span class="token punctuation">[</span>b<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">merge</span><span class="token punctuation">(</span>rt<span class="token punctuation">[</span>b<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> rt<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1e9</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    cout <span class="token operator">&lt;&lt;</span> ans <span class="token operator">&lt;&lt;</span> <span class="token string">'\n'</span><span class="token punctuation">;</span>
+    
+    cout<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="P3521-POI2011-ROT-Tree-Rotations"><a href="#P3521-POI2011-ROT-Tree-Rotations" class="headerlink" title="P3521 [POI2011]ROT-Tree Rotations"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3521">P3521 [POI2011]ROT-Tree Rotations</a></h2><p>考虑对于一个节点 $u$ 的左右儿子，如果逆序对数量 $&gt;$ 正序对显然交换，且不会对后续其它交换造成影响，因此我们只需统计节点 $u$ 产生的正序对 $sum_0$ 与逆序对 $sum_1$，那么对答案的贡献就为 $\min(sum_0,sum_1)$。</p>
+<p>现在考虑计算 $sum_0$ 和 $sum_1$。不妨设左子树 $p_1$，右子树 $p_2$，当我们在线段树合并的时候走到 $[L,R]$ 区间时，可以很自然地维护出 $p_2$ 中值域 $[1,L-1]$ 的数的数量 $pre$ 和值域 $[R+1,n]$ 的数的数量 $suf$。</p>
+<p>维护方式很简单，当我们从 $[L,R]\rightarrow [L,mid]$ 时，加入 $p_2$ 中 $[mid+1,R]$ 至 $suf$；从 $[L,R]\rightarrow [mid+1,R]$ 时，加入 $p_2$ 中 $[L,mid]$ 至 $pre$，这样我们维护的信息永远是当前线段树合并的区间 $[L,R]$ 之外的信息。</p>
+<p>统计信息只在合并终止情况时计算：</p>
+<ul>
+<li>$p_1\neq 0\land p_2&#x3D;0$，此时任意一个 $p_1$ 中的值域在 $[L,R]$ 中的数均与 $p_2$ 中的值域在 $[1,L-1]$ 的数形成逆序对，在 $[R+1,n]$ 形成正序对，那么使用乘法原理就是相应的对数。</li>
+<li>$L&#x3D;R$，本题中由于每个节点的权值互不相同，因此不会有两棵树同时走到叶子节点的情况，因此不用考虑。</li>
+</ul>
+<p>最后重复执行合并流程，统计答案即可。</p>
+<p>时间复杂度 $\mathcal{O}(n\log n)$。</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">long</span> ll<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> n<span class="token punctuation">,</span> lson<span class="token punctuation">[</span><span class="token number">400005</span><span class="token punctuation">]</span><span class="token punctuation">,</span> rson<span class="token punctuation">[</span><span class="token number">400005</span><span class="token punctuation">]</span><span class="token punctuation">,</span> v<span class="token punctuation">[</span><span class="token number">400005</span><span class="token punctuation">]</span><span class="token punctuation">,</span> cnt<span class="token punctuation">,</span> RT<span class="token punctuation">;</span>
+ll ans<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">read</span><span class="token punctuation">(</span><span class="token keyword">int</span> u<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>u <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        u <span class="token operator">=</span> <span class="token operator">++</span>cnt<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    cin <span class="token operator">>></span> v<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>v<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        lson<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">read</span><span class="token punctuation">(</span>lson<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> rson<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">read</span><span class="token punctuation">(</span>rson<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> u<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> rt<span class="token punctuation">[</span><span class="token number">400005</span><span class="token punctuation">]</span><span class="token punctuation">,</span> node<span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> SegMent <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> l<span class="token punctuation">,</span> r<span class="token punctuation">,</span> cnt<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>tree<span class="token punctuation">[</span><span class="token number">4000005</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">inline</span> <span class="token keyword">int</span> <span class="token function">ls</span><span class="token punctuation">(</span><span class="token keyword">int</span> p<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token keyword">return</span> tree<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>l<span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token keyword">inline</span> <span class="token keyword">int</span> <span class="token function">rs</span><span class="token punctuation">(</span><span class="token keyword">int</span> p<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token keyword">return</span> tree<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>r<span class="token punctuation">;</span><span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">pushup</span><span class="token punctuation">(</span><span class="token keyword">int</span> p<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    tree<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>cnt <span class="token operator">=</span> tree<span class="token punctuation">[</span><span class="token function">ls</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">.</span>cnt <span class="token operator">+</span> tree<span class="token punctuation">[</span><span class="token function">rs</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">.</span>cnt<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">ins</span><span class="token punctuation">(</span><span class="token keyword">int</span> p<span class="token punctuation">,</span> <span class="token keyword">int</span> l<span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">,</span> <span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>p <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        p <span class="token operator">=</span> <span class="token operator">++</span>node<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>l <span class="token operator">==</span> r<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        tree<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>cnt<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> mid <span class="token operator">=</span> <span class="token punctuation">(</span>l <span class="token operator">+</span> r<span class="token punctuation">)</span> <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>x <span class="token operator">&lt;=</span> mid<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            tree<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>l <span class="token operator">=</span> <span class="token function">ins</span><span class="token punctuation">(</span><span class="token function">ls</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">,</span> l<span class="token punctuation">,</span> mid<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            tree<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>r <span class="token operator">=</span> <span class="token function">ins</span><span class="token punctuation">(</span><span class="token function">rs</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">,</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> r<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> 
+        <span class="token function">pushup</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> p<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+ll sum0<span class="token punctuation">,</span> sum1<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">merge</span><span class="token punctuation">(</span><span class="token keyword">int</span> p1<span class="token punctuation">,</span> <span class="token keyword">int</span> p2<span class="token punctuation">,</span> <span class="token keyword">int</span> l<span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">,</span> <span class="token keyword">int</span> pre<span class="token punctuation">,</span> <span class="token keyword">int</span> suf<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>p2 <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        sum0 <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">1ll</span> <span class="token operator">*</span> suf <span class="token operator">*</span> tree<span class="token punctuation">[</span>p1<span class="token punctuation">]</span><span class="token punctuation">.</span>cnt<span class="token punctuation">;</span>
+        sum1 <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">1ll</span> <span class="token operator">*</span> pre <span class="token operator">*</span> tree<span class="token punctuation">[</span>p1<span class="token punctuation">]</span><span class="token punctuation">.</span>cnt<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> p1<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>p1 <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> p2<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">int</span> mid <span class="token operator">=</span> <span class="token punctuation">(</span>l <span class="token operator">+</span> r<span class="token punctuation">)</span> <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> tmp <span class="token operator">=</span> tree<span class="token punctuation">[</span><span class="token function">ls</span><span class="token punctuation">(</span>p2<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">.</span>cnt<span class="token punctuation">;</span>
+    tree<span class="token punctuation">[</span>p1<span class="token punctuation">]</span><span class="token punctuation">.</span>l <span class="token operator">=</span> <span class="token function">merge</span><span class="token punctuation">(</span><span class="token function">ls</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">ls</span><span class="token punctuation">(</span>p2<span class="token punctuation">)</span><span class="token punctuation">,</span> l<span class="token punctuation">,</span> mid<span class="token punctuation">,</span> pre<span class="token punctuation">,</span> suf <span class="token operator">+</span> tree<span class="token punctuation">[</span><span class="token function">rs</span><span class="token punctuation">(</span>p2<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">.</span>cnt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    tree<span class="token punctuation">[</span>p1<span class="token punctuation">]</span><span class="token punctuation">.</span>r <span class="token operator">=</span> <span class="token function">merge</span><span class="token punctuation">(</span><span class="token function">rs</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">rs</span><span class="token punctuation">(</span>p2<span class="token punctuation">)</span><span class="token punctuation">,</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> r<span class="token punctuation">,</span> pre <span class="token operator">+</span> tmp<span class="token punctuation">,</span> suf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">pushup</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> p1<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token keyword">int</span> u<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>v<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        rt<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">ins</span><span class="token punctuation">(</span>rt<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2e5</span><span class="token punctuation">,</span> v<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token function">dfs</span><span class="token punctuation">(</span>lson<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">dfs</span><span class="token punctuation">(</span>rson<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        sum0 <span class="token operator">=</span> sum1 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        rt<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">=</span> rt<span class="token punctuation">[</span>lson<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        rt<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">merge</span><span class="token punctuation">(</span>rt<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">,</span> rt<span class="token punctuation">[</span>rson<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2e5</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ans <span class="token operator">+</span><span class="token operator">=</span> <span class="token function">min</span><span class="token punctuation">(</span>sum0<span class="token punctuation">,</span> sum1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ios<span class="token operator">::</span><span class="token function">sync_with_stdio</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cin<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cout<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    cin <span class="token operator">>></span> n<span class="token punctuation">;</span>
+    RT <span class="token operator">=</span> <span class="token function">read</span><span class="token punctuation">(</span>RT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">dfs</span><span class="token punctuation">(</span>RT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> ans <span class="token operator">&lt;&lt;</span> <span class="token string">'\n'</span><span class="token punctuation">;</span>
+    
+    cout<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+
             <div id="vcomments"></div>
         </div>
 
