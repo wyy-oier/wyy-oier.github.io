@@ -1,0 +1,224 @@
+<head>
+    <title> 斯特林数 - WyyOIer </title>
+  	<link rel="stylesheet" href="/css/main.css">
+  	<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <script type = "text/javascript" async src="/javascript/main.js"></script>
+    <script id="MathJax-script" async src="/javascript/math/tex-mml-chtml.js"></script>
+    <script src="/javascript/jquery-3.6.0.min.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+
+
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeBlockFuction.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeCopy.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/clipboard.min.js"></script> -->
+   <!-- <script type="text/javascript" src="/javascript/codeBlocks/codeShrink.js"></script> -->
+   <!-- <style type="text/css">code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }</style> -->
+
+    <!-- <link rel="stylesheet" href="/highlight/styles/atom-one-dark.min.css"> -->
+    
+    <!-- <link rel="stylesheet" href="/css/bootstrap.min.css"> -->
+    <script id="Valine" src='https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js'></script>
+<meta name="generator" content="Hexo 6.2.0"><link rel="stylesheet" href="/css/prism-sh.css" type="text/css"></head>
+
+<body>
+
+
+<div id = "background">
+    <div id = "index">
+        <div id="menu">
+
+    <div style="text-align: center;font-size: 32px;font-family: consolas;">
+        <p>WyyOIer</p>
+    </div>
+
+    <div style="height: 150px;float: up;display: flex;flex-direction: column;align-items: center;">
+        <div id="headstyle">
+            
+        </div>
+    </div>
+	
+    <div style="height: 50px;width: 30%;float: left;text-align: center;">
+        <text id = "pcount" title = "文章数" style = "font-family: consolas;font-size: 20px;">25</text>
+    </div>
+
+    <div style="height: 50px;width: 30%;float: left;text-align: center;">
+        <text id = "commentcount" title = "评论数" style = "font-family: consolas;font-size: 20px;">0</text>
+    </div>
+
+    <div style="height: 50px;width: 40%;float: left;text-align: center;">
+        <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/159610">
+        <img src="https://www.luogu.com.cn/favicon.ico" alt="洛谷" width="24" height="24"></a>
+        &nbsp; 
+        <a target="_blank" rel="noopener" href="https://codeforces.com/profile/WyyOIer">
+        <img src="https://codeforces.com/favicon.ico" alt="CF" width="24" height="24"></a>
+    </div>
+
+
+    <div class="list-group">
+        <a class="list-group-item" href="/"><i class="fa fa-home fa-fw"></i>&nbsp; 首页</a>
+        <a class="list-group-item" href="/about"><i class="fa fa-user fa-fw"></i>&nbsp; 关于</a>
+        <a class="list-group-item" href="/links"><i class="fa fa-link fa-fw"></i>&nbsp; 友链</a>
+        <a class="list-group-item" onclick = "Search()"><i class="fa fa-search fa-fw"></i>&nbsp; 搜索</a>
+        <a class="list-group-item" href="/source"><i class="fa fa-code fa-fw"></i>&nbsp; 代码</a>
+        <a class="list-group-item" href="/config"><i class="fa fa-cog fa-fw"></i>&nbsp; 设置</a>
+    </div>
+
+    <script>
+        function changemusicid(){
+            var v = document.getElementById("num").value, text, f = 0;
+            if(v == null || v == "") {
+            text = "输入不能为空。";
+            f = 1;
+            }
+            if(f == 0) document.getElementById("music").innerHTML= '<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=250 height=95 src="//music.163.com/outchain/player?type=2&id=' + v + '&auto=0&height=66"></iframe> ';
+            else document.getElementById("musictext").innerHTML = text;
+        }
+    </script>
+
+    <div style="height: 13%;width: 30%;float: left" id="music">
+    <!-- <input id = "num" placeholder = "输入网易音乐 id，如 480517594" style = "width: 230px;"> -->
+    <!-- <button type="button" onclick="changemusicid()">提交</button> -->
+    <!-- <p id = "musictext"></p> -->
+    </div>
+
+</div>
+
+
+    </div>
+
+    
+
+    
+
+
+    
+
+        <div id = "article">
+            <div id = "post-title"> 斯特林数 </div>
+            <div id = "post-author"> By WyyOIer | </div>
+            <div id = "post-date" title = "发布时间"> 2023-03-07 10:25:17 / </div>
+            <div id = "post-updated" title = "更新时间"> 2023-03-15 22:11:24 </div>
+            <span class = "leancloud_visitors" id = "/2023/03/07/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/">
+                <text class="post-meta-item-text">阅读数 </text>
+                <i class="leancloud-visitors-count">nan</i>
+            </span>
+            <br>
+            <h1 id="第一类斯特林数-texttt-Fisrt-Stirling"><a href="#第一类斯特林数-texttt-Fisrt-Stirling" class="headerlink" title="第一类斯特林数 $\texttt{(Fisrt Stirling)}$"></a>第一类斯特林数 $\texttt{(Fisrt Stirling)}$</h1><p>记 $\operatorname{stir_1}(n,k)$ 或 ${n \brack k}$ 表示 $n$ 个不同小球放在 $k$ 个置换环中的方案数。其中环之间的小球编号不同或置换顺序不同均算作不同的方案。</p>
+<p>递推：${n \brack k}&#x3D;{n-1 \brack k-1}+(n-1)\cdot {n-1 \brack k}$</p>
+<p>*<strong>组合意义</strong>：对于第 $n$ 个球，一种选择是新开一个未放过任何小球的环，另一种选择是放在之前的环中，因为小球互不相同且<strong>置换不同算作不同方案</strong>，那么放在任意已经放过的小球之后都是不同的方案，因此有 $(n-1)$ 种选择。</p>
+<p>边界：${0 \brack 0}&#x3D;1,{n \brack 0}&#x3D;0(n&gt;0),{n\brack k}&#x3D;0(n&lt;k)$</p>
+<h2 id="代码实现-mathcal-O-nk"><a href="#代码实现-mathcal-O-nk" class="headerlink" title="代码实现 $\mathcal{O}(nk)$"></a>代码实现 $\mathcal{O}(nk)$</h2><pre class=" language-cpp"><code class="language-cpp">stir1<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> <span class="token function">min</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        stir1<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>stir1<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token punctuation">(</span>ll<span class="token punctuation">)</span>stir1<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> Mod<span class="token punctuation">)</span> <span class="token operator">%</span> Mod<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="不知道有什么用的性质"><a href="#不知道有什么用的性质" class="headerlink" title="不知道有什么用的性质"></a>不知道有什么用的性质</h2><ul>
+<li>${n \brack 1}&#x3D;(n-1)!$</li>
+<li>${n \brack 2}&#x3D;(n-1)!\sum\limits_{i&#x3D;1}^{n-1}\dfrac{1}{i}$</li>
+<li>$n!&#x3D;\sum\limits_{k&#x3D;0}^n{n \brack k}$</li>
+</ul>
+<h1 id="上升幂"><a href="#上升幂" class="headerlink" title="上升幂"></a>上升幂</h1><p>记 $x$ 的 $n$ 阶上升幂为 $x^{\overline{n}}$ ，其值为 $\prod\limits_{i&#x3D;x}^{n+x-1}i$。特殊地，记 $x^{\overline{0}}&#x3D;1$。</p>
+<p>不难看出 $x^{\overline{n}}$ 是一个关于 $x$ 的 $n$ 次多项式，具体来说，有 $x^{\overline{n}}&#x3D;\sum\limits_{k&#x3D;0}^{n}{n \brack k}x^k$。</p>
+<p>*<strong>组合意义：</strong>对于将 $n$ 个小球放在 $k$ 个置换环中，再对环染 $[1,x]$ 中的某种颜色。等式左边含义为对于当前的球，要么新开一个环染 $[1,x]$ 的颜色，要么放在任意一个之前的球之后并继承颜色；等式右边含义为枚举环的数量 $k$，用第一类斯特林数求出 $n$ 个球放 $k$ 个环的方案数后每个环染 $[1,x]$ 的颜色。</p>
+<h1 id="第二类斯特林数-texttt-Second-Stirling"><a href="#第二类斯特林数-texttt-Second-Stirling" class="headerlink" title="第二类斯特林数 $\texttt{(Second Stirling)}$"></a>第二类斯特林数 $\texttt{(Second Stirling)}$</h1><p>记 $\operatorname{stir_2}(n,k)$ 或 ${n \brace k}$ 表示 $n$ 个不同小球放在 $k$ 个集合中的方案数。其中集合之间的小球编号不同视作不同的方案。</p>
+<p>递推：${n \brace k}&#x3D;{n-1 \brace k-1}+k\cdot {n-1 \brace k}$</p>
+<p>*<strong>组合意义：</strong>对于第 $n$ 个球，一种选择是新开一个未放过任何小球的集合，另一种选择是放在之前的集合中，有 $(k-1)$ 种可选择的集合。</p>
+<p>边界：${0 \brace 0}&#x3D;1$</p>
+<h2 id="代码实现-mathcal-O-nk-1"><a href="#代码实现-mathcal-O-nk-1" class="headerlink" title="代码实现 $\mathcal{O}(nk)$"></a>代码实现 $\mathcal{O}(nk)$</h2><pre class=" language-cpp"><code class="language-cpp">stir2<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> <span class="token function">min</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        stir2<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>stir2<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token punctuation">(</span>ll<span class="token punctuation">)</span>stir2<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">*</span> j <span class="token operator">%</span> Mod<span class="token punctuation">)</span> <span class="token operator">%</span> Mod<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="容斥（通项公式）"><a href="#容斥（通项公式）" class="headerlink" title="容斥（通项公式）"></a>容斥（通项公式）</h2><p>${n \brace k}&#x3D;\dfrac{1}{k!}\sum\limits_{i&#x3D;0}^k(-1)^i\cdot {k \choose i}\cdot (k-i)^n$</p>
+<p>组合意义：考虑 $n$ 个球，放进 $k$ 个不同集合，<strong>可以有空盒子的方案数</strong>。</p>
+<h1 id="下降幂"><a href="#下降幂" class="headerlink" title="下降幂"></a>下降幂</h1><p>记 $x$ 的 $n$ 阶下升幂为 $x^{\underline{n}}$ ，其值为 $\prod\limits_{i&#x3D;x}^{x-n+1}i$。特殊地，记 $x^{\underline{0}}&#x3D;1$。</p>
+<p>下降幂与 $n$ 次幂的关系：$x^n&#x3D;\sum\limits_{k&#x3D;0}^n{n \brace k}x^{\underline{k}}$</p>
+<p>*<strong>组合意义：</strong>对于将 $n$ 个小球染 $[1,x]$ 的某种颜色。等式左边为一般乘法原理；等式右边为先枚举不同的颜色数 $k$，然后将 $n$ 个小球分成 $k$ 个集合后依次染色，后面染的跟前面不重复，因此是下降幂。</p>
+<p>下降幂的转化：$i^{\underline{j}}&#x3D;{i \choose j}j!$</p>
+<h1 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h1><h2 id="CF1342E-Placing-Rooks"><a href="#CF1342E-Placing-Rooks" class="headerlink" title="CF1342E Placing Rooks"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1342E">CF1342E Placing Rooks</a></h2><p>注意到一共仅有 $n$ 个车，那么当且仅当<strong>每行恰好有一个车或每列恰好有一个车</strong>。</p>
+<p>不妨考虑每行有一个车的情况，行上显然没有可以互相攻击的车，那么考虑列的贡献。设最终有 $m$ 列存在车，那么首先先用 $m$ 个车填满这 $m$ 列，而后每增加一个车都恰好添加一对相互攻击的车，因此最终互相共计的车的对数为 $n-m&#x3D;k$，解得 $m&#x3D;n-k$。</p>
+<p>那么最终的答案为：${n \choose n-k}{n \brace n-k}(n-k)!$，对于填列的情况恰好一一对应一种填行的情况，只需将答案乘 $2$ 即可。</p>
+<h2 id="P4609-FJOI2016-建筑师"><a href="#P4609-FJOI2016-建筑师" class="headerlink" title="P4609 [FJOI2016] 建筑师"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4609">P4609 [FJOI2016] 建筑师</a></h2><p>题意转化：长度为 $n$ 的排列，前缀单调栈长度为 $A$ 且后缀单调栈长度为 $B$ 的排列数量。</p>
+<p>由于 $n$ 一定在两边都能被看到，所以单调栈长度先减 $1$。</p>
+<p>考虑单调栈中的每个数一定挡住了它后面的一些数，我们把每个单调栈中的数和它挡住的数一块考虑，当我们选定了这些数后，我们要把最大的数放在最前面，因此是一个置换环的形式，方案为第一类斯特林数。</p>
+<p>最后答案即为 ${n-1 \brack A+B-2}{A+B-2 \choose A-1}$。</p>
+<h2 id="CF932E-Team-Work"><a href="#CF932E-Team-Work" class="headerlink" title="CF932E Team Work"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF932E">CF932E Team Work</a></h2><p>推式子题。</p>
+<p>$\sum\limits_{i&#x3D;1}^n{n \choose i}\times i^k$ （首先拆 $i^k$ 为下降幂）</p>
+<p>$&#x3D;\sum\limits_{i&#x3D;1}^n{n\choose i}\sum\limits_{j&#x3D;0}^k{k \brace j}i^{\underline{j}}$（把 $i^{\underline{j}}$ 拆一下）</p>
+<p>$&#x3D;\sum\limits_{i&#x3D;1}^n{n\choose i}\sum\limits_{j&#x3D;0}^k{k \brace j}{i \choose j}j!$（换序求和）</p>
+<p>$&#x3D;\sum\limits_{j&#x3D;0}^k{k \brace j}j!\sum\limits_{i&#x3D;1}^n{n\choose i}{i \choose j}$（调整一下后面的组合数形式）</p>
+<p>$&#x3D;\sum\limits_{j&#x3D;0}^k{k \brace j}j!\sum\limits_{i&#x3D;j}^n{n\choose j}{n-j \choose i-j}$（观察到 $\sum\limits_{i&#x3D;j}^n{n-j \choose i-j}&#x3D;2^{n-j}$）</p>
+<p>$&#x3D;\sum\limits_{j&#x3D;0}^k{k \brace j}j!{n\choose j}2^{n-j}$</p>
+<p>$\mathcal{O}(k^2)$ 预处理第二类斯特林数，$\mathcal{O}(k)$ 组合数按列递推，$\mathcal{O}(k\log n)$ 求答案，总时间复杂度 $\mathcal{O(k^2+k\log n)}$。</p>
+<h2 id="CF1278F-Cards"><a href="#CF1278F-Cards" class="headerlink" title="CF1278F Cards"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1278F">CF1278F Cards</a></h2><p>又是推式子题。</p>
+<p>对于每次洗牌，有 $\dfrac{1}{m}$ 的概率第一张是王牌，有 $\dfrac{m-1}{m}$ 的概率第一张不是王牌，每次洗牌是独立的，枚举 $x$ 后则有：</p>
+<p>$\sum\limits_{x&#x3D;0}^n x^k{n\choose x}(\dfrac{1}{m})^x(\dfrac{m-1}{m})^{n-x}$</p>
+<p>为方便起见，设 $\dfrac{1}{m}&#x3D;p$。</p>
+<p>$&#x3D;\sum\limits_{x&#x3D;0}^n x^k{n\choose x}p^x(1-p)^{n-x}$（拆 $x^k$）</p>
+<p>$&#x3D;\sum\limits_{x&#x3D;0}^n\sum\limits_{j&#x3D;0}^k {k \brace j}x^{\underline{j}}{n \choose x}p^x(1-p)^{n-x}$（拆 $x^{\underline{j}}$）</p>
+<p>$&#x3D;\sum\limits_{x&#x3D;0}^n\sum\limits_{j&#x3D;0}^k {k \brace j}{x \choose j}j!{n \choose x}p^x(1-p)^{n-x}$（换序求和 + 调整组合数形式）</p>
+<p>$&#x3D;\sum\limits_{j&#x3D;0}^k {k\brace j}j!\sum\limits_{x&#x3D;j}^n{n\choose j}{n-j \choose x-j}p^x(1-p)^{n-x}$</p>
+<p>将 $p^x(1-p)^{n-x}$ 看作 $p^{x-j}(1-p)^{n-x}\cdot p^j$ 后，利用二项式定理化简：</p>
+<p>$&#x3D;\sum\limits_{j&#x3D;0}^k {k \brace j}j!{n\choose j}p^j$</p>
+<p>$&#x3D;\sum\limits_{j&#x3D;0}^k {k \brace j}n^{\underline{j}}p^j$</p>
+<p>易知求解此式的复杂度为 $\mathcal{O}(k^2)$。</p>
+<h2 id="P6620-省选联考-2020-A-卷-组合数问题"><a href="#P6620-省选联考-2020-A-卷-组合数问题" class="headerlink" title="P6620 [省选联考 2020 A 卷] 组合数问题"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6620">P6620 [省选联考 2020 A 卷] 组合数问题</a></h2><p>双是推式子题。</p>
+<p>我们不妨修改题面中式子的枚举变量 $k$ 为 $i$，以下均与 $i$ 为准。</p>
+<p>首先把原式的 $f(i)$ 打开：</p>
+<p>$&#x3D;\sum\limits_{i&#x3D;0}^n \sum\limits_{j&#x3D;0}^m a_j i^j\times x^i\times {n \choose i}$</p>
+<p>观察到又有形如 $i^j\times {n\choose i}$ 的美妙形式，因为上两题已经推导，这里我们直接得出：</p>
+<p>$&#x3D;\sum\limits_{i&#x3D;0}^n\sum\limits_{j&#x3D;0}^m a_j\times x^i\times \sum\limits_{k&#x3D;0}^j {j \brace k}k!{n \choose k}{n-k \choose i-k}$（换序求和）</p>
+<p>$&#x3D;\sum\limits_{j&#x3D;0}^m a_j\sum\limits_{k&#x3D;0}^j {j \brace k}k!{n \choose k}\sum\limits_{i&#x3D;k}^n{n-k \choose i-k}x^i$（二项式定理）</p>
+<p>$&#x3D;\sum\limits_{j&#x3D;0}^m a_j\sum\limits_{k&#x3D;0}^j {j \brace k}k!{n \choose k}x^k(x+1)^{n-k}$</p>
+<p>$&#x3D;\sum\limits_{j&#x3D;0}^m a_j\sum\limits_{k&#x3D;0}^j {j \brace k}n^{\underline{k}}x^k(x+1)^{n-k}$</p>
+<p>然后我们在 $\mathcal{O}(m^2 \log m)$ 的时间复杂度解决问题即可。</p>
+<h2 id="U117299-染色（容斥-斯特林数）"><a href="#U117299-染色（容斥-斯特林数）" class="headerlink" title="U117299 染色（容斥+斯特林数）"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/U117299">U117299 染色（容斥+斯特林数）</a></h2><p>考虑首先只满足 “不存在颜色相同的 $2$ 列” 这一条件。记 $f_i$ 表示染 $i$ 行，不存在颜色相同的 $2$ 列的方案数。</p>
+<p>显然是从 $A^i$ 种方案中排列 $m$ 个，则 $f_i&#x3D;(A^i)^{\underline{m}}$。</p>
+<p>那么接下来我们想办法把行的限制也加进去，<strong>考虑将这些情况容斥掉</strong>，记 $g_i$ 表示染 $i$ 行，不存在颜色相同的 $2$ 行也不存在颜色相同的 $2$ 列。</p>
+<p>我们可以通过<strong>枚举不同</strong>的行的数量来变成一个小规模子问题，假设不同的行有 $j$ 个，搞出 $j$ 行的方案数为 $g_j$，然后我们要做的问题就是 “将 $i$ 个不同的小球放入 $j$ 个集合，集合非空的方案数”，用第二类斯特林数，因此总转移方程为：$g_i&#x3D;f_i-\sum\limits_{j&#x3D;1}^{i-1}g_j{i \brace j}$。</p>
+<p>时间复杂度 $\mathcal{O}(nm)$。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>对于斯特林数的相关题目，一般有如下标志&#x2F;转化&#x2F;思路：</p>
+<ul>
+<li><p>出现次数很多 $(10^9)$ 的幂次项</p>
+</li>
+<li><p>$i^j\times {n\choose i}$</p>
+</li>
+<li><p>容斥 &amp; 组合意义</p>
+</li>
+</ul>
+
+            <div id="vcomments"></div>
+        </div>
+
+        <div id = "toc">
+        </div>
+
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: 'CEGJD6I3uLgJeTF6fPsqgGmw-gzGzoHsz',
+                appKey: 'R3wowhGv7IL3peB3tT06CjzS',
+                visitor: true,
+                master: '28a6ec927125219298a15dcb5c104f67'
+            })
+        </script>
+
+    
+
+</div>
+
+</body>
