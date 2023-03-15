@@ -9514,7 +9514,7 @@ ll sum0<span class="token punctuation">,</span> sum1<span class="token punctuati
   </entry>
   <entry>
     <title>斯特林数</title>
-    <url>/2023/03/07/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/</url>
+    <url>/2023/03/07/stirling/</url>
     <content><![CDATA[<h1 id="第一类斯特林数-texttt-Fisrt-Stirling"><a href="#第一类斯特林数-texttt-Fisrt-Stirling" class="headerlink" title="第一类斯特林数 $\texttt{(Fisrt Stirling)}$"></a>第一类斯特林数 $\texttt{(Fisrt Stirling)}$</h1><p>记 $\operatorname{stir_1}(n,k)$ 或 ${n \brack k}$ 表示 $n$ 个不同小球放在 $k$ 个置换环中的方案数。其中环之间的小球编号不同或置换顺序不同均算作不同的方案。</p>
 <p>递推：${n \brack k}&#x3D;{n-1 \brack k-1}+(n-1)\cdot {n-1 \brack k}$</p>
 <p>*<strong>组合意义</strong>：对于第 $n$ 个球，一种选择是新开一个未放过任何小球的环，另一种选择是放在之前的环中，因为小球互不相同且<strong>置换不同算作不同方案</strong>，那么放在任意已经放过的小球之后都是不同的方案，因此有 $(n-1)$ 种选择。</p>
