@@ -107,14 +107,14 @@
             <div id = "post-title"> 格线游走/反射容斥 </div>
             <div id = "post-author"> By WyyOIer | </div>
             <div id = "post-date" title = "发布时间"> 2023-03-19 10:35:04 / </div>
-            <div id = "post-updated" title = "更新时间"> 2023-03-20 22:32:32 </div>
+            <div id = "post-updated" title = "更新时间"> 2023-03-20 22:37:55 </div>
             <span class = "leancloud_visitors" id = "/2023/03/19/%E6%A0%BC%E7%BA%BF%E6%B8%B8%E8%B5%B0-%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5/">
                 <text class="post-meta-item-text">阅读数 </text>
                 <i class="leancloud-visitors-count">nan</i>
             </span>
             <br>
             <h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>请思考如下的经典问题：从原点 $(0,0)$ 开始，每一步只能向右或向上走，问走到 $A(n,m)$ 的方案数有多少？</p>
-<img src="https://cdnjson.com/images/2023/03/20/1.png" alt="1.png" style="zoom: 80%;" />
+<img src="https://cdnjson.com/images/2023/03/20/1.png" alt="图1.png" style="zoom: 80%;" />
 
 <p>相信大家都能一眼得出方案数为 ${n+m\choose n}$，组合意义也十分显然：将向右和向上看作 $01$ 操作，那么就是求由 $n$ 个 $0$、$m$ 个 $1$ 组成的不同 $01$ 序列数量。</p>
 <p>这种问题就被称为格线游走的最基本形式，在这个上面有很多种拓展方法，如在其中加入障碍后询问方案数之类的，今天我们讨论其中一种拓展。</p>
@@ -144,7 +144,7 @@
 <h1 id="反射容斥"><a href="#反射容斥" class="headerlink" title="反射容斥"></a>反射容斥</h1><p>我们需要对所有的经过直线顺序的情况进行容斥。记反射序列形如 $bcb…$ 表示格线游走依次按顺序经过直线 $y&#x3D;x+b,y&#x3D;x+c,y&#x3D;x+b,…$ 的方案，考虑我们怎么对这种依次经过直线的方案容斥的。</p>
 <p>每当我们第一次到达直线时，将所对应的点和直线翻折，类比下来，那么我们可以依次对经过的直线顺序翻折，最终翻折所得到终点的方案数就是以反射序列到达原终点的方案数。</p>
 <p>我们观察反射序列的形式，<strong>发现一定是由</strong> $b,c$ <strong>依次交替组成的</strong>，因为我们只在碰到 $b$ 后的下一次碰到 $c$ 才翻折，或碰到 $c$ 的下一次碰到 $b$ 后才翻折，如果连续经过了 $b$ 或 $c$，可以发现我们没有对于这种情况翻折。 </p>
-<p>综上，我们可以把最终答案以容斥写成了这样一个形式：$\empty-b-c+bc+cb-bcb-cbc+…$</p>
+<p>综上，我们可以把最终答案以容斥写成了这样一个形式：总方案 $-b-c+bc+cb-bcb-cbc+…$</p>
 <p>我们考虑这样的项一共有多少个。由于每次反射后都有偏移，且因为 $b,c$ 交替反射，所以终点总是在往负半轴跑，当跑到非第一象限的区域时方案数为 $0$，因此之后就不用计算，最终时间复杂度为 $\mathcal{O}(\dfrac{n+m}{b-c})$。</p>
 <h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>我们可以将所有反射序列看作两组：$bcbc…$ 与 $cbcb…$，我们可以同时维护这两组。</p>
 <p>我们考虑需要实时维护什么：两条直线的截距，反射后的终点位置，那么我们可以记录 $b,c$ 分别表示两条直线截距，$(x,y)$ 表示终点坐标。</p>
