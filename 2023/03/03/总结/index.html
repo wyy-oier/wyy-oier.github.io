@@ -107,17 +107,17 @@
             <div id = "post-title"> 总结 </div>
             <div id = "post-author"> By WyyOIer | </div>
             <div id = "post-date" title = "发布时间"> 2023-03-03 22:26:00 / </div>
-            <div id = "post-updated" title = "更新时间"> 2023-03-03 22:26:48 </div>
+            <div id = "post-updated" title = "更新时间"> 2023-03-24 22:35:30 </div>
             <span class = "leancloud_visitors" id = "/2023/03/03/%E6%80%BB%E7%BB%93/">
                 <text class="post-meta-item-text">阅读数 </text>
                 <i class="leancloud-visitors-count">nan</i>
             </span>
             <br>
-            <h1 id="模拟赛-amp-赛后遇到的一些问题总结："><a href="#模拟赛-amp-赛后遇到的一些问题总结：" class="headerlink" title="模拟赛 &amp; 赛后遇到的一些问题总结："></a>模拟赛 &amp; 赛后遇到的一些问题总结：</h1><ul>
+            <h1 id="思路"><a href="#思路" class="headerlink" title="# 思路"></a># 思路</h1><ul>
 <li>线段树合并叶子的贡献也包括 $pre$ 和 $suf$。</li>
 <li>数组尽量要定义到一起，不然急了之后可能就忘了修改。</li>
-<li>有关 $\operatorname{mex}$ 的题目，线段树维护 $Seg_r$ 表示 $r$ 为右端点时满足条件最大的左断点 $l$ 使之 $\operatorname{mex}(l,r)&#x3D;x$，当 $x\rightarrow x+1$ 时，$Seg$ <strong>整体不增</strong>，且 $Seg$ 从 $1\sim n$ <strong>单调不降</strong>。</li>
-<li>求多起点网格最短路，将所有起点扔进队列 <code>bfs()</code> 即可。</li>
+<li>有关 $\operatorname{mex}$ 的题目，线段树维护 $Seg_r$ 表示 $r$ 为右端点时满足条件最大的左端点 $l$ 使之 $\operatorname{mex}(l,r)&#x3D;x$，当 $x\rightarrow x+1$ 时，$Seg_r$ <strong>整体不增</strong>，且 $Seg$ 从 $1\sim n$ <strong>单调不降</strong>。</li>
+<li>求多起点网格单位权最短路，将所有起点扔进队列 <code>bfs()</code> 即可。</li>
 <li>*当需求出近似答案区间在 $[0.5ans,2ans]$ 时，二进制倍增可能方便的得到 $[0.5ans,1ans]$ 的答案。</li>
 <li>*对于维护楼梯数字（每一位数字都大于前一位数字的数），考虑用 $1111\cdots111,111\cdots111,\cdots,111,11,1$ 相加得到，采用分阶段 dp 维护相关性质。</li>
 <li>当树上从祖先走一条<strong>固定路径</strong>到后代，但<strong>路径不好直接维护时</strong>，考虑转换为后代 $\rightarrow$ 祖先，再去判断路径是否匹配。</li>
@@ -128,10 +128,15 @@
 <li>不要忘记线段树维护矩阵乘法。</li>
 <li>关于树上直径的期望，考虑枚举直径的最长长度，然后在这个长度下做 dp，设 $f_{u,j}$ 表示子树 $u$ 内<strong>最长直径为 $j$</strong> 的概率，枚举 $f_{u, j}+f_{v,k}\rightarrow f’_{u,j+k+w}$。</li>
 <li>在 DAG 上删 $k$ 个点，可以<strong>以这 $k$ 个点跑拓扑排序算贡献</strong>。</li>
-<li><strong>特殊最优化化问题</strong>可以使用 $\texttt{Simulated Annealint}$。</li>
-<li>做 $\texttt{Hash}$ 问题时注意随机权值的大小，<strong>一般情况下越大越好</strong>。</li>
+<li><strong>特殊最优化问题</strong>可以使用 $\texttt{Simulated Annealint}$。</li>
+<li>做 $\texttt{Hash}$ 问题时注意随机权值<strong>值域</strong>的大小，<strong>一般情况下越大越好</strong>。</li>
+<li>*“图上的两个点的邻域有 $k$ 个公共点时两个点也成为邻域”的计数问题，类似于 $k&#x3D;1$ 连通块计数的维护方法，通过枚举连通块大小容斥进行计算。</li>
+<li>高斯消元中，注意方程的特殊性，如系数是否为正三角&#x2F;倒三角，限制是否为链式结构，往往能对复杂度进一步优化。</li>
+<li>*形如 $f(x)&#x3D;\min(x,a)+b$ 或 $f(x)&#x3D;\min(\max(x,L),R)+D$ 的函数，则 $f(f(x))$ 也为同样结构。一个推导用到的恒等式：$\min(\max(x,y),z)&#x3D;\max(\min(x,z),\min(y,z)),\max(\min(x,y),z)&#x3D;\min(\max(x,z),\max(y,z))$。对于这样的结构，可以在线段树中的 <code>pushup()</code> 维护。（类似这种思想还有 ddp）</li>
+<li>当遇到格线游走类问题有移动范围的限制时（即不能走到 $y&#x3D;x+b$ 和 $y&#x3D;x+c$ 的线上），使用<a target="_blank" rel="noopener" href="https://wyy-oier.github.io/2023/03/19/%E6%A0%BC%E7%BA%BF%E6%B8%B8%E8%B5%B0-%E5%8F%8D%E5%B0%84%E5%AE%B9%E6%96%A5/">反射容斥</a>。</li>
+<li>主席树理论上不能维护最值问题，但注意题目维护的区间如果是特殊区间（前缀&#x2F;后缀），那么主席树可以维护最值。</li>
 </ul>
-
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1>
             <div id="vcomments"></div>
         </div>
 
